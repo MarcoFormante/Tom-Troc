@@ -49,6 +49,19 @@ user_one_id INT NOT NULL REFERENCES users(id),
 user_two_id INT NOT NULL REFERENCES users(id),
 content TEXT NOT NULL,
 sent_at DATETIME NOT NULL DEFAULT NOW()
+
+ALTER TABLE messages ADD CONSTRAINT FOREIGN KEY(chatroom_id) REFERENCES chatrooms(id)
+
+ALTER TABLE messages MODIFY COLUMN user_one_id VARCHAR(255) NOT NULL
+ALTER TABLE messages MODIFY COLUMN user_two_id VARCHAR(255) NOT NULL
+
+ALTER TABLE messages ADD CONSTRAINT FOREIGN KEY(user_one_id) REFERENCES users(email)
+ALTER TABLE messages ADD CONSTRAINT FOREIGN KEY(user_two_id) REFERENCES users(email)
+
+ALTER TABLE chatrooms MODIFY COLUMN main_user_id VARCHAR(255) NOT NULL
+ALTER TABLE chatrooms MODIFY COLUMN second_user_id VARCHAR(255) NOT NULL
+
+
 )
 
 ```
