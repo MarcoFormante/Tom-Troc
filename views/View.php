@@ -9,18 +9,18 @@ class View{
         $this->title = $title;
     }
 
-    public function render(string $template, array $params = [],string $layout = 'main'){
+    public function render(string $template, array $params = []){
         
         $content = $this->getContentFromTemplate($template,$params);
         $title = $this->title;
         ob_start();
-        require($layout == 'main' ?  MAIN_LAYOUT : 'admin' );
+        require(MAIN_LAYOUT);
         echo ob_get_clean();
     }
 
 
     private function getContentFromTemplate(string $template,array $params){
-        $viewPath = __DIR__ . '/templates/home.php';
+        $viewPath = __DIR__ . '/templates/'.$template.'.php';
         if (file_exists($viewPath)) {
             extract($params);
             ob_start();

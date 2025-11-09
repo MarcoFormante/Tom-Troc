@@ -8,5 +8,5 @@ try {
    Utils::handleRoute($request);
 } catch (\Throwable $th) {
     $view = new View("404 Error");
-    $view->render("/404",['error' =>$th->getMessage()]);
+    $view->render("404",['error' =>$th->getMessage()]);
 }

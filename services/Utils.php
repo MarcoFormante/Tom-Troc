@@ -11,6 +11,10 @@ class Utils{
             case "/":
                 $homeController = new HomeController();
                 $homeController->index();
+            break;
+            default :
+                throw new Exception("Error Processing Request", 1);
+            break;
         }
     }
    

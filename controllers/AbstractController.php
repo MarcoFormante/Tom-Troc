@@ -9,8 +9,8 @@ class AbstractController{
    *
    *@return void
    */
-    protected function render(string $template, ?array $params = [],string $layout = "main"){
+    protected function render(string $template, ?array $params = []){
       $view = new View("Home");
-      $view->render($template,$params,$layout);
+      $view->render($template,$params);
     }
 }
