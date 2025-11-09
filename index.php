@@ -2,11 +2,11 @@
 require_once('config/config.php');
 require_once('config/autoload.php');
 
+$request = Utils::request("route",'/');
 
-$db = new DBManager();
-
-$users = $db->query("SELECT * FROM users");
-
-$view = new View("home");
-
-$view->render('home',["title2" => "ciao"]);
+try {
+   Utils::handleRoute($request);
+} catch (\Throwable $th) {
+    $view = new View("404 Error");
+    $view->render("/404",['error' =>$th->getMessage()]);
+}

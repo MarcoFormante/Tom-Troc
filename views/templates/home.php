@@ -1,7 +1,7 @@
 
 <div>
-    <h1>questa è la HOME PAGE</h1>
+    <h1>Test Home Page</h1>
 </div>
 
 
-<h2><?=$title2?></h2>
+<h2><?=$testtitle2?></h2>

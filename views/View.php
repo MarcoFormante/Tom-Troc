@@ -9,12 +9,12 @@ class View{
         $this->title = $title;
     }
 
-    public function render(string $template, array $params = []){
+    public function render(string $template, array $params = [],string $layout = 'main'){
         
         $content = $this->getContentFromTemplate($template,$params);
-        $title2 = $this->title;
+        $title = $this->title;
         ob_start();
-        require(MAIN_LAYOUT);
+        require($layout == 'main' ?  MAIN_LAYOUT : 'admin' );
         echo ob_get_clean();
     }
 
