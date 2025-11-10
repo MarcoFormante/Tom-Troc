@@ -1,0 +1,10 @@
+
+
+.playfair-display-600{
+  @include playfair-heading(600);
+}
+
+
+.playfair-display-400 {
+  @include playfair-heading(400);
+}
