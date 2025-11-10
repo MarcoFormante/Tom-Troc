@@ -13,7 +13,7 @@ class Utils{
                 $homeController->index();
             break;
             default :
-                throw new Exception("Error Processing Request", 1);
+                throw new Exception("La page demandée d'existe pas", 404);
             break;
         }
     }

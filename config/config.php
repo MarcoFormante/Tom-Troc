@@ -6,5 +6,7 @@ define("DB_HOST","localhost");
 define("DB_USER","root");
 define("DB_PASS","");
 
-define("MAIN_LAYOUT",'layouts/main_layout.php');
-define('TEMPLATE_PATH','templates/');
+define("MAIN_LAYOUT","layouts/main_layout.php");
+define("TEMPLATE_PATH","templates/");
+
+define("PUBLIC_PATH","../public/");
