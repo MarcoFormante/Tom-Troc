@@ -6,3 +6,15 @@
   line-height: 100%;
   letter-spacing:0;
 }
+
+
+@mixin inter($weight,$letter_spacing){
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: $letter_spacing;
+}
+
+

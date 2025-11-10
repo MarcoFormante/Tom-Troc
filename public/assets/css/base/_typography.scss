@@ -8,3 +8,16 @@
 .playfair-display-400 {
   @include playfair-heading(400);
 }
+
+
+.inter-600 {
+  @include inter(600,2%)
+}
+
+.inter-400 {
+  @include inter(600,0)
+}
+
+.inter-300 {
+  @include inter(600,0)
+}
