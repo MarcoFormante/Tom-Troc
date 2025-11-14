@@ -4,7 +4,7 @@ class DBManager{
     private static $instance;
     private $db;
 
-    //On Construct
+    //On Construct create new PDO object
     public function __construct()
     {
         $this->db = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST,DB_USER,DB_PASS);
