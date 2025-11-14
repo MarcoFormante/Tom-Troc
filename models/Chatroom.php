@@ -1,6 +1,6 @@
 <?php 
 
-class Chatroom extends AbstractModel{
+class Chatroom extends AbstractEntity{
     private string $main_user_id;
     private string $second_user_id;
 

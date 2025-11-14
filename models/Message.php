@@ -1,6 +1,6 @@
 <?php 
 
-class Message extends AbstractModel{
+class Message extends AbstractEntity{
     private string $chatroom_id;
     private string $user_one_id;
     private string $user_two_id;

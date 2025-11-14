@@ -1,6 +1,6 @@
 <?php 
 
-class Book extends AbstractModel{
+class Book extends AbstractEntity{
     private string $title;
     private int $author_id;
     private string $image;

@@ -1,6 +1,6 @@
 <?php 
 
-class User extends AbstractModel{
+class User extends AbstractEntity{
     private string $email;
     private string $password;
     private string $pseudo;
@@ -86,7 +86,7 @@ class User extends AbstractModel{
 
         return $this;
     }
+
+
 }
-
-
 

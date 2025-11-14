@@ -1,11 +1,9 @@
 <?php 
 
-abstract class AbstractModel{
-    protected $id = null;
+abstract class AbstractEntityManager{
     protected DBManager $db;
 
-
-    protected function __construct()
+    public function __construct()
     {
         $this->db = DBManager::getInstance();
     }

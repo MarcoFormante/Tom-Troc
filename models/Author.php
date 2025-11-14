@@ -1,6 +1,6 @@
 <?php 
 
-class Author extends AbstractModel{
+class Author extends AbstractEntity{
     private string $name;
     private string $surname;
     private string $pseudo;
