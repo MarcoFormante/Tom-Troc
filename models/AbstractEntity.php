@@ -1,7 +1,7 @@
 <?php 
 
 abstract class AbstractEntity{
-    protected $id = null;
+    protected $id = -1;
     
 
     /**
