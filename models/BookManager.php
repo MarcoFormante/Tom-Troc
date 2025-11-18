@@ -105,6 +105,37 @@ class BookManager extends AbstractEntityManager{
 
         return $stmt->rowCount();
     }
+
+
+    /**
+     * Get Books with orderby and limit props
+     * @param array[string,string] $orderBy = [column name, ASC|DESC]
+     * @param array[int,int] exemple $limit =  [0,4]
+     */
+    public function getBooksByOrderAndLimit(array $orderBy, array $limit):array
+    {
+
+        $sql = "SELECT b.id, b.title, b.image, a.name, a.pseudo FROM books b
+                JOIN authors a ON a.id = b.author_id
+                WHERE status = :status
+                ORDER BY :order :orderType
+                LIMIT $limit[0] , $limit[1]
+            ";
+
+        $stmt = $this->db->query($sql,[
+            'status' => 1,
+            'order' => $orderBy[0],
+            'orderType' => $orderBy[1],
+        ]);
+
+        $books = [];
+
+        while($book = $stmt->fetch()){
+            $books[] = new Book($book);
+        }
+
+        return $books;
+    }
     
     
 }

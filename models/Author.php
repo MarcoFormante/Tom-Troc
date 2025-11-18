@@ -2,10 +2,7 @@
 
 class Author extends AbstractEntity{
     private string $name;
-    private string $surname;
     private string $pseudo;
-
-    
 
     /**
      * Get the value of name
@@ -27,26 +24,7 @@ class Author extends AbstractEntity{
         return $this;
     }
 
-    /**
-     * Get the value of surname
-     */ 
-    public function getSurname()
-    {
-        return $this->surname;
-    }
-
-    /**
-     * Set the value of surname
-     *
-     * @return  self
-     */ 
-    public function setSurname($surname)
-    {
-        $this->surname = $surname;
-
-        return $this;
-    }
-
+  
     /**
      * Get the value of pseudo
      */ 

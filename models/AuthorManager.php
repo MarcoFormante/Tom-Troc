@@ -9,7 +9,7 @@ class AuthorManager extends AbstractEntityManager{
     */
     public function getAuthor(int $id):Author|false
     {
-        $sql = "SELECT id, name, surname, pseudo FROM authors WHERE id = :id";
+        $sql = "SELECT id, name, pseudo FROM authors WHERE id = :id";
 
         $stmt = $this->db->query($sql,['id' => $id]);
         $author = $stmt->fetch();
@@ -30,12 +30,11 @@ class AuthorManager extends AbstractEntityManager{
     {
         $params = [
             'name'    => $author->getName(),
-            'surname' => $author->getSurname(),
             'pseudo'  => $author->getPseudo()
         ];
 
         if ($author->getId() !== -1) {
-            $sql = "UPDATE authors SET name = :name, surname = :surname, pseudo = :pseudo WHERE id = :id";
+            $sql = "UPDATE authors SET name = :name, pseudo = :pseudo WHERE id = :id";
             $params['id'] = $author->getId();
         }else{
             $sql = "INSERT INTO authors(name,surname,pseudo) VALUES(:name,:surname,:pseudo)";
