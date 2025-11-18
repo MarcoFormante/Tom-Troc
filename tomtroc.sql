@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Nov 14, 2025 alle 15:36
+-- Creato il: Nov 15, 2025 alle 00:04
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -59,24 +59,12 @@ CREATE TABLE `books` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `chatrooms`
---
-
-CREATE TABLE `chatrooms` (
-  `id` char(36) NOT NULL DEFAULT uuid(),
-  `main_user_id` varchar(255) NOT NULL,
-  `second_user_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `messages`
 --
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `chatroom_id` char(1) NOT NULL,
+  `chatroom_id` varchar(255) NOT NULL,
   `user_one_id` int(11) NOT NULL,
   `user_two_id` int(11) NOT NULL,
   `content` text NOT NULL,
@@ -126,19 +114,10 @@ ALTER TABLE `books`
   ADD KEY `author_id` (`author_id`);
 
 --
--- Indici per le tabelle `chatrooms`
---
-ALTER TABLE `chatrooms`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `main_user_id` (`main_user_id`),
-  ADD UNIQUE KEY `second_user_id` (`second_user_id`);
-
---
 -- Indici per le tabelle `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `chatroom_id` (`chatroom_id`),
   ADD KEY `user_one_id` (`user_one_id`),
   ADD KEY `user_two_id` (`user_two_id`);
 
@@ -189,19 +168,11 @@ ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `chatrooms`
---
-ALTER TABLE `chatrooms`
-  ADD CONSTRAINT `chatrooms_ibfk_1` FOREIGN KEY (`main_user_id`) REFERENCES `users` (`email`),
-  ADD CONSTRAINT `chatrooms_ibfk_2` FOREIGN KEY (`second_user_id`) REFERENCES `users` (`email`);
-
---
 -- Limiti per la tabella `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`chatroom_id`) REFERENCES `chatrooms` (`id`),
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_one_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`user_two_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`user_one_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_two_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

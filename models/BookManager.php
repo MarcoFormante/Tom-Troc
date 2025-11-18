@@ -3,6 +3,7 @@
 class BookManager extends AbstractEntityManager{
 
     /**
+     * Get a Book by id
      * @param int $id
      * @return Book|false
      */
@@ -25,10 +26,11 @@ class BookManager extends AbstractEntityManager{
     }
 
 
-      /**
+    /**
+     * Get Books 
      * @param int $id
      * @return Book|false
-     */
+    */
     public function getBooks(int $id):array|false
     {
         $sql = " SELECT b.id, b.image, b.description, b.status FROM books b
@@ -56,6 +58,7 @@ class BookManager extends AbstractEntityManager{
 
 
     /**
+     * Create or modify a Book
      * @param Book $book
      * @param ?Author $author
      * @return bool $stmt->rowCount()
@@ -90,6 +93,7 @@ class BookManager extends AbstractEntityManager{
 
 
     /**
+     * Delete a book by id
      * @param int $id
      * @return bool
      */
