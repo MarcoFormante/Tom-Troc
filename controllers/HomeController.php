@@ -3,6 +3,9 @@
 class HomeController extends AbstractController{
 
     public function index(){
-        $this->render("home",['testtitle2' => 'TEST']);
+        $bookManager = new BookManager();
+        $books = $bookManager->getBooksByOrderAndLimit(["created_at","DESC"],[0,4]);
+        
+        $this->render("home",['books' => $books]);
     }
 }

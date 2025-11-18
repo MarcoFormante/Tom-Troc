@@ -131,7 +131,7 @@ class BookManager extends AbstractEntityManager{
         $books = [];
 
         while($book = $stmt->fetch()){
-            $books[] = new Book($book);
+            $books[] = $book;
         }
 
         return $books;
