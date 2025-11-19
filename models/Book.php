@@ -7,6 +7,7 @@ class Book extends AbstractEntity{
     private string $description;
     private bool $status;
     private DateTime $created_at;
+    private int $sold_by;
     
 
     /**
@@ -129,6 +130,26 @@ class Book extends AbstractEntity{
     public function setCreated_at($created_at)
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sold_by
+     */ 
+    public function getSold_by()
+    {
+        return $this->sold_by;
+    }
+
+    /**
+     * Set the value of sold_by
+     *
+     * @return  self
+     */ 
+    public function setSold_by($sold_by)
+    {
+        $this->sold_by = $sold_by;
 
         return $this;
     }
