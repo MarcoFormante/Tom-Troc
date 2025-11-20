@@ -109,7 +109,7 @@ class BookManager extends AbstractEntityManager{
     public function getBooksByOrderAndLimit(array $orderBy, array $limit):array
     {
 
-        $sql = "SELECT id, author, title, image, sold_by, pseudo FROM books 
+        $sql = "SELECT id, author, title, image, sold_by FROM books 
                 WHERE status = :status
                 ORDER BY :order :orderType
                 LIMIT $limit[0] , $limit[1]
