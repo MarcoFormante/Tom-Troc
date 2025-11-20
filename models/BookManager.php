@@ -9,9 +9,8 @@ class BookManager extends AbstractEntityManager{
      */
     public function getBook(int $id):Book|false
     {
-        $sql = " SELECT b.id, b.image, b.description, b.status FROM books b
-                 JOIN authors a ON a.id = b.author_id
-                 WHERE b.id = :id
+        $sql = " SELECT id, author, image, description, sold_by, status, FROM books 
+                 WHERE id = :id
                ";
 
         $stmt = $this->db->query($sql,['id' => $id]);
@@ -33,8 +32,7 @@ class BookManager extends AbstractEntityManager{
     */
     public function getBooks(int $id):array|false
     {
-        $sql = " SELECT b.id, b.image, b.description, b.status FROM books b
-                 JOIN authors a ON a.id = b.author_id
+        $sql = " SELECT id, author, image, description, status FROM books 
                  WHERE id >= :id
                ";
 
@@ -63,26 +61,22 @@ class BookManager extends AbstractEntityManager{
      * @param ?Author $author
      * @return bool $stmt->rowCount()
      */
-     public function createOrUpdateBook(Book $book,?Author $author):bool
+     public function createOrUpdateBook(Book $book):bool
     {
         $params = [
             'title'    => $book->getTitle(),
+            'author' => $book->getAuthor(),
             'image' => $book->getImage(),
             'description'  => $book->getDescription(),
+            'sold_by' => $book->getSold_by(),
             'status'  => $book->getStatus(),
         ];
 
         if ($book->getId() !== -1) {
-            $sql = "UPDATE books SET title = :title, image = :image, description = :description, status = :status WHERE id = :id";
+            $sql = "UPDATE books SET title = :title, author = :author, image = :image, description = :description, status = :status, sold_by = :sold_by  WHERE id = :id";
             $params['id'] = $book->getId();
         }else{
-            $sql = "INSERT INTO books(title,author_id,image,description,status) VALUES(:title,:author_id,:image,:description,:status)";
-
-            $authorManager = new AuthorManager();
-            $authorManager->createOrUpdateAuthor($author);
-
-            $author_id = $authorManager->db->getPDO()->lastInsertId();
-            $params['author_id'] = $author_id;
+            $sql = "INSERT INTO books(title, author, image, description, sold_by, status) VALUES(:title, :author, :image, :description, :sold_by, :status)";
         }
 
         $stmt = $this->db->query($sql,$params);
@@ -115,8 +109,7 @@ class BookManager extends AbstractEntityManager{
     public function getBooksByOrderAndLimit(array $orderBy, array $limit):array
     {
 
-        $sql = "SELECT b.id, b.title, b.image, a.name, a.pseudo FROM books b
-                JOIN authors a ON a.id = b.author_id
+        $sql = "SELECT id, author, title, image, sold_by, pseudo FROM books 
                 WHERE status = :status
                 ORDER BY :order :orderType
                 LIMIT $limit[0] , $limit[1]

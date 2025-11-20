@@ -2,7 +2,7 @@
 
 class Book extends AbstractEntity{
     private string $title;
-    private int $author_id;
+    private string $author;
     private string $image;
     private string $description;
     private bool $status;
@@ -93,27 +93,6 @@ class Book extends AbstractEntity{
     }
 
 
-
-    /**
-     * Get the value of author_id
-     */ 
-    public function getAuthor_id()
-    {
-        return $this->author_id;
-    }
-
-    /**
-     * Set the value of author_id
-     *
-     * @return  self
-     */ 
-    public function setAuthor_id($author_id)
-    {
-        $this->author_id = $author_id;
-
-        return $this;
-    }
-
     /**
      * Get the value of created_at
      */ 
@@ -150,6 +129,26 @@ class Book extends AbstractEntity{
     public function setSold_by($sold_by)
     {
         $this->sold_by = $sold_by;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of author
+     */ 
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set the value of author
+     *
+     * @return  self
+     */ 
+    public function setAuthor($author)
+    {
+        $this->author = $author;
 
         return $this;
     }
