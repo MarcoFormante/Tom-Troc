@@ -1,9 +1,6 @@
 <?php 
 
-require_once('./models/AbstractEntityManager.php');
-require_once('./models/DBManager.php');
-
-class UserFixture extends AbstractEntityManager
+class UserFixture extends AbstractFixture
 {
     /**
      * Add new random users in DB (minimun 2, maximum 10)
@@ -11,21 +8,18 @@ class UserFixture extends AbstractEntityManager
      */
     public function addRandomUsers():void
     {
-       $letters = "abcdefghilmnopqrstuvywmhò";
-       $numberOfUsers = rand(2,10);
-       $users = [];
-       $params = [];
+      
+       $numberOfUsers = $this->createRandomCount();
 
        $sql = "INSERT INTO users(email,pseudo,password,profile_image) VALUES(";
 
        for ($i=0; $i < $numberOfUsers ; $i++) { 
       
-            $randomString = substr(str_shuffle($letters),rand(1,12),rand(12,25));
             $users[$i] = 
             [
-                "email" =>  $randomString.'@gmail.com',
-                "pseudo" => $randomString,
-                "password" =>  uniqid("pass-") . $randomString,
+                "email" => $this->createRandomString().'@gmail.com',
+                "pseudo" =>$this->createRandomString(),
+                "password" =>  uniqid("pass-") . $this->createRandomString(),
                 "profile_image" => uniqid("img-") . "jpg"
             ];
 
@@ -61,14 +55,12 @@ class UserFixture extends AbstractEntityManager
      */
     public function addUser():void
     {
-        $letters = 'abcdefghilmnopqrstuvywmhj';
+     
         $sql = "INSERT INTO users(email,pseudo,password,profile_image) VALUES(:email,:pseudo,:password,:profile_image)";
 
-        $randomString = substr(str_shuffle($letters),rand(1,12),rand(12,25));
-        
-        $params["email"] = $randomString.'@gmail.com'; 
-        $params["pseudo"] = $randomString; 
-        $params["password"] = uniqid("pass-") . $randomString; 
+        $params["email"] = $this->createRandomString() . '@gmail.com'; 
+        $params["pseudo"] = $this->createRandomString(); 
+        $params["password"] = uniqid("pass-") . $this->createRandomString(); 
         $params["profile_image"] = uniqid("img-") . ".jpg";
 
         $response = "Un USER a été ajouté à la Base de Donnés";
