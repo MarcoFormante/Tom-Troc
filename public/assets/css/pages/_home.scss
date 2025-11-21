@@ -1,6 +1,6 @@
 #home-hero{
     padding-top: 80px;
-    padding-bottom: 120px;
+    padding-bottom: 101px;
 
     #home-hero-container{
         gap: 108px;
@@ -34,6 +34,112 @@
         text-align: right;
         margin-top: 12px;
     }
-
 }
 
+#home-last-books, #home-how-it-works, #home-values{
+    padding-top: 80px;
+}
+
+
+
+#home-last-books, #home-how-it-works{
+    h2{
+        text-align: center;
+        @extend .playfair-display-400;
+        font-size: 32px;
+    }
+
+    .btn-container{
+        margin-top: 48px;
+    }
+
+    .btn-primary,.btn-secondary{
+        max-width: 218px;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+#home-last-books{
+    padding-bottom: 64px;
+
+    h2{
+        margin-bottom: 80px;
+    }
+}
+
+#home-how-it-works{
+    padding-bottom: 80px;
+
+    .paragraphe{
+        @include inter(300,0);
+        text-align:center;
+        max-width: 397px;
+        margin: 24px auto 40px auto;
+        color: $darken_gray
+    }
+
+    &-list{
+        @include flex(center,center);
+        gap: 36px;
+
+        li{
+            background-color: $white;
+            width: 215px;
+            height: 139px;
+            @include flex(center,center);
+            border-radius: 10px;
+
+            p{
+                text-align: center;
+                @include inter(400,0);
+                font-size: 14px;
+                width: 165px;
+                height: 51px;
+                line-height: 120%;
+            }
+        }
+    }
+}
+
+
+#home-values{
+    width: 392px;
+    margin: auto;
+    padding-bottom:  162px;
+
+    h2{
+        text-align: left;
+        @extend .playfair-display-400;
+        font-size: 32px;
+        margin-bottom: 29px;
+    }
+
+    .paragraphe{
+        @include inter(300,0);
+        color: $darken_gray;
+    }
+
+    &-salutations-container{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 39px;
+        position: relative;
+
+        #heart-img{
+            position: absolute;
+            right: -10%;
+            top: -120%;
+        }
+    }
+
+    &-salutations-text{
+        width: 100%;
+        @include inter(400,0);
+        font-style: italic;
+        font-size: 12px;
+        color: $gray_text;
+    }
+}
+
+   

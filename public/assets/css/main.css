@@ -35,7 +35,7 @@
   letter-spacing: 0;
 }
 
-.playfair-display-400 {
+.playfair-display-400, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -62,16 +62,16 @@
   letter-spacing: 2%;
 }
 
-.inter-400 {
+.inter-400, .book-card-soldby, .book-card-author, .book-card-title {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0;
 }
 
-.inter-600-0, .btn-primary {
+.inter-600-0, .btn-primary, .btn-secondary {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -225,21 +225,77 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
   width: 100%;
 }
 
-.btn-primary {
+.btn-primary, .btn-secondary {
   display: block;
-  padding: 22px 38px;
-  background-color: rgb(0, 172, 102);
+  padding: 22px 37px;
+  border: 1px solid transparent;
   border-radius: 10px;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.btn-primary:hover {
+.btn-primarya, .btn-secondarya {
+  display: flex;
+}
+.btn-primary:hover, .btn-secondary:hover {
   background-color: rgb(0, 109, 65);
+  color: rgb(255, 255, 255);
+}
+
+.btn-primary {
+  background-color: rgb(0, 172, 102);
+  color: rgb(255, 255, 255);
+}
+
+.btn-secondary {
+  border: 1px solid rgb(0, 172, 102);
+  color: rgb(0, 172, 102);
+  display: block;
+}
+
+.book-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 38px;
+}
+
+.book-card {
+  max-height: 324px;
+  height: 324px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.book-card-title {
+  color: rgb(0, 0, 0);
+  margin-top: 12px;
+  margin-left: 14px;
+}
+.book-card-author {
+  font-size: 14px;
+  color: rgb(166, 166, 166);
+  margin-left: 14px;
+}
+.book-card-soldby {
+  font-size: 10px;
+  color: rgb(166, 166, 166);
+  font-style: italic;
+  margin-top: 22px;
+  margin-left: 14px;
+}
+.book-card .flex-col-gap-16 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.book-card-white-container {
+  background-color: rgb(255, 255, 255);
+  height: 100%;
 }
 
 #home-hero {
   padding-top: 80px;
-  padding-bottom: 120px;
+  padding-bottom: 101px;
 }
 #home-hero #home-hero-container {
   gap: 108px;
@@ -266,4 +322,115 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
 #home-hero figcaption {
   text-align: right;
   margin-top: 12px;
+}
+
+#home-last-books, #home-how-it-works, #home-values {
+  padding-top: 80px;
+}
+
+#home-last-books h2, #home-how-it-works h2 {
+  text-align: center;
+  font-size: 32px;
+}
+#home-last-books .btn-container, #home-how-it-works .btn-container {
+  margin-top: 48px;
+}
+#home-last-books .btn-primary, #home-last-books .btn-secondary, #home-how-it-works .btn-primary, #home-how-it-works .btn-secondary {
+  max-width: 218px;
+  text-align: center;
+  margin: auto;
+}
+
+#home-last-books {
+  padding-bottom: 64px;
+}
+#home-last-books h2 {
+  margin-bottom: 80px;
+}
+
+#home-how-it-works {
+  padding-bottom: 80px;
+}
+#home-how-it-works .paragraphe {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+  max-width: 397px;
+  margin: 24px auto 40px auto;
+  color: rgb(41, 41, 41);
+}
+#home-how-it-works-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+#home-how-it-works-list li {
+  background-color: rgb(255, 255, 255);
+  width: 215px;
+  height: 139px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+#home-how-it-works-list li p {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-size: 14px;
+  width: 165px;
+  height: 51px;
+  line-height: 120%;
+}
+
+#home-values {
+  width: 392px;
+  margin: auto;
+  padding-bottom: 162px;
+}
+#home-values h2 {
+  text-align: left;
+  font-size: 32px;
+  margin-bottom: 29px;
+}
+#home-values .paragraphe {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgb(41, 41, 41);
+}
+#home-values-salutations-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 39px;
+  position: relative;
+}
+#home-values-salutations-container #heart-img {
+  position: absolute;
+  right: -10%;
+  top: -120%;
+}
+#home-values-salutations-text {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-style: italic;
+  font-size: 12px;
+  color: rgb(166, 166, 166);
 }/*# sourceMappingURL=main.css.map */
