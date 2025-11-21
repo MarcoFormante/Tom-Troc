@@ -10,3 +10,6 @@ define("MAIN_LAYOUT","layouts/main_layout.php");
 define("TEMPLATE_PATH","templates/");
 
 define("PUBLIC_PATH","../public/");
+
+
+define("COMPONENTS_PATH",__DIR__ . "/../views/components/");
