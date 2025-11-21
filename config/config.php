@@ -13,3 +13,5 @@ define("PUBLIC_PATH", "../public/");
 
 
 define("COMPONENTS_PATH", "../views/components/");
+
+define("IMAGES_PATH", PUBLIC_PATH . "assets/images/");

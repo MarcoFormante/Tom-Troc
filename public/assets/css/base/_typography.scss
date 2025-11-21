@@ -9,6 +9,9 @@
   @include playfair-heading(400);
 }
 
+.inter-300{
+  @include inter(300,0)
+}
 
 .inter-600 {
   @include inter(600,2%)
@@ -18,6 +21,13 @@
   @include inter(600,0)
 }
 
-.inter-300 {
+.inter-600-0 {
   @include inter(600,0)
+}
+
+
+.inter-italic-400{
+  @include inter(400,0);
+  font-style: italic;
+  color: $gray_text;
 }

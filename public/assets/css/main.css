@@ -3,6 +3,28 @@
   justify-content: center;
   align-items: center;
 }
+.flex-c-c-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.t-black {
+  color: rgb(0, 0, 0);
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.bg__light-gray, header {
+  background-color: rgb(245, 243, 239);
+}
+
+.bg__white {
+  background-color: rgb(250, 249, 247);
+}
 
 .playfair-display-600 {
   font-family: "Playfair Display", serif;
@@ -17,6 +39,15 @@
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+}
+
+.inter-300 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0;
@@ -40,13 +71,24 @@
   letter-spacing: 0;
 }
 
-.inter-300 {
+.inter-600-0, .btn-primary {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0;
+}
+
+.inter-italic-400 {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  font-style: italic;
+  color: rgb(166, 166, 166);
 }
 
 *, *::after, *::before {
@@ -61,6 +103,18 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+html {
+  min-height: 100vh;
+  background-color: black;
+}
+
+body {
+  max-width: 1440px;
+  min-height: inherit;
+  margin: auto;
+  background-color: rgb(250, 249, 247);
 }
 
 header {
@@ -80,7 +134,7 @@ header #header-logo-container {
   height: 51px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 8.5px;
 }
 header #header-logo-img {
   background-image: url("../../../public/assets/images/statics/svg/logo.svg");
@@ -124,6 +178,7 @@ header #main-nav ul {
 }
 header #main-nav ul a {
   color: rgb(41, 41, 41);
+  font-size: 14px;
 }
 header #main-nav ul a.active {
   font-weight: 600;
@@ -164,4 +219,51 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
   font-size: 8.25px;
   display: grid;
   place-content: center;
+}
+
+.btn-container-full {
+  width: 100%;
+}
+
+.btn-primary {
+  display: block;
+  padding: 22px 38px;
+  background-color: rgb(0, 172, 102);
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: rgb(0, 109, 65);
+}
+
+#home-hero {
+  padding-top: 80px;
+  padding-bottom: 120px;
+}
+#home-hero #home-hero-container {
+  gap: 108px;
+}
+#home-hero #hero-left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 329px;
+  flex-direction: column;
+  gap: 40px;
+}
+#home-hero #hero-left-text-container {
+  gap: 16px;
+}
+#home-hero h1 {
+  font-size: 36px;
+  line-height: 130%;
+  margin-top: 50px;
+}
+#home-hero p {
+  line-height: 120%;
+}
+#home-hero figcaption {
+  text-align: right;
+  margin-top: 12px;
 }/*# sourceMappingURL=main.css.map */

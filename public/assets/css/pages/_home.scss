@@ -1,0 +1,39 @@
+#home-hero{
+    padding-top: 80px;
+    padding-bottom: 120px;
+
+    #home-hero-container{
+        gap: 108px;
+    }
+
+
+    #hero-left-container{
+        @include flex(center,center);
+        max-width: 329px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+
+    #hero-left-text-container{
+        gap: 16px;
+    }
+
+
+    h1{
+        font-size: 36px;
+        line-height: 130%;
+        margin-top: 50px;
+    }
+
+    p{
+        line-height: 120%;
+    }
+
+    figcaption{
+        text-align: right;
+        margin-top: 12px;
+    }
+
+}
+

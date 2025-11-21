@@ -1,3 +1,26 @@
 .flex-c-c{
-    @include flex(center,center)
+    @include flex(center,center);
+
+    &-col{
+        @include flex(center,center);
+        flex-direction:column;
+    }
+}
+
+.t-black{
+    color: $primary_heading;
+}
+
+
+.align-self-start{
+    align-self: flex-start;
+}
+
+
+.bg__light-gray{
+    background-color: $light_gray;
+}
+
+.bg__white{
+    background-color: $background_light;
 }

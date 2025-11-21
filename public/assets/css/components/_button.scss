@@ -1,0 +1,21 @@
+
+
+.btn-container-full{
+    width: 100%;
+}
+
+
+.btn-primary{
+        display: block;
+        padding: 22px 38px;
+        background-color: $primary_color;
+        border-radius: 10px;
+        color: $white;
+        transition: background-color 0.3s ease;
+
+        @extend .inter-600-0;
+
+        &:hover{
+            background-color: $darken_primary_color;
+        }
+}
