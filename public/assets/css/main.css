@@ -83,7 +83,7 @@ header #header-logo-container {
   border-radius: 16px;
 }
 header #header-logo-img {
-  background-image: url(http://localhost/openclassroom/project-4/TomTroc/public/assets/images/statics/svg/logo.svg);
+  background-image: url("../../../public/assets/images/statics/svg/logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
@@ -141,7 +141,7 @@ header #main-nav ul.nav-list__right li#message-list-item {
   align-items: center;
 }
 header #main-nav ul.nav-list__right li#message-list-item #message-logo {
-  background-image: url("http://localhost/openclassroom/project-4/TomTroc/public/assets/images/statics/svg/Icon_messagerie.svg");
+  background-image: url("../../../public/assets/images/statics/svg/Icon_messagerie.svg");
   background-repeat: no-repeat;
   display: block;
   width: 17px;
