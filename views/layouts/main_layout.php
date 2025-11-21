@@ -10,6 +10,7 @@
     <title><?=$title?></title>
 </head>
 <body>
+    <?php require COMPONENTS_PATH . "header.php"?>
     <main class="playfair-display-600">
         <?=$content?>
     </main>
