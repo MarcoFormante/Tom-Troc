@@ -1,0 +1,50 @@
+.book-list-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 38px;
+}
+
+.book-card{
+    max-height: 324px;
+    height: 324px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    
+    &-title{
+        @extend .inter-400;
+        color: $primary_heading;
+        margin-top: 12px;
+        margin-left: 14px;
+    }
+
+    &-author{
+        font-size: 14px;
+        @extend .inter-400;
+        color: $gray_text;
+        margin-left: 14px;
+    }
+
+    &-soldby{
+        font-size: 10px;
+        color: $gray_text;
+        @extend .inter-400;
+        font-style: italic;
+        margin-top: 22px;
+        margin-left: 14px;
+    }
+
+    .flex-col-gap-16{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &-white-container{
+        background-color: $white;
+        height: 100%;
+    }
+
+}

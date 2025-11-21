@@ -5,17 +5,34 @@
 }
 
 
-.btn-primary{
+.btn-primary, .btn-secondary{
         display: block;
-        padding: 22px 38px;
-        background-color: $primary_color;
+        padding: 22px 37px;
+        border: 1px solid transparent;
         border-radius: 10px;
-        color: $white;
-        transition: background-color 0.3s ease;
-
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
         @extend .inter-600-0;
 
-        &:hover{
-            background-color: $darken_primary_color;
+        &a{
+            display: flex;
+            
         }
+
+         &:hover{
+            background-color: $darken_primary_color;
+            color: $white;
+        }
+}
+
+
+.btn-primary{
+    background-color: $primary_color;
+    color: $white;
+}
+
+
+.btn-secondary{
+    border: 1px solid $primary_color;
+    color: $primary_color;
+    display: block;
 }
