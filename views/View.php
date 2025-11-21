@@ -20,7 +20,7 @@ class View{
 
 
     private function getContentFromTemplate(string $template,array $params){
-        $viewPath = __DIR__ . '/templates/'.$template.'.php';
+        $viewPath = TEMPLATE_PATH . $template.'.php';
         if (file_exists($viewPath)) {
             extract($params);
             ob_start();
