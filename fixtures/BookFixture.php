@@ -12,6 +12,12 @@ class BookFixture extends AbstractFixture
        
        $numberOfBooks = $this->createRandomCount();
        
+       $sql = "SELECT id from users";
+
+       $usersStmt = $this->db->query($sql);
+       $users = $usersStmt->fetchAll();
+       $userId = $users[rand(0,count($users) - 1)]['id'];
+
        $sql = "INSERT INTO books(title,image,author,description,status,sold_by) VALUES(";
 
        for ($i=0; $i < $numberOfBooks ; $i++) { 
@@ -20,11 +26,11 @@ class BookFixture extends AbstractFixture
             $books[$i] = 
             [
                 "title" =>  $randomString,
-                "image" => uniqid("img-") . ".jpg",
-                "author" =>   "author-". $randomString,
+                "image" => "book.webp",
+                "author" =>   "author",
                 "description" => uniqid("desc-") .  $randomString,
                 "status" => rand(0,1),
-                "sold_by" => rand(1,255)
+                "sold_by" => $userId
             ];
 
             $sql .= ":title$i,:image$i,:author$i,:description$i,:status$i,:sold_by$i)";
