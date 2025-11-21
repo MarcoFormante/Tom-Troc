@@ -1,3 +1,9 @@
+.flex-c-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .playfair-display-600 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -41,4 +47,121 @@
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0;
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-inline: 150px;
+}
+header #header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header #header-logo-container {
+  background-color: rgb(0, 172, 102);
+  width: 51px;
+  height: 51px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+}
+header #header-logo-img {
+  background-image: url(http://localhost/openclassroom/project-4/TomTroc/public/assets/images/statics/svg/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32.31px;
+  height: 25.5px;
+}
+header #header-logo span {
+  margin-left: 15px;
+  font-size: 20px;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgb(0, 172, 102);
+  display: block;
+}
+header #main-nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 2%;
+}
+header #main-nav ul {
+  display: flex;
+  justify-content: none;
+  align-items: center;
+}
+header #main-nav ul a {
+  color: rgb(41, 41, 41);
+}
+header #main-nav ul a.active {
+  font-weight: 600;
+}
+header #main-nav ul.nav-list__left {
+  gap: 44px;
+  margin-left: 78px;
+}
+header #main-nav ul.nav-list__right {
+  gap: 58px;
+}
+header #main-nav ul.nav-list__right li#message-list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header #main-nav ul.nav-list__right li#message-list-item #message-logo {
+  background-image: url("http://localhost/openclassroom/project-4/TomTroc/public/assets/images/statics/svg/Icon_messagerie.svg");
+  background-repeat: no-repeat;
+  display: block;
+  width: 17px;
+  height: 17px;
+  margin-right: 4px;
+}
+header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
+  width: 10.5px;
+  height: 15px;
+  background-color: rgb(41, 41, 41);
+  border-radius: 16px;
+  margin-left: 2.25px;
+  color: rgb(245, 243, 239);
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  font-size: 8.25px;
+  display: grid;
+  place-content: center;
 }/*# sourceMappingURL=main.css.map */
