@@ -108,12 +108,16 @@ class BookManager extends AbstractEntityManager{
      */
     public function getBooksByOrderAndLimit(array $orderBy, array $limit):array
     {
+        if(!is_int($limit[0]) || !is_int($limit[1]) ){
+            throw new Exception("Int number Error",400);
+        }
 
-        $sql = "SELECT id, author, title, image, sold_by FROM books 
+        $sql = "SELECT b.id, b.author, b.title, b.image, b.sold_by, u.pseudo FROM books b
+                JOIN users u ON b.sold_by = u.id
                 WHERE status = :status
                 ORDER BY :order :orderType
                 LIMIT $limit[0] , $limit[1]
-            ";
+                ";
 
         $stmt = $this->db->query($sql,[
             'status' => 1,
