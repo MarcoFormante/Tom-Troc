@@ -14,5 +14,6 @@
     <main class="playfair-display-600">
         <?=$content?>
     </main>
+    <?php include COMPONENTS_PATH . "footer.php"?>
 </body>
 </html>
