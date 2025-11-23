@@ -118,6 +118,7 @@
     .paragraphe{
         @include inter(300,0);
         color: $darken_gray;
+        line-height: 120%;
     }
 
     &-salutations-container{
