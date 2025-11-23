@@ -1,0 +1,21 @@
+footer{
+    height: 61px;
+    background-color: $white;
+
+    ul{
+        @include flex(flex-end,center);
+        height: 100%;
+        gap: 40px;
+        padding-inline: 46px;
+
+        li{
+            @include inter(300,0);
+            color: $darken_gray;
+            font-size: 12px;
+            
+            a{
+                color: $darken_gray;
+            }
+        }
+    }
+}
