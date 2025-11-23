@@ -221,6 +221,32 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
   place-content: center;
 }
 
+footer {
+  height: 61px;
+  background-color: rgb(255, 255, 255);
+}
+footer ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  gap: 40px;
+  padding-inline: 46px;
+}
+footer ul li {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: rgb(41, 41, 41);
+  font-size: 12px;
+}
+footer ul li a {
+  color: rgb(41, 41, 41);
+}
+
 .btn-container-full {
   width: 100%;
 }
@@ -410,6 +436,7 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
   line-height: 100%;
   letter-spacing: 0;
   color: rgb(41, 41, 41);
+  line-height: 120%;
 }
 #home-values-salutations-container {
   display: flex;
