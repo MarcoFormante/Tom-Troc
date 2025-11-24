@@ -6,6 +6,6 @@ class HomeController extends AbstractController{
         $bookManager = new BookManager();
         $books = $bookManager->getBooksByOrderAndLimit(["created_at","DESC"],[0,4]);
         
-        $this->render("home",['books' => $books]);
+        $this->render("home",['books' => $books],"Acceuil");
     }
 }
