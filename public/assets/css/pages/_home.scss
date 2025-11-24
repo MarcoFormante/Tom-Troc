@@ -104,9 +104,12 @@
 
 
 #home-values{
-    width: 392px;
-    margin: auto;
     padding-bottom:  162px;
+
+    &-container{
+        width: 392px;
+        margin: auto;
+    }
 
     h2{
         text-align: left;
