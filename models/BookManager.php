@@ -30,13 +30,14 @@ class BookManager extends AbstractEntityManager{
      * @param int $id
      * @return Book|false
     */
-    public function getBooks(int $id):array|false
+    public function getBooks():array|false
     {
-        $sql = " SELECT id, author, image, description, status FROM books 
-                 WHERE id >= :id
+        $sql = " SELECT b.id, b.title, b.author, b.image, u.pseudo FROM books b
+                 JOIN users u ON b.sold_by = u.id
+                 WHERE status = :status
                ";
 
-        $stmt = $this->db->query($sql,['id' => 0]);
+        $stmt = $this->db->query($sql,['status' => 1]);
 
         $books = [];
 
@@ -128,12 +129,43 @@ class BookManager extends AbstractEntityManager{
         $books = [];
 
         while($book = $stmt->fetch()){
-            $books[] = $book;
+            $books[] = new Book($book);
         }
 
         return $books;
     }
     
+
+
+    public function searchBooks(string $value)
+    {
+        $sql = "SELECT b.id, b.author, b.title, b.image, b.sold_by, u.pseudo FROM books b
+                JOIN users u ON b.sold_by = u.id
+                WHERE (status = :status)
+                AND (b.title LIKE :value OR b.author LIKE :value)
+                ORDER BY b.created_at DESC
+                ";
+
+        $stmt = $this->db->query($sql,[
+            'status' => 1,
+            'value' => $value
+        ]);
+        $error  = "";
+        $books = [];
+        $rowCount = $stmt->rowCount();
+        
+        if (!$rowCount == 0) {
+
+            while($book = $stmt->fetch()){
+                $books[] = new Book($book);
+            }
+
+        }else{
+            $error = "Aucun livre trouvé avec le mot ' $value '";
+        }
+        
+        return ["books" => $books, "error" => $error];
+    }
     
 }
 
