@@ -8,6 +8,7 @@ class Book extends AbstractEntity{
     private bool $status;
     private DateTime $created_at;
     private int $sold_by;
+    private string $pseudo;
     
 
     /**
@@ -149,6 +150,26 @@ class Book extends AbstractEntity{
     public function setAuthor($author)
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pseudo
+     */ 
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set the value of pseudo
+     *
+     * @return  self
+     */ 
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
