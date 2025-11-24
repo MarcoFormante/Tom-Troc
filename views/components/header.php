@@ -10,7 +10,7 @@
 
                 <ul class="nav-list__left">
                     <li>
-                        <a class="<?= UTILS::checkActiveRoute("/") ?>" href="index.php?route=/">Acceuil</a>
+                        <a class="<?= UTILS::checkActiveRoute("/") . UTILS::checkActiveRoute("")  ?>" href="index.php?route=/">Acceuil</a>
                     </li>
                     <li>
                         <a class="<?= UTILS::checkActiveRoute("/nos-livre-a-lechange") ?>" href="index.php?route=/nos-livre-a-lechange">Nos livres à l’échange</a>
