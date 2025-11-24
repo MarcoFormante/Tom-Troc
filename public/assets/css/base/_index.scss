@@ -28,3 +28,7 @@ body{
     margin: auto;
     background-color: $background_light;
 }
+
+main{
+    min-height: calc(100vh - 144.5px);
+}

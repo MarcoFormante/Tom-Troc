@@ -4,6 +4,7 @@ require_once('../config/autoload.php');
 
 $request = Utils::request("route",'/');
 
+
 try {
    Utils::handleRoute($request);
 

@@ -13,6 +13,24 @@ class Utils{
                 $homeController = new HomeController();
                 $homeController->index();
             break;
+
+            case "/nos-livre-a-lechange":
+                $searchValue = htmlspecialchars(self::request("searchValue"));
+                $booksController = new BooksController();
+
+                if ($searchValue !== "" && $_SERVER['REQUEST_METHOD'] === "POST") {
+                    $booksController->searchBooks($searchValue);
+
+                }else if($searchValue === "" && $_SERVER['REQUEST_METHOD'] === "POST"){
+                    $booksController->index();
+                }else{
+                    $booksController->index();
+                }
+            break;
+
+            
+
+
             default :
                 throw new Exception("La page demandée d'existe pas", 404);
             break;
@@ -26,7 +44,6 @@ class Utils{
     */
     public static function checkActiveRoute(string $route){
         $request = self::request("route");
-
         return $request === $route ? "active" : "";
     }
    

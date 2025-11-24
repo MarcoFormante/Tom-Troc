@@ -24,3 +24,7 @@
 .bg__white{
     background-color: $background_light;
 }
+
+.flex-sb-c{
+    @include flex(space-between,center);
+}
