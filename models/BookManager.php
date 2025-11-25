@@ -166,6 +166,28 @@ class BookManager extends AbstractEntityManager{
         
         return ["books" => $books, "error" => $error];
     }
+
+
+     public function detail(int $bookId)
+    {
+        $sql = "SELECT b.id, b.title, b.description, b.image, b.author, u.profile_image, u.pseudo  FROM books b
+                JOIN users u ON u.id = b.sold_by
+                WHERE b.id = :bookId
+                ";
+
+        $stmt = $this->db->query($sql,["bookId" => $bookId]);
+        $data = $stmt->fetch();
+
+        if (empty($data)) {
+            throw new Exception("Ce livre n'existe pas", 404);
+        }
+
+        $book = new Book($data);
+        
+
+        return $book;
+        
+    }
     
 }
 
