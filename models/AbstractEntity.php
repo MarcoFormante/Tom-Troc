@@ -2,6 +2,7 @@
 
 abstract class AbstractEntity{
     protected $id = -1;
+    protected $data = [];
     
 
     /**
@@ -28,6 +29,7 @@ abstract class AbstractEntity{
     public function __construct(array $data = [])
     {
         if (!empty($data)) {
+            $this->data = $data;
             $this->hydrate($data);
         }
     }
