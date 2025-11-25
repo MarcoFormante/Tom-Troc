@@ -33,7 +33,7 @@ class UserManager extends AbstractEntityManager{
             'email'    => $user->getEmail(),
             'password' => $password,
             'pseudo'   => $user->getPseudo(),
-            'image'   => $user->getProfile_image()
+            'image'   => $user->getProfileImage()
         ];
 
         // Check if it isn't a new User
