@@ -9,26 +9,29 @@ class Utils{
 
      public static function handleRoute(string $route):void{
         switch($route){
+            
             case "/":
                 $homeController = new HomeController();
                 $homeController->index();
             break;
 
+
             case "/nos-livre-a-lechange":
                 $searchValue = htmlspecialchars(self::request("searchValue"));
-                $booksController = new BooksController();
+                $booksController = new BookController();
 
                 if ($searchValue !== "" && $_SERVER['REQUEST_METHOD'] === "POST") {
                     $booksController->searchBooks($searchValue);
-
-                }else if($searchValue === "" && $_SERVER['REQUEST_METHOD'] === "POST"){
-                    $booksController->index();
                 }else{
                     $booksController->index();
                 }
             break;
 
-            
+
+            case "/detail":
+                $bookController = new BookController();
+                $bookController->detail();
+            break;
 
 
             default :
