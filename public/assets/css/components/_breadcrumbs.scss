@@ -1,0 +1,12 @@
+.breadcrumbs{
+    @include inter(300,0);
+    font-size: 10px;
+    padding-block: 16px;
+    padding-left: 150px;
+    background-color: $light_gray;
+    color: $gray_text;
+
+    a{
+        color: $gray_text;
+    }
+}
