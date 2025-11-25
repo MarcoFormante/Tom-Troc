@@ -5,8 +5,8 @@ $title = htmlspecialchars($book->getTitle());
 $bookImage = htmlspecialchars($book->getImage());
 $author = htmlspecialchars($book->getAuthor());
 $description = htmlspecialchars($book->getDescription());
-$profileImage = htmlspecialchars($book->getProfileImage());
-$pseudo = htmlspecialchars($book->getPseudo());
+$profileImage = htmlspecialchars($book->getUser()->getProfileImage());
+$pseudo = htmlspecialchars($book->getUser()->getPseudo());
 
 ?>
 

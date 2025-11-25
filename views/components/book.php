@@ -6,7 +6,7 @@
                 <h4 class="book-card-title"><?= htmlspecialchars($book->getTitle()) ?></h4>
                 <span class="book-card-author"><?= htmlspecialchars($book->getAuthor())?></span>
             </div>
-            <p class="book-card-soldby">Vendu par : <?= htmlspecialchars($book->getPseudo())?></p>
+            <p class="book-card-soldby">Vendu par : <?= htmlspecialchars($book->getUser()->getPseudo())?></p>
         </div>
     </a>
 </li>

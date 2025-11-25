@@ -28,3 +28,7 @@
 .flex-sb-c{
     @include flex(space-between,center);
 }
+
+.text-center{
+    text-align: center;
+}
