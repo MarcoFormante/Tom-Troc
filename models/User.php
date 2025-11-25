@@ -5,7 +5,7 @@ class User extends AbstractEntity{
     private string $password;
     private string $pseudo;
     private DateTime $signup_date;
-    private string $profile_image;
+    private string $profileImage;
 
     
     /**
@@ -89,23 +89,22 @@ class User extends AbstractEntity{
     }
 
 
-
     /**
-     * Get the value of profile_image
+     * Get the value of profileImage
      */ 
-    public function getProfile_image()
+    public function getProfileImage()
     {
-        return $this->profile_image;
+        return $this->profileImage;
     }
 
     /**
-     * Set the value of profile_image
+     * Set the value of profileImage
      *
      * @return  self
      */ 
-    public function setProfile_image($profile_image)
+    public function setProfileImage($profileImage)
     {
-        $this->profile_image = $profile_image;
+        $this->profileImage = $profileImage;
 
         return $this;
     }
