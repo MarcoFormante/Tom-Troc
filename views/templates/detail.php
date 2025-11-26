@@ -5,8 +5,12 @@ $title = htmlspecialchars($book->getTitle());
 $bookImage = htmlspecialchars($book->getImage());
 $author = htmlspecialchars($book->getAuthor());
 $description = htmlspecialchars($book->getDescription());
-$profileImage = htmlspecialchars($book->getUser()->getProfileImage());
-$pseudo = htmlspecialchars($book->getUser()->getPseudo());
+
+$user = $book->getUser();
+$userId = htmlspecialchars($user->getId());
+$profileImage = htmlspecialchars($user->getProfileImage());
+$pseudo = htmlspecialchars($user->getPseudo());
+
 
 ?>
 
@@ -28,17 +32,17 @@ $pseudo = htmlspecialchars($book->getUser()->getPseudo());
             <p id="book-detail-info-description"><?= nl2br($description) ?></p>
             <div>
                 <h3>PROPRIÉTAIRE</h3>
-                <div id="book-detail-info-sold_by">
+                <a href="?route=/profile&userId=<?= $userId ?>" id="book-detail-info-sold_by">
                     <div id="book-detail-info-sold_by-container">
                         <div class="user-img-container">
                             <img src="<?= IMAGES_PATH . 'users/' . $profileImage ?>" alt="Photo profile de <?= $pseudo ?>">
                         </div>
                         <span id="book-detail-info-sold_by-pseudo"><?= $pseudo ?></span>
                     </div>
-                </div>
+                </a>
             </div>
             <div id="book-detail-info-cta">
-                <a href="?route=/messagerie" class="btn-primary text-center">Envoyer un message</a>
+                <a href="?route=/messagerie&userId=<?= $userId ?>" class="btn-primary text-center">Envoyer un message</a>
             </div>
         </section>
     </div>
