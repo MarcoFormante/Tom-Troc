@@ -170,7 +170,7 @@ class BookManager extends AbstractEntityManager{
 
      public function detail(int $bookId)
     {
-        $sql = "SELECT b.id, b.title, b.description, b.image, b.author, u.profile_image, u.pseudo  FROM books b
+        $sql = "SELECT b.id, b.title, b.description, b.image, b.author, u.profile_image, u.pseudo, u.id  FROM books b
                 JOIN users u ON u.id = b.sold_by
                 WHERE b.id = :bookId
                 ";
@@ -184,7 +184,6 @@ class BookManager extends AbstractEntityManager{
 
         $book = new Book($data);
         
-
         return $book;
         
     }
