@@ -35,4 +35,18 @@ class BookController extends AbstractController
 
         $this->render("detail", ['book' => $book], $book->getTitle());
     }
+
+
+    public function deleteBook()
+    {
+        $bookId = Utils::request('bookId',-1);
+        $soldBy = Utils::request('soldBy',-1);
+
+        /**VERIFIER L'USER  */
+        $bookManager = new BookManager();
+        $bookManager->deleteBook($bookId);
+
+        Utils::handleRoute("/mon-compte");
+        
+    }
 }
