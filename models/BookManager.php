@@ -69,7 +69,7 @@ class BookManager extends AbstractEntityManager{
             'author' => $book->getAuthor(),
             'image' => $book->getImage(),
             'description'  => $book->getDescription(),
-            'sold_by' => $book->getSold_by(),
+            'sold_by' => $book->getSoldBy(),
             'status'  => $book->getStatus(),
         ];
 
@@ -187,6 +187,24 @@ class BookManager extends AbstractEntityManager{
         return $book;
         
     }
+
+
+    public function getUserBooks(int $userId)
+    {
+        $sql = "SELECT id, title, description, image, author, status, sold_by  
+                FROM books WHERE sold_by = :userId";
+
+        $stmt = $this->db->query($sql,['userId' => $userId]);
+
+        $books = [];
+
+        while($book = $stmt->fetch()){
+            $books[] = new Book($book);
+        }
+
+        return $books;
+    }
+
     
 }
 
