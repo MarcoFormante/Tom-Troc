@@ -1,0 +1,269 @@
+#user-profile{
+    background-color: $background_light;
+    padding: 90px 155px 0px 150px;
+
+    &-flex-container{
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 48px;
+        margin-bottom: 48px;
+
+        &.flex-row{
+            flex-direction: row;
+        }
+    }
+
+    &-info-section{
+        
+        @include flex(space-between,center);
+        
+        .user-box-container{
+            width: 547px;
+            @include flex(flex-start,center);
+            flex-direction: column;
+            background-color: $white;
+            height: 508px;
+            border-radius: 20px;
+            
+            &-left{
+                padding-top: 48px;
+
+                hr{
+                    max-width: 242px;
+                    color: $light_gray;
+                    margin-block: 48px;
+                    opacity: 0.1;
+                }
+                
+            }
+
+            &-left-public{
+                width: 341px;
+                height: 579px;
+                align-self: baseline;
+            }
+            
+            &-right{
+                padding-top: 36px;
+            }
+        }
+    }
+
+    &-img-container{
+        flex-direction: column;
+        @include flex(center,center);
+        gap: 5px;
+
+        img{
+            width: 135px;
+            height: 135px;
+        }
+
+        a{
+            text-decoration: underline;
+            @include inter(400,0);
+            color: $gray_text;
+            font-size: 14px;
+        }
+    }
+
+    &-account-info{
+        text-align: center;
+
+        #user-profile-pseudo{
+            @extend .playfair-display-400;
+            color: $darken_gray;
+            font-size: 24px;
+        }
+
+        &-createdAt{
+            font-size: 14px;
+            @extend .inter-400;
+            color: $gray_text;
+            margin: 11px 0 21px 0;
+        }
+
+        &-biblio{
+            @include inter(600,0);
+            font-size: 8px;
+            margin-bottom: 6px;
+        }
+
+        &-bookCount{
+            @include inter(400,0);
+            font-size: 14px;
+            color: $darken_gray;
+            margin-left: 5.59px;
+        }
+
+        .book-draw{
+           
+            &-container{
+                display: flex;
+                gap: 2px;
+              
+            }
+
+            width: 5.20px;
+            height: 13.71px;
+            border: 1.1px solid black;
+
+            &-right{
+                transform: rotate(5deg);
+            }
+        }
+    }
+
+    /**FORM USER INFO*/
+    h4{
+        @include inter(400,0);
+        margin-bottom: 26px;
+    }
+
+
+    #user-books-table{
+        background-color: $white;
+        padding-top: 33.24px;
+        margin-bottom: 102px;
+        border-radius: 20px;
+
+        &.no-margin-bottom{
+            margin-bottom: 0;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0px; 
+            
+
+            thead{
+                 border-top: 20px solid transparent;
+
+                th:not(.th-spacing, .edit-spacing){
+                    width: 2%;
+                }
+
+                th{
+                    @include inter(600,8%);
+                    font-size: 8px;
+                    text-align: left;
+                }
+            }
+
+
+            tbody{
+                border-collapse: separate; border-spacing: 0 20px;
+
+                tr:not(.body-spacing){
+                    outline: 1px solid rgba(245, 243, 239, 1);
+                    height: 130px;
+                    width: 100%;
+
+                    &:nth-of-type(even){
+                        background: rgba(237, 242, 246, 1);
+                        border: none;
+                    }
+                }
+
+                td{
+                    font-size: 12px;
+                    @include inter(400,0);
+                    line-height: 120%;
+
+                    p{
+                        max-width: 128px;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+       
+        
+
+        .book-status{
+            color: $white;
+            @include inter(500,0);
+            font-size: 8.88px;
+            border-radius: 29.58px;
+            padding: 3.7px 13.31px;
+            max-width: 71.63px;
+
+            &__green{
+                background-color: rgba(109, 197, 161, 1);
+            }
+
+            &__red{
+                background-color: rgba(197, 109, 109, 1);
+            }
+        }
+
+        a{
+            color: $darken_gray;
+            font-size: 12px;
+            @include inter(400,0);
+            text-decoration: underline;
+        }
+            
+        .table-form{
+
+            button{
+                appearance: none;
+                border: none;
+                background: transparent;
+                color: rgba(203, 45, 45, 1);
+                text-decoration: underline;
+                @include inter(400,0);
+                font-size: 12px;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+    tbody .body-spacing td{
+        padding: 8px;
+        border: none;
+    }
+
+
+    .pt-45{
+        margin-top: 45px;
+    }
+
+    
+
+
+    .th-spacing{
+        width: 0%;
+        padding-left: 66px;
+    }
+
+    .edit-spacing{
+        width: 1%;
+    }
+
+    .p-left{
+        padding-left: 50px;
+    }
+
+    .desc-spacing{
+        padding-left: 2px;
+    }
+
+    &.user-profile-public{
+        .p-left{
+            padding-left: 0px;
+        }
+
+        thead{
+            th:not(.th-spacing){
+                width: 1.3%;
+            }
+        }
+    }
+
+    
+}
+
