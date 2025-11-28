@@ -6,8 +6,8 @@ class Book extends AbstractEntity{
     private string $image;
     private string $description;
     private bool $status;
-    private DateTime $created_at;
-    private int $sold_by;
+    private DateTime $createdAt;
+    private int $soldBy;
     private User $user;
     
 
@@ -95,46 +95,6 @@ class Book extends AbstractEntity{
 
 
     /**
-     * Get the value of created_at
-     */ 
-    public function getCreated_at()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set the value of created_at
-     *
-     * @return  self
-     */ 
-    public function setCreated_at($created_at)
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sold_by
-     */ 
-    public function getSold_by()
-    {
-        return $this->sold_by;
-    }
-
-    /**
-     * Set the value of sold_by
-     *
-     * @return  self
-     */ 
-    public function setSold_by($sold_by)
-    {
-        $this->sold_by = $sold_by;
-
-        return $this;
-    }
-
-    /**
      * Get the value of author
      */ 
     public function getAuthor()
@@ -150,6 +110,48 @@ class Book extends AbstractEntity{
     public function setAuthor($author)
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+
+    
+    /**
+     * Get the value of createdAt
+     */ 
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @return  self
+     */ 
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of soldBy
+     */ 
+    public function getSoldBy()
+    {
+        return $this->soldBy;
+    }
+
+    /**
+     * Set the value of soldBy
+     *
+     * @return  self
+     */ 
+    public function setSoldBy($soldBy)
+    {
+        $this->soldBy = $soldBy;
 
         return $this;
     }
@@ -175,4 +177,5 @@ class Book extends AbstractEntity{
 
         return $this;
     }
+
 }
