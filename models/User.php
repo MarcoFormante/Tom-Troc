@@ -6,6 +6,7 @@ class User extends AbstractEntity{
     private string $pseudo;
     private DateTime $signup_date;
     private string $profileImage;
+    private array $books;
 
     
     /**
@@ -105,6 +106,39 @@ class User extends AbstractEntity{
     public function setProfileImage($profileImage)
     {
         $this->profileImage = $profileImage;
+
+        return $this;
+    }
+
+   
+
+    /**
+     * Get User Books
+     * 
+     * @return array BOOKS
+     */ 
+    public function getBooks():array
+    {
+        if (empty($this->books)) {
+            $this->setBooks();
+        }
+        return $this->books;
+    }
+
+
+     /**
+     * Set User Books
+     * 
+     * @return self
+     */ 
+    public function setBooks():self
+    {
+        
+        $bookManager = new BookManager();
+        
+        $books = $bookManager->getUserBooks($this->id);
+
+        $this->books = $books;
 
         return $this;
     }
