@@ -21,7 +21,7 @@ $pseudo = htmlspecialchars($user->getPseudo());
 <article id="book-detail">
     <div id="book-detail-container">
         <figure>
-            <img id="book-detail-container-image" src="<?= IMAGES_PATH . $bookImage ?>" alt="<?= $title ?> de <?= $author?> vendu par <?= $pseudo ?>">
+            <img id="book-detail-container-image" src="<?= IMAGES_PATH . 'books/' . $bookImage ?>" alt="<?= $title ?> de <?= $author?> vendu par <?= $pseudo ?>">
         </figure>
 
         <section id="book-detail-info">
