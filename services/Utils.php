@@ -33,6 +33,30 @@ class Utils{
                 $bookController->detail();
             break;
 
+            case "/deleteBook":
+                $bookController = new BookController();
+                $bookController->deleteBook();
+            break;
+
+
+            case "/mon-compte":
+                $userController = new UserController();
+                $userController->userProfile(true);
+            break;
+
+
+            case "/profile":
+                $userController = new UserController();
+                $userController->userProfile(false);
+            break;
+
+
+            case "/updateUser":
+                /**VERIFICARE POST REQUEST */
+                $userController = new UserController();
+                $userController->updateUser();
+            break;
+
 
             default :
                 throw new Exception("La page demandée d'existe pas", 404);
