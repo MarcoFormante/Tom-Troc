@@ -7,6 +7,13 @@
                 <input hidden name="profileImage" id="profileImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
                 <input hidden name="lastProfileImage" id="lastProfileImage" value="<?= htmlspecialchars($user->getProfileImage()) ?>"/>
             </div>
+            <?php if (isset($errors['image']) && !empty($errors['image'])):?>
+                <ul class="error-list-container">
+                    <?php foreach ($errors['image'] as $error):?>
+                        <li class="error-list-item"><?= htmlspecialchars($error) ?></li>
+                     <?php endforeach ?>
+                </ul>
+           <?php endif ?>
             <hr>
             <div id="user-profile-account-info">
                 <h2 id="user-profile-pseudo"><?= htmlspecialchars($user->getPseudo())?></h2>
