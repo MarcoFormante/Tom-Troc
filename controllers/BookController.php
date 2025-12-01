@@ -21,7 +21,7 @@ class BookController extends AbstractController
             'error' => $data['error'],
             'value' => $searchValue 
         ];
-        
+
         $this->render("books",$params,"Nos livres à l’échange");
     }
 
@@ -39,6 +39,7 @@ class BookController extends AbstractController
 
     public function deleteBook()
     {
+
         $bookId = Utils::request('bookId',-1);
         $soldBy = Utils::request('soldBy',-1);
 
@@ -46,7 +47,7 @@ class BookController extends AbstractController
         $bookManager = new BookManager();
         $bookManager->deleteBook($bookId);
 
-        Utils::handleRoute("/mon-compte");
+        $this->redirect("index.php?route=/mon-compte#user-books-table");
         
     }
 }
