@@ -4,7 +4,7 @@ class User extends AbstractEntity{
     private string $email;
     private string $password;
     private string $pseudo;
-    private DateTime $signup_date;
+    private DateTime $signupDate;
     private string $profileImage;
     private array $books;
 
@@ -72,9 +72,9 @@ class User extends AbstractEntity{
     /**
      * Get the value of signup_date
      */ 
-    public function getSignup_date()
+    public function getSignupDate()
     {
-        return $this->signup_date;
+        return $this->signupDate;
     }
 
     /**
@@ -82,9 +82,13 @@ class User extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setSignup_date()
+    public function setSignupDate(DateTime|string $date)
     {
-        $this->signup_date = new DateTime('now');
+        if ($date instanceof DateTime) {
+            $this->signupDate = $date ;
+        }else{
+               $this->signupDate = new DateTime(htmlspecialchars($date));
+        }
 
         return $this;
     }
