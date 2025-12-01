@@ -1,0 +1,12 @@
+.error-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 3px;
+
+    .error-list-item{
+        color: red;
+        font-size: 12px;
+        list-style:disc;
+    }
+}
