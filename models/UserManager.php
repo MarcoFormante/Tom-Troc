@@ -25,33 +25,51 @@ class UserManager extends AbstractEntityManager{
     * @param User
     * @return bool stmt->rowCount()
     */  
-    public function createOrUpdateUser(User $user):bool
+    public function createOrUpdateUser(array $userData)
     {
-        $sql = 'UPDATE users SET email = :email, pseudo = :pseudo, profile_image = :image WHERE id = :id';
+            $sql = "UPDATE users SET email = :email, pseudo = :pseudo";
 
-         $params = [
-                'email'    => $user->getEmail(),
-                'pseudo'   => $user->getPseudo(),
-                'image'   => $user->getProfileImage()
-        ];
+            $params = [
+                'email'   => $userData['email'],
+                'pseudo'  => $userData['pseudo'],
+            ];
 
-         if ($password = $user->getPassword()) {
+            if($password = $userData['password']) {
                 $params['password'] = password_hash($password,PASSWORD_BCRYPT, ['cost' => 13]);
-                $sql = 'UPDATE users SET email = :email, password = :password, pseudo = :pseudo, profile_image = :image WHERE id = :id';
+                $sql .= ", password = :password";
+            }
+            
+            if ($userData['newImage']['name']) {
+                $sql .= ', profile_image = :image';
+                $tmp_name = $userData['newImage']['tmp_name'];
+                $imgName = uniqid("user-") . ".jpg";
+                $params['image'] = $imgName;
+
+                if(move_uploaded_file($tmp_name,IMAGES_PATH . "/users/$imgName")){
+                    
+                    if ($userData['lastProfileImage']) {
+                       
+                        $lastImagePath = IMAGES_PATH . "/users/" . $userData['lastProfileImage'];
+
+                        if (file_exists($lastImagePath)) {
+                            unlink($lastImagePath);
+                        }
+                    }
+                }
             }
 
+            if ($userData['id'] !== -1) {  // Check if it isn't a new Users
+                $params['id'] = $userData['id'];
+                $sql .= " WHERE id = :id";
+            }else{
+                $sql = "INSERT INTO users(email,password,pseudo) VALUES(:email,:password,:pseudo)";
+            }
+          
 
-        // Check if it isn't a new User
-        if ($user->getId() !== -1) {
-
-            $params['id'] = $user->getId();
-        }else{
-            $sql = "INSERT INTO users(email,password,pseudo,profile_image) VALUES(:email,:password,:pseudo,:image)";
-        }
-        
-        $stmt = $this->db->query($sql,$params);
-
-        return $stmt->rowCount();
+            $stmt = $this->db->query($sql,$params);
+            
+            return $stmt->rowCount();
+       
     }
 
 
