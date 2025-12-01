@@ -48,6 +48,10 @@
   width: 100%;
 }
 
+.self-baseline {
+  align-items: baseline;
+}
+
 .playfair-display-600 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -403,7 +407,7 @@ form.form-base button {
 .form-input-container::after {
   position: absolute;
   content: attr(data-error);
-  bottom: 12px;
+  bottom: 5px;
   left: 0;
   font-size: 12px;
   color: red;
@@ -440,11 +444,26 @@ form.form-base button {
   margin-bottom: 32px;
   color: rgb(41, 41, 41);
 }
+.form-input-container input.error-input-focus[type=password] {
+  margin-bottom: 45px;
+}
 .form-input-container .form-input__gray {
   background: rgb(237, 242, 246);
 }
 .form-input-container .error-input-focus {
   border: 1px solid red;
+}
+
+.error-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 3px;
+}
+.error-list-container .error-list-item {
+  color: red;
+  font-size: 12px;
+  list-style: disc;
 }
 
 #home-hero {
@@ -763,7 +782,7 @@ form.form-base button {
 
 #user-profile {
   background-color: rgb(250, 249, 247);
-  padding: 90px 155px 0px 150px;
+  padding: 90px 150px 0px 155px;
   /**FORM USER INFO*/
 }
 #user-profile-flex-container {
@@ -818,8 +837,13 @@ form.form-base button {
 #user-profile-img-container img {
   width: 135px;
   height: 135px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
-#user-profile-img-container a {
+#user-profile-img-container label {
   text-decoration: underline;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -829,6 +853,7 @@ form.form-base button {
   letter-spacing: 0;
   color: rgb(166, 166, 166);
   font-size: 14px;
+  cursor: pointer;
 }
 #user-profile-account-info {
   text-align: center;
@@ -1013,4 +1038,16 @@ form.form-base button {
 }
 #user-profile.user-profile-public thead th:not(.th-spacing) {
   width: 1.3%;
+}
+#user-profile.user-profile-public h1 {
+  position: relative;
+  top: -10000px;
+}
+#user-profile.user-profile-public #user-profile-flex-container {
+  margin-top: 0;
+}
+#user-profile .form-base {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }/*# sourceMappingURL=main.css.map */
