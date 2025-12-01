@@ -15,7 +15,7 @@
         </div>
     <?php endif?>
      
-     <?php if(isset($books)): ?>
+     <?php if(!empty($books)): ?>
         <ul class="book-list-container">
             <?php foreach ($books as $book){ ?>
                 <?php include COMPONENTS_PATH . "book.php"?>
