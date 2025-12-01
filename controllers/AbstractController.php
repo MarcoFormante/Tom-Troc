@@ -9,8 +9,16 @@ class AbstractController{
    *
    *@return void
    */
-    protected function render(string $template, ?array $params = [],string $pageName){
+    protected function render(string $template, ?array $params = [],string $pageName)
+    {
       $view = new View($pageName);
       $view->render($template,$params);
+    }
+
+
+    protected function redirect(string $page)
+    {
+      header("Location: $page");    
+      exit();
     }
 }
