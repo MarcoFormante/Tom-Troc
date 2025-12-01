@@ -15,5 +15,6 @@
         <?=$content?>
     </main>
     <?php include COMPONENTS_PATH . "footer.php"?>
+    <script src="../public/assets/js/index.js"></script>
 </body>
 </html>
