@@ -12,7 +12,7 @@ class UserController extends AbstractController
 
         /**VERIFICARE l'USER */
             if ($isOwner === true) {
-                $userId = 126;
+                $userId = 151;
             }
 
             if (!$userId) {
@@ -31,44 +31,58 @@ class UserController extends AbstractController
 
     public function updateUser()
     {   
+
         $userId = Utils::request('userId',-1);
         $email = Utils::request('email');
         $password = Utils::request('password',"");
         $pseudo = Utils::request('pseudo');
-        $image = Utils::request('image');
+        $image =  $_FILES['profileImage'];
+        $lastImage =  Utils::request('lastProfileImage');
+          
         $errors = [];
-
-        if (!filter_var($email,FILTER_VALIDATE_EMAIL) || !$email) {
-            $errors['email'] = "Le mail n'est pas correcte";
+        if (!filter_var($email,FILTER_VALIDATE_EMAIL) || !$email ||strlen($email) > 60) {
+            $errors['email'] = "Veuillez entrer une adresse email valide, max 60 caractères";
         }
 
-        if ($password && strlen($password) < 5) {
-             $errors['password'] = "Le mot de passe doit contenir au moins 5 caracters";
+        if ($password && (strlen($password) < 5 || strlen($password) > 60) ) {
+            $errors['password'] = "Le mot de passe doit contenir au moins 5 caractères et max 60, une lettre majuscule, un chiffre et un caractère spécial";
+
+        }else if($password && (strlen($password) >= 5 && strlen($password) <= 60)){
+            
+            if ($password && (!preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password))) {
+                $errors['password'] = "Le mot de passe doit contenir au moins une lettre majuscule, un chiffre et un caractère spécial";
+            }
         }
 
-         if (!$pseudo || strlen($pseudo) < 3) {
-             $errors['pseudo'] = "Le pseudo doit contenir au moins 3 caracters";
+        if (!$pseudo || strlen($pseudo) < 3 || (!preg_match('/^[a-zA-Z][a-zA-Z0-9]*$/', $pseudo))) {
+             $errors['pseudo'] = "Le pseudo doit contenir au moins 3 caractères et ne doit contenir que des lettres et des chiffres.";
         }
-        
+
+        if ($image['name']) {
+            $imageErrors = Utils::checkImage($image);
+            if(!empty($imageErrors)){
+                $errors['image'] = $imageErrors;
+            }
+        }
+       
 
         $userData = [
             'id' => $userId,
             'email' => $email,
             'password' => $password,
             'pseudo' => $pseudo,
-            'profile_image' => $image,
+            'newImage' => $image,
+            'lastProfileImage' =>$lastImage
         ];
-
-        $user = new User($userData);
-        $books = $user->getBooks();
 
         if (!empty($errors)) {
             return $this->userProfile(true,$errors);
         }else{
             $userManager = new UserManager(); 
-            $userManager->createOrUpdateUser($user);
+            $userManager->createOrUpdateUser($userData);
         }
-       return $this->render("profile", ['user' => $user, 'books' => $books, 'isOwner' => true],  "Mon Compte");
+       
+        $this->redirect("index.php?route=/mon-compte");
        
     }
 }
