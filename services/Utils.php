@@ -20,7 +20,7 @@ class Utils{
                 $homeController->index();
             break;
 
-
+/** BOOKS */
             case "/nos-livre-a-lechange":
                 $searchValue = htmlspecialchars(self::request("searchValue"));
                 $booksController = new BookController();
@@ -38,13 +38,25 @@ class Utils{
                 $bookController->detail();
             break;
 
+
             case "/deleteBook":
                 self::checkPostMethod();
                 $bookController = new BookController();
                 $bookController->deleteBook();
             break;
 
+            case "/editBook":
+ //**CHECK CSRF */
+                $bookController = new BookController();
+                $bookController->editBook();
+            break;
 
+            case "/updateBook":
+                $bookController = new BookController();
+                $bookController->updateBook();
+            break;
+
+/** USER */
             case "/mon-compte":
                 $userController = new UserController();
                 $userController->userProfile(true);
