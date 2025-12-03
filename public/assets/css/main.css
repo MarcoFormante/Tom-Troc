@@ -52,6 +52,10 @@
   align-items: baseline;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .playfair-display-600 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -61,7 +65,7 @@
   letter-spacing: 0;
 }
 
-.playfair-display-400, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
+.playfair-display-400, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -88,7 +92,7 @@
   letter-spacing: 2%;
 }
 
-.inter-400, #user-profile-account-info-createdAt, #book-detail-info-author-container, .book-card-soldby, .book-card-author, .book-card-title {
+.inter-400, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-profile-account-info-createdAt, #book-detail-info-author-container, .book-card-soldby, .book-card-author, .book-card-title {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -145,6 +149,11 @@ body {
 
 main {
   min-height: calc(100vh - 144.5px);
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 header {
@@ -390,7 +399,7 @@ footer ul li a {
 
 form.form-base {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 form.form-base button {
   max-width: 150px;
@@ -1050,4 +1059,69 @@ form.form-base button {
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#editBook {
+  padding: 40px 150px;
+}
+#editBook .retour, #editBook label {
+  font-size: 14px;
+  color: rgb(166, 166, 166);
+}
+#editBook h1 {
+  margin-top: 23px;
+  font-size: 26px;
+}
+#editBook #form-editBook {
+  margin-top: 23px;
+  padding: 56px 50px 92px 50px;
+  display: flex;
+  gap: 118px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
+#editBook #form-editBook-left-container {
+  margin-top: 10px;
+  margin-bottom: 23px;
+}
+#editBook #form-editBook-left-container .text-right {
+  color: rgb(41, 41, 41);
+  text-decoration: underline;
+  font-size: 12px;
+}
+#editBook #form-editBook-left-container label {
+  display: block;
+}
+#editBook #form-editBook #book-image {
+  margin-top: 10px;
+  margin-bottom: 23px;
+  width: 488px;
+  height: 488px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#editBook #form-editBook input, #editBook #form-editBook textarea, #editBook #form-editBook select {
+  width: 435px;
+  padding-left: 14px;
+  border: 1px solid rgb(240, 240, 240);
+  background-color: rgb(237, 242, 246);
+}
+#editBook #form-editBook textarea {
+  height: 356px;
+  margin-bottom: 32px;
+  padding: 14px 12px;
+  line-height: 115%;
+}
+#editBook #form-editBook select {
+  height: 50px;
+}
+#editBook #form-editBook option {
+  font-size: 14px;
+}
+#editBook #form-editBook .btn-primary {
+  margin-top: 44px;
+  width: 322px;
+}
+#editBook #form-editBook .error-input-focus {
+  border: 1px solid red;
 }/*# sourceMappingURL=main.css.map */
