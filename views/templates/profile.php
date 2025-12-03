@@ -52,7 +52,7 @@
                                     </div>
                                 </td>
                                 <td >
-                                    <a href="?route=/editer&bookid=<?= htmlspecialchars($book->getId()) ?>&sold_by=<?= htmlspecialchars($book->getSoldBy()) ?>">Éditer</a>
+                                    <a href="?route=/editBook&book_id=<?= htmlspecialchars($book->getId()) ?>&sold_by=<?= htmlspecialchars($book->getSoldBy()) ?>">Éditer</a>
                                 </td>
                                 <td class="w-127">
                                    <form class="table-form" method="post">
