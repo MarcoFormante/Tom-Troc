@@ -121,8 +121,6 @@ class Utils{
             $errors['type'] = "Les types d'image acceptés sont: jpeg, png, webp";
         }
 
-       
-
         return $errors;
     }
 
