@@ -1,14 +1,15 @@
 
 
 document.addEventListener("DOMContentLoaded",()=>{
-
-    if (document.getElementById("profileImage")) {
-            profileImage.onchange = ()=>{
-            userImg.src = URL.createObjectURL(profileImage.files[0]);
+    const input = document.querySelector("input[type=file]")
+    const image =  document.querySelector("img")
+    if (input) {
+            input.onchange = ()=>{
+            image.src = URL.createObjectURL(input.files[0]);
         }
     }
 
-    const containers = document.querySelectorAll(".form-input-container");
+    const containers = document.querySelectorAll(".form-input-container, select");
 
     containers.forEach((container)=>{
         const input = container.querySelector(".error-input-focus");
