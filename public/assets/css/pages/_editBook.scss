@@ -1,0 +1,83 @@
+
+#editBook{
+    padding: 40px 150px;
+
+    .retour, label{
+        font-size: 14px;
+        @extend .inter-400;
+        color: $gray_text;
+    }
+
+    h1{
+        margin-top: 23px;
+        @extend .playfair-display-400;
+        font-size: 26px;
+    }
+
+    #form-editBook{
+    margin-top: 23px;
+    padding: 56px 50px 92px 50px;
+    display: flex;
+    gap: 118px;
+    background-color: $white;
+    border-radius: 20px;
+
+        &-left-container{
+            margin-top: 10px;
+            margin-bottom: 23px;
+
+            .text-right{
+                color: $darken_gray;
+                text-decoration: underline;
+                font-size: 12px;
+            }
+
+            
+            label{
+                display: block;
+            }
+        }
+
+        #book-image{
+            margin-top: 10px;
+            margin-bottom: 23px;
+            width: 488px;
+            height: 488px;
+            object-fit: cover;
+        }
+
+        input,textarea,select{
+            width: 435px;
+            padding-left: 14px;
+            border: 1px solid rgba(240, 240, 240, 1);
+            background-color: rgba(237, 242, 246, 1);
+        }
+
+        textarea{
+            height:356px;
+            margin-bottom: 32px;
+            padding: 14px 12px;
+            @extend .inter-400;
+            line-height: 115%;
+        }
+
+        select{
+            height: 50px;
+        }
+
+        option{
+            font-size: 14px;
+        }
+
+        .btn-primary{
+            margin-top: 44px;
+            width: 322px;
+        }
+
+        
+        .error-input-focus{
+                border: 1px solid red;
+        }
+    }
+}
+
