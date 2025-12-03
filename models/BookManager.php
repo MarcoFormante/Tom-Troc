@@ -9,9 +9,7 @@ class BookManager extends AbstractEntityManager{
      */
     public function getBook(int $id):Book|false
     {
-        $sql = " SELECT id, author, image, description, sold_by, status, FROM books 
-                 WHERE id = :id
-               ";
+        $sql = " SELECT id, title, author, image, description, sold_by, status FROM books WHERE id = :id";
 
         $stmt = $this->db->query($sql,['id' => $id]);
 
@@ -205,6 +203,42 @@ class BookManager extends AbstractEntityManager{
         return $books;
     }
 
+
+    public function updateBook(array $form)
+    {
+        $sql = "UPDATE books SET title = :title, author = :author, description = :desc, status = :status, image = :image WHERE id = :id AND sold_by = :sold_by";
+        
+        if ($form['bookImage']) {
+            $tmp_name = $form['bookImage']['tmp_name'];
+            $imgName = uniqid("book-") . ".jpg";
+             
+            if(move_uploaded_file($tmp_name,IMAGES_PATH . "books/$imgName")){
+                    $form['bookImage'] = $imgName;
+                if ($form['lastBookImage']) {
+                    $lastImagePath = IMAGES_PATH . "/books/" . $form['lastBookImage'];
+
+                    if (file_exists($lastImagePath)) {
+                        unlink($lastImagePath);
+                    }
+                }
+            }
+        }else{
+            $form['bookImage'] =  $form['lastBookImage'];
+        }
+
+        
+        $stmt = $this->db->query($sql,[
+            'title'  => $form['title'],
+            'author' => $form['author'],
+            'desc'  => $form['desc'],
+            'status'  => $form['status'] === "available" ? 1 : 0,
+            'image'  => $form['bookImage'],
+            'id'  => $form['book_id'],
+            'sold_by'  => $form['sold_by']
+        ]);
+
+        return $stmt->rowCount();
+    }
     
 }
 
