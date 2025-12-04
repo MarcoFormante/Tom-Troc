@@ -47,7 +47,7 @@ class BookController extends AbstractController
         $bookManager = new BookManager();
         $bookManager->deleteBook($bookId);
 
-        $this->redirect("index.php?route=/mon-compte#user-books-table");
+        $this->redirect("index.php?route=/mon-compte");
         
     }
 
@@ -146,7 +146,7 @@ class BookController extends AbstractController
         $bookManager = new BookManager();
         $bookManager->updateBook($form);
      
-        $this->editBook();
+        $this->redirect("?route=/editBook&book_id=$book_id&sold_by=$sold_by");
         exit();
 
     }
