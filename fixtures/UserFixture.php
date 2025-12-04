@@ -20,7 +20,7 @@ class UserFixture extends AbstractFixture
                 "email" => $this->createRandomString().'@gmail.com',
                 "pseudo" =>"AlexSomi$i",
                 "password" =>  uniqid("pass-") . $this->createRandomString(),
-                "profile_image" => "user-profile.jpg"
+                "profile_image" => "userDefault.webp"
             ];
 
             $sql .= ":email$i,:pseudo$i,:password$i,:profile_image$i)";

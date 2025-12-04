@@ -18,17 +18,8 @@ class BookFixture extends AbstractFixture
        $users = $usersStmt->fetchAll();
        $userId = $users[rand(0,count($users) - 1)]['id'];
 
-       $bookDescription = "J'ai récemment plongé dans les pages de 'The Kinfolk Table' et j'ai été enchanté par cette œuvre captivante. Ce livre va bien au-delà d'une simple collection de recettes ; il célèbre l'art de partager des moments authentiques autour de la table. 
+       $bookDescription = "J'ai récemment plongé dans les pages de 'The Kinfolk Table' et j'ai été enchanté par cette œuvre captivante. Ce livre va bien au-delà d'une simple collection de recettes ; il célèbre l'art de partager des moments authentiques autour de la table. Les photographies magnifiques et le ton chaleureux captivent dès le départ, transportant le lecteur dans un voyage à travers des recettes et des histoires qui mettent en avant la beauté de la simplicité et de la convivialité. Chaque page est une invitation à ralentir, à savourer et à créer des souvenirs durables avec les êtres chers. 'The Kinfolk Table' incarne parfaitement l'esprit de la cuisine et de la camaraderie, et il est certain que ce livre trouvera une place spéciale dans le cœur de tout amoureux de la cuisine et des rencontres inspirantes.";
 
-                            Les photographies magnifiques et le ton chaleureux captivent dès le départ, transportant le lecteur dans un voyage à travers des recettes et des histoires qui mettent en avant la beauté de la simplicité et de la convivialité. 
-
-                            Chaque page est une invitation à ralentir, à savourer et à créer des souvenirs durables avec les êtres chers. 
-
-                            'The Kinfolk Table' incarne parfaitement l'esprit de la cuisine et de la camaraderie, et il est certain que ce livre trouvera une place spéciale dans le cœur de tout amoureux de la cuisine et des rencontres inspirantes. 
-                            ";
-
-
-      
                            
         $sql = "INSERT INTO books(title,image,author,description,status,sold_by) VALUES(";
         for ($i=0; $i < $numberOfBooks ; $i++) { 
@@ -37,7 +28,7 @@ class BookFixture extends AbstractFixture
             $books[$i] = 
             [
                 "title" =>  "Olivia Brooks",
-                "image" => "book.webp",
+                "image" => "bookDefault.webp",
                 "author" =>   "Jonathan Blake",
                 "description" => $bookDescription,
                 "status" => rand(0,1),
