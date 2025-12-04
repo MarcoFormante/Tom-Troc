@@ -2,7 +2,7 @@
     <div class="user-box-container user-box-container-left">
         <div>
             <div id="user-profile-img-container">
-                <img id="userImg" src="<?= IMAGES_PATH . "users/" . htmlspecialchars($user->getProfileImage()) ?>" alt="Photo utilisateur">
+                <img  id="userImg" src="<?= IMAGES_PATH . "users/" . htmlspecialchars($user->getProfileImage()) ?>" alt="Photo utilisateur">
                 <label for="profileImage">modifier</label>
                 <input hidden name="profileImage" id="profileImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
                 <input hidden name="lastProfileImage" id="lastProfileImage" value="<?= htmlspecialchars($user->getProfileImage()) ?>"/>

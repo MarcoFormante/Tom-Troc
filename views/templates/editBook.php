@@ -8,7 +8,7 @@
             <div>
                 <label for="bookImage">Photo</label>
                 <div id="book-image-container">
-                    <img id="book-image" src="<?= IMAGES_PATH . "books/" . htmlspecialchars($book->getImage()) ?>" alt="Photo livre '<?= htmlspecialchars($book->getTitle()) ?>'">
+                    <img  id="book-image" src="<?= IMAGES_PATH . "books/" . htmlspecialchars($book->getImage()) ?>" alt="Photo livre '<?= htmlspecialchars($book->getTitle()) ?>'">
                     <label for="bookImage" class="text-right">Modifier la photo</label>
                     <input  hidden name="bookImage" id="bookImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
                     <input required hidden name="lastBookImage" id="lastBookImage" value="<?= htmlspecialchars($book->getImage()) ?>"/>

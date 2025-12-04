@@ -2,7 +2,7 @@
     <div class="user-box-container user-box-container-left user-box-container-left-public">
         <div>
             <div id="user-profile-img-container">
-                <img src="<?= IMAGES_PATH . "users/" . htmlspecialchars($user->getProfileImage()) ?>" alt="Image utilisateur">
+                <img  src="<?= IMAGES_PATH . "users/" . htmlspecialchars($user->getProfileImage()) ?>" alt="Image utilisateur">
             </div>
             <hr>
             <div id="user-profile-account-info">

@@ -33,7 +33,7 @@
                         <tr>
                             <td></td>
                             <td class="w-127">
-                                <img width="78px" height="78px" src="<?= IMAGES_PATH . 'books/' . htmlspecialchars($book->getImage()) ?>" alt="<?= htmlspecialchars($book->getTitle()) . " de " . htmlspecialchars($book->getAuthor())?>">
+                                <img  width="78px" height="78px" src="<?= IMAGES_PATH . 'books/' . htmlspecialchars($book->getImage()) ?>" alt="<?= htmlspecialchars($book->getTitle()) . " de " . htmlspecialchars($book->getAuthor())?>">
                             </td>
                             <td class="w-155 p-left">
                                 <?= htmlspecialchars($book->getTitle()) ?>
