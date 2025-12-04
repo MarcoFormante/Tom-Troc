@@ -54,7 +54,7 @@ class UserController extends AbstractController
             }
         }
 
-        if (!$pseudo || strlen($pseudo) < 3 || (!preg_match('/^[a-zA-Z][a-zA-Z0-9]*$/', $pseudo))) {
+        if (!$pseudo || strlen($pseudo) < 3 || (!preg_match('/^[a-zA-Z]|[a-zA-Z0-9]*$/', $pseudo))) {
              $errors['pseudo'] = "Le pseudo doit contenir au moins 3 caractères et ne doit contenir que des lettres et des chiffres.";
         }
 
@@ -64,22 +64,23 @@ class UserController extends AbstractController
                 $errors['image'] = $imageErrors;
             }
         }
-       
 
-        $userData = [
+        $form = [
             'id' => $userId,
             'email' => $email,
             'password' => $password,
             'pseudo' => $pseudo,
-            'newImage' => $image,
-            'lastProfileImage' =>$lastImage
         ];
+
+        $user = new User($form);
 
         if (!empty($errors)) {
             return $this->userProfile(true,$errors);
         }else{
             $userManager = new UserManager(); 
-            $userManager->createOrUpdateUser($userData);
+            
+            
+            $userManager->createOrUpdateUser($user,$lastImage,$image);
         }
        
         $this->redirect("index.php?route=/mon-compte");
