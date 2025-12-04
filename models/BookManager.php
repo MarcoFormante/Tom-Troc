@@ -92,10 +92,19 @@ class BookManager extends AbstractEntityManager{
      */
     public function deleteBook(int $id):bool
     {
+        $imgSql = "SELECT image FROM books WHERE id = :id";
+
+        $stmtImage = $this->db->query($imgSql,['id' => $id]);
+
+        $data = $stmtImage->fetch();
+
+        if (file_exists(IMAGES_PATH . "books/" . $data['image'] && $data['image'] !== "bookDefault.webp")) {
+            unlink(IMAGES_PATH . "books/" . $data['image']);
+        }
+
         $sql = "DELETE FROM books WHERE id = :id";
 
         $stmt = $this->db->query($sql,['id' => $id]);
-
         return $stmt->rowCount();
     }
 
@@ -215,9 +224,9 @@ class BookManager extends AbstractEntityManager{
             if(move_uploaded_file($tmp_name,IMAGES_PATH . "books/$imgName")){
                     $form['bookImage'] = $imgName;
                 if ($form['lastBookImage']) {
-                    $lastImagePath = IMAGES_PATH . "/books/" . $form['lastBookImage'];
+                    $lastImagePath = IMAGES_PATH . "books/" . $form['lastBookImage'];
 
-                    if (file_exists($lastImagePath)) {
+                    if (file_exists($lastImagePath) && $form['lastBookImage'] !== "bookDefault.webp") {
                         unlink($lastImagePath);
                     }
                 }
