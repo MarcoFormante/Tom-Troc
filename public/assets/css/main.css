@@ -1088,6 +1088,7 @@ form.form-base button {
   color: rgb(41, 41, 41);
   text-decoration: underline;
   font-size: 12px;
+  cursor: pointer;
 }
 #editBook #form-editBook-left-container label {
   display: block;
