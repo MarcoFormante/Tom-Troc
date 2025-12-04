@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded",()=>{
     const input = document.querySelector("input[type=file]")
     const image =  document.querySelector("img")
-    if (input) {
+    if (input && image) {
             input.onchange = ()=>{
             image.src = URL.createObjectURL(input.files[0]);
         }
