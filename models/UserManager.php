@@ -25,46 +25,42 @@ class UserManager extends AbstractEntityManager{
     * @param User
     * @return bool stmt->rowCount()
     */  
-    public function createOrUpdateUser(array $userData)
+    public function createOrUpdateUser(User $user, string $lastImage, array $image)
     {
             $sql = "UPDATE users SET email = :email, pseudo = :pseudo";
 
             $params = [
-                'email'   => $userData['email'],
-                'pseudo'  => $userData['pseudo'],
+                'email'   => $user->getEmail(),
+                'pseudo'  => $user->getPseudo(),
             ];
 
-            if($password = $userData['password']) {
+            if($password = $user->getPassword()) {
                 $params['password'] = password_hash($password,PASSWORD_BCRYPT, ['cost' => 13]);
                 $sql .= ", password = :password";
             }
             
-            if ($userData['newImage']['name']) {
+            if ($image['name']) {
                 $sql .= ', profile_image = :image';
-                $tmp_name = $userData['newImage']['tmp_name'];
+                $tmp_name = $image['tmp_name'];
                 $imgName = uniqid("user-") . ".jpg";
                 $params['image'] = $imgName;
-
-                if(move_uploaded_file($tmp_name,IMAGES_PATH . "/users/$imgName")){
-                    
-                    if ($userData['lastProfileImage']) {
-                       
-                        $lastImagePath = IMAGES_PATH . "/users/" . $userData['lastProfileImage'];
-
-                        if (file_exists($lastImagePath)) {
+ 
+                if(move_uploaded_file($tmp_name,IMAGES_PATH . "users/$imgName")){
+                    if ($lastImage) {
+                        $lastImagePath = IMAGES_PATH . "users/$lastImage";
+                        if (file_exists($lastImagePath) && $lastImage !== "userDefault.webp") {
                             unlink($lastImagePath);
                         }
                     }
                 }
             }
 
-            if ($userData['id'] !== -1) {  // Check if it isn't a new Users
-                $params['id'] = $userData['id'];
+            if ($user->getId() !== -1) {  // Check if it isn't a new Users
+                $params['id'] = $user->getId();
                 $sql .= " WHERE id = :id";
             }else{
                 $sql = "INSERT INTO users(email,password,pseudo) VALUES(:email,:password,:pseudo)";
             }
-          
 
             $stmt = $this->db->query($sql,$params);
             
