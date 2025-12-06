@@ -67,6 +67,11 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+            <?php if($isOwner): ?>
+                <p class="text-center mt-10 pb-10"> 
+                    <a href="?route=/newBook">Ajouter un livre</a>
+                </p>
+            <?php endif ?>
         </section>
     </div>
 </div>
