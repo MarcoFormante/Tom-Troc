@@ -186,8 +186,11 @@ class Utils{
         "$checkYearMonthDay" . " $checkYearDay " . " $checkYearMonth " . 
         ($interval->m > 0 ? $interval->m . " mois " : "") . 
         " $checkMonthDay ". ($interval->d > 1 ? $interval->d . " jours " : "  ") . 
-        ($interval->d === 1 ? " 1 jour " : " ") . 
-        ($interval->d === 0 && $interval->m === 0 && $interval->y === 0 ? "aujourd'hui" : "");
+        ($interval->d === 1  ? " 1 jour " : " ") . 
+        ($interval->d === 0 && $interval->s > 0  ? "aujourd'hui" : "" ) ;
+
+    
+        
     }
 
 
