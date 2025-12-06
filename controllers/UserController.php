@@ -19,7 +19,7 @@ class UserController extends AbstractController
 
             $user = $userManager->getUserInfo($userId);
 
-            if (!$user) {
+            if (!$user instanceof User) {
                 $this->redirect("index.php?route=/connection");
             }
             $books = $user->getBooks($isOwner);
