@@ -56,6 +56,14 @@
   text-align: right;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
+.pb-10 {
+  padding-bottom: 10px;
+}
+
 .playfair-display-600 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
