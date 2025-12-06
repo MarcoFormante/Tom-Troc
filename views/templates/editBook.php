@@ -1,3 +1,9 @@
+<?php 
+
+ $errors = $_SESSION["errors"] ?? [];
+?>
+
+
 <div id="editBook">
     <a class="retour" href="?route=/mon-compte"><- retour</a>
 
@@ -46,6 +52,7 @@
              <input required hidden name="route" value="/updateBook">
              <input required hidden name="sold_by" value="<?= htmlspecialchars($book->getSoldBy()) ?>">
              <input required hidden name="book_id" value="<?= htmlspecialchars($book->getId()) ?>">
+             <input required hidden name="csrfToken" value="<?= htmlspecialchars($csrf) ?>">
              <button class="btn-primary" type="submit" name="isSubmitted" value="true">Valider</button>          
         </div>
            
@@ -53,3 +60,7 @@
 
 </div>
 
+
+<?php 
+unset($_SESSION["errors"]);
+?>
