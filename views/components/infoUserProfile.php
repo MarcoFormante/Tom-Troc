@@ -52,7 +52,7 @@
             </div>
             <div class="form-input-container" data-error="<?= isset($errors['pseudo']) ? htmlspecialchars($errors['pseudo']) : "" ?>">
                 <label for="pseudo">Pseudo</label>
-                <input maxlength="60" required class="form-input__gray  <?= isset($errors['pseudo']) ? "error-input-focus" : "" ?>"  type="text" name="pseudo" id="pseudo" value="<?= htmlspecialchars($lastInputs['pseudo'] ?? $user->getPseudo()) ?>"/>
+                <input maxlength="60" required class="form-input__gray  <?= isset($errors['pseudo']) ? "error-input-focus" : "" ?>"  type="text" name="pseudo" id="pseudo" value="<?= htmlspecialchars($lastInputs['pesudo'] ?? $user->getPseudo()) ?>"/>
             </div>
             <input hidden name="userId" value="<?= htmlspecialchars($user->getId()) ?>">
             <input hidden name="route" value="/updateUser">
