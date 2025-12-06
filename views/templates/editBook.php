@@ -1,6 +1,10 @@
 <?php 
 
  $errors = $_SESSION["errors"] ?? [];
+ $lastInputs = $errors['lastInputs'] ?? [];
+
+ $isNewBook = $book->getId() == -1;
+
 ?>
 
 
@@ -32,15 +36,15 @@
         <div class="form-editBook-right-container">
             <div class="form-input-container" data-error="<?= isset($errors['title']) ? htmlspecialchars($errors['title']) : "" ?>">
                  <label for="title">Titre</label>
-                 <input class="form-input__gray  <?= isset($errors['title']) ? "error-input-focus" : "" ?>"  maxlength="60" required type="text" name="title" id="title" value="<?= htmlspecialchars($book->getTitle()) ?>"/>
+                 <input class="form-input__gray  <?= isset($errors['title']) ? "error-input-focus" : "" ?>"  maxlength="60" required type="text" name="title" id="title" value="<?= htmlspecialchars($lastInputs['title'] ?? $book->getTitle()) ?>"/>
             </div>
             <div class="form-input-container" data-error="<?= isset($errors['author']) ? htmlspecialchars($errors['author']) : "" ?>">
                  <label for="author">Auteur</label>
-                 <input class="form-input__gray  <?= isset($errors['author']) ? "error-input-focus" : "" ?>"  maxlength="60" required type="text" name="author" id="author" value="<?= htmlspecialchars($book->getAuthor()) ?>"/>
+                 <input class="form-input__gray  <?= isset($errors['author']) ? "error-input-focus" : "" ?>"  maxlength="60" required type="text" name="author" id="author" value="<?= htmlspecialchars($lastInputs['author'] ?? $book->getAuthor()) ?>"/>
             </div>
             <div class="form-input-container" data-error="<?= isset($errors['desc']) ? htmlspecialchars($errors['desc']) : "" ?>">
                  <label for="desc">Commentaire</label>
-                 <textarea class="form-input__gray  <?= isset($errors['desc']) ? "error-input-focus" : "" ?>"  maxlength="850" required name="desc" id="desc" ><?= htmlspecialchars($book->getDescription()) ?></textarea>
+                 <textarea class="form-input__gray  <?= isset($errors['desc']) ? "error-input-focus" : "" ?>"  maxlength="850" required name="desc" id="desc" ><?= htmlspecialchars( $lastInputs['desc'] ??  $book->getDescription()) ?></textarea>
             </div>
             <div class="form-input-container" data-error="<?= isset($errors['status']) ? htmlspecialchars($errors['status']) : "" ?>">
                 <label for="status">Disponibilité</label>
@@ -49,7 +53,7 @@
                     <option <?=$book->getStatus() == 0 ? "selected" : null ?> value="unavailable">non disponible</option>
                 </select>           
             </div>   
-             <input required hidden name="route" value="/updateBook">
+             <input required hidden name="route" value="<?= $isNewBook ? "/createBook" : "/updateBook" ?>">
              <input required hidden name="sold_by" value="<?= htmlspecialchars($book->getSoldBy()) ?>">
              <input required hidden name="book_id" value="<?= htmlspecialchars($book->getId()) ?>">
              <input required hidden name="csrfToken" value="<?= htmlspecialchars($csrf) ?>">
