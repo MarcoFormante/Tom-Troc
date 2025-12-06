@@ -98,8 +98,11 @@ class BookManager extends AbstractEntityManager{
 
         $data = $stmtImage->fetch();
 
-        if (file_exists(IMAGES_PATH . "books/" . $data['image'] && $data['image'] !== "bookDefault.webp")) {
-            unlink(IMAGES_PATH . "books/" . $data['image']);
+        if (file_exists(IMAGES_PATH . "books/" . $data['image'] )) {
+            if ($data['image'] != "bookDefault.webp") {
+                unlink(IMAGES_PATH . "books/" . $data['image']);
+            }
+          
         }
 
         $sql = "DELETE FROM books WHERE id = :id";
@@ -251,6 +254,36 @@ class BookManager extends AbstractEntityManager{
             'status'  => $form['status'] === "available" ? 1 : 0,
             'image'  => $form['bookImage'],
             'id'  => $form['book_id'],
+            'sold_by'  => $form['sold_by']
+        ]);
+
+        return $stmt->rowCount();
+    }
+
+
+     public function createBook(array $form)
+    {
+        $sql = "INSERT INTO books(title,author,description,status,image,sold_by) VALUES (:title,:author,:desc,:status,:image,:sold_by)";
+        
+        if ($form['bookImage']) {
+            $tmp_name = $form['bookImage']['tmp_name'];
+            $imgName = uniqid("book-") . ".jpg";
+             
+            if(move_uploaded_file($tmp_name,IMAGES_PATH . "books/$imgName")){
+                $form['bookImage'] = $imgName;
+            }else{
+                $form['bookImage'] =  "bookDefault.webp";
+            }
+        }else{
+            $form['bookImage'] =  "bookDefault.webp";
+        }
+
+        $stmt = $this->db->query($sql,[
+            'title'  => $form['title'],
+            'author' => $form['author'],
+            'desc'  => $form['desc'],
+            'status'  => $form['status'] === "available" ? 1 : 0,
+            'image'  => $form['bookImage'],
             'sold_by'  => $form['sold_by']
         ]);
 
