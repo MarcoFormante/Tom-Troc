@@ -7,10 +7,10 @@ class UserController extends AbstractController
         $csrf = Utils::generateCSRF("csrf-profile"); 
         $userManager = new UserManager(); 
         $userId = Utils::request('userId', -1);
+        $decodedUserData = Utils::validateJWT();
 
             /**Verification de l'USER */
             if ($isOwner === true) {
-                $decodedUserData = Utils::validateJWT();
                 if (!$decodedUserData) {
                     $this->redirect("index.php?route=/connection");
                 }
@@ -26,7 +26,9 @@ class UserController extends AbstractController
 
             $title = $isOwner ? "Mon Compte" : "Compte de " . $user->getPseudo();
 
-            $this->render("profile", ['user' => $user, 'books' => $books, 'isOwner' => $isOwner,'errors' => $errors, 'csrf' => $csrf], $title);
+            $isUserProfile = $decodedUserData['id'] === $user->getId();
+
+            $this->render("profile", ['user' => $user, 'books' => $books, 'isOwner' => $isOwner,'errors' => $errors, 'csrf' => $csrf,'isUserProfile' => $isUserProfile], $title);
     }
 
 
