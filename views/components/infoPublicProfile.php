@@ -7,7 +7,7 @@
             <hr>
             <div id="user-profile-account-info">
                 <h2 id="user-profile-pseudo"><?= htmlspecialchars($user->getPseudo())?></h2>
-                <p id="user-profile-account-info-createdAt">Membre depuis 1 an</p>
+                <p id="user-profile-account-info-createdAt">Membre depuis <?= Utils::calculateSignupDate($user->getSignupDate()) ?></p>
                 <div>
                     <h3 id="user-profile-account-info-biblio">BIBLIOTHEQUE</h3>
                     <div class="flex-c-c">
