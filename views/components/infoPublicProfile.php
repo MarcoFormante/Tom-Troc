@@ -7,6 +7,11 @@
             <hr>
             <div id="user-profile-account-info">
                 <h2 id="user-profile-pseudo"><?= htmlspecialchars($user->getPseudo())?></h2>
+                    <?php if($isUserProfile): ?>
+                        <div>
+                            <p class="mt-10 inter-600">( TOI )</p>
+                        </div>
+                    <?php endif ?>
                 <p id="user-profile-account-info-createdAt">Membre depuis <?= Utils::calculateSignupDate($user->getSignupDate()) ?></p>
                 <div>
                     <h3 id="user-profile-account-info-biblio">BIBLIOTHEQUE</h3>
@@ -17,8 +22,10 @@
                         </div>
                         <p id="user-profile-account-info-bookCount"><?= count($books)?> livres</p>
                     </div>
-                    <a class="btn-secondary pt-45" href="?route=/messagerie&toUser=<?= htmlspecialchars($user->getId())?>">Écrire un message</a>
-                </div>
+                    <?php if(!$isUserProfile): ?>
+                        <a class="btn-secondary pt-45" href="?route=/messagerie&toUser=<?= htmlspecialchars($user->getId())?>">Écrire un message</a>
+                    <?php endif ?>
+                </div>  
             </div>
         </div>
     </div>
