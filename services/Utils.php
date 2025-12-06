@@ -52,8 +52,19 @@ class Utils{
             break;
 
             case "/updateBook":
+                self::checkPostMethod();
                 $bookController = new BookController();
                 $bookController->updateBook();
+            break;
+
+            case "/newBook":
+                $bookController = new BookController();
+                $bookController->newBook();
+            break;
+
+            case "/createBook":
+                $bookController = new BookController();
+                $bookController->createBook();
             break;
 
             /** USER */
@@ -278,14 +289,24 @@ class Utils{
 
 
 
-    public static function checkUser(int $userId)
+    public static function checkUser(int|null $userId = null)
     {
         $decodedUser = self::validateJWT();
         if (!$decodedUser) {
             return false;
         }
+        
+        if ($userId !== null) {
+            if ($decodedUser['id'] !== $userId) {
+                return false;
+            }
+        }
 
-        if ($decodedUser['id'] !== $userId) {
+
+        $userManager = new UserManager();
+        $user = $userManager->getUser($decodedUser['id']);
+
+        if (!$user) {
             return false;
         }
         
