@@ -18,8 +18,8 @@ class UserFixture extends AbstractFixture
             $users[$i] = 
             [
                 "email" => $this->createRandomString().'@gmail.com',
-                "pseudo" =>"AlexSomi$i",
-                "password" =>  uniqid("pass-") . $this->createRandomString(),
+                "pseudo" =>$this->createRandomString(),
+                "password" => password_hash("user",PASSWORD_BCRYPT),
                 "profile_image" => "userDefault.webp"
             ];
 
@@ -55,13 +55,12 @@ class UserFixture extends AbstractFixture
      */
     public function addUser():void
     {
-     
         $sql = "INSERT INTO users(email,pseudo,password,profile_image) VALUES(:email,:pseudo,:password,:profile_image)";
 
         $params["email"] = $this->createRandomString() . '@gmail.com'; 
         $params["pseudo"] = "AlexSomi"; 
         $params["password"] = uniqid("pass-") . $this->createRandomString(); 
-        $params["profile_image"] = "user-profile.jpg";
+        $params["profile_image"] = "userDefault.webp";
 
         $response = "Un USER a été ajouté à la Base de Donnés";
 
