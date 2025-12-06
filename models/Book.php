@@ -1,11 +1,11 @@
 <?php 
 
 class Book extends AbstractEntity{
-    private string $title;
-    private string $author;
-    private string $image;
-    private string $description;
-    private bool $status;
+    private string $title = "";
+    private string $author = "";
+    private string $image = "bookDefault.webp";
+    private string $description = "";
+    private bool $status = true;
     private DateTime $createdAt;
     private int $soldBy;
     private User $user;
