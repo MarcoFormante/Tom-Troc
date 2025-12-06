@@ -28,7 +28,7 @@ class BookController extends AbstractController
 
     public function detail()
     {
-        $bookId = Utils::request('id') ?? -1; 
+        $bookId = Utils::request('id',-1); 
 
         $bookManager = new BookManager();
         $book = $bookManager->detail($bookId);
@@ -40,12 +40,17 @@ class BookController extends AbstractController
     public function deleteBook()
     {
 
-        $bookId = Utils::request('bookId',-1);
-        $soldBy = Utils::request('soldBy',-1);
+        $book_id = Utils::request('bookId',-1);
+        $sold_by = Utils::request('soldBy',-1);
 
-        /**VERIFIER L'USER  */
+        /**Verification de l'USER */
+        $isValidUser = $this->checkUserBookValidAction($sold_by,$book_id);
+        if (!$isValidUser) {
+            throw new Exception("Error Processing Request", 500);
+        }
+       
         $bookManager = new BookManager();
-        $bookManager->deleteBook($bookId);
+        $bookManager->deleteBook($book_id);
 
         $this->redirect("index.php?route=/mon-compte");
         
@@ -54,22 +59,28 @@ class BookController extends AbstractController
 
     public function editBook(?array $errors = [])
     {
-        /**ADD CSRF TOKEN !!!! */
 
         $sold_by = Utils::request("sold_by","");
         $book_id = Utils::request('book_id',"");
 
-        if (!$sold_by || !$book_id) {
+        $csrf = Utils::generateCSRF("edit-book");
+
+        if (!is_numeric($sold_by) || !is_numeric($book_id)) {
            $this->redirect("?route=/mon-compte");
         }
 
-        $bookManager = new BookManager();
+        $userDataDecoded = Utils::validateJWT();
 
+        if ($id = $userDataDecoded['id']) {
+            if ($id != $sold_by || !$this->checkUserBookValidAction($id,$book_id)) {
+                throw new Exception("Error Processing Requesadt", 500);
+            }
+        }
+
+        $bookManager = new BookManager();
         $book = $bookManager->getBook($book_id);
         
-        
-        $this->render("editBook",['book' => $book, 'errors' => $errors],"Modifier les informations");
-        
+        $this->render("editBook",['book' => $book, 'errors' => $errors, 'csrf' => $csrf],"Modifier les informations");
     }
 
 
@@ -83,9 +94,10 @@ class BookController extends AbstractController
             throw new Exception("Error Processing Request", 500);
         }
 
+
         $form = [];
 
-        $bookImage = $_FILES['bookImage']['name'] ?? null;
+        $bookImage = $_FILES['bookImage']['name'] ? $_FILES['bookImage'] : null;
         $lastBookImage = Utils::request("lastBookImage","");
         $title = Utils::request("title","");
         $author = Utils::request("author","");
@@ -93,8 +105,24 @@ class BookController extends AbstractController
         $status = Utils::request("status","");
         $sold_by =  Utils::request("sold_by","");
         $book_id =  Utils::request("book_id","");
+        $csrf = Utils::request("csrfToken","");
 
-        if ($bookImage) {
+         /**---- CHECK CSRF ---- */
+        if(!Utils::checkCSRF("edit-book",$csrf)){
+            throw new Exception("Error Processing Request", 500);
+        }
+        /**-------------------- */
+
+
+        /**---- CHECK USER ---- */
+        $isValidUser = $this->checkUserBookValidAction($sold_by,$book_id);
+        if (!$isValidUser) {
+            throw new Exception("Error Processing Request", 500);
+        }
+        /**------------------ */
+
+
+        if ($bookImage !== null) {
             if($imageErrors = Utils::checkImage($_FILES['bookImage'])) {
                $errors['image'] = $imageErrors;
             }
@@ -128,26 +156,43 @@ class BookController extends AbstractController
         $form['desc'] = $desc;
  
         if (!$status || !in_array($status,['available','unavailable'])) {
-            $errors['status'] = "La description est requise et doit contenir moins de 850 caractères";
+            $errors['status'] = "Le status est obligatoire";
         }
         $form['status'] = $status;
-        if ((!$sold_by || !is_numeric($sold_by)) || (!$book_id || !is_numeric($book_id))) {
-            throw new Exception("Error Processing Request", 500);
-        }
-//! CHECKUSER
+        
         $form['sold_by'] = $sold_by;
         $form['book_id'] = $book_id;
+        
 
         if (!empty($errors)) {
-            $this->editBook($errors);
-            exit();
+            $_SESSION["errors"] = $errors;
+            $this->redirect("?route=/editBook&book_id=$book_id&sold_by=$sold_by");
         }
 
         $bookManager = new BookManager();
         $bookManager->updateBook($form);
      
         $this->redirect("?route=/editBook&book_id=$book_id&sold_by=$sold_by");
-        exit();
 
+    }
+
+
+    private function checkUserBookValidAction($sold_by, $book_id)
+    {
+        if (!is_numeric($sold_by) || !is_numeric($book_id)) {
+            return false;
+        }
+
+        $userId = Utils::checkUser($sold_by);
+
+        if (!$userId) {
+           return false;
+        }
+
+        $bookManager = new BookManager();
+        $isValid = $bookManager->checkUserBookAction($userId,$book_id);
+
+        return $isValid;
+        
     }
 }
