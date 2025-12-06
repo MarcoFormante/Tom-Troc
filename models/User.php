@@ -5,7 +5,7 @@ class User extends AbstractEntity{
     private string $password;
     private string $pseudo;
     private DateTime $signupDate;
-    private string $profileImage;
+    private string|null $profileImage;
     private array $books;
 
     
@@ -121,10 +121,10 @@ class User extends AbstractEntity{
      * 
      * @return array BOOKS
      */ 
-    public function getBooks():array
+    public function getBooks(bool $isOwner):array
     {
         if (empty($this->books)) {
-            $this->setBooks();
+            $this->setBooks($isOwner);
         }
         return $this->books;
     }
@@ -135,12 +135,12 @@ class User extends AbstractEntity{
      * 
      * @return self
      */ 
-    public function setBooks():self
+    public function setBooks(bool $isOwner):self
     {
         
         $bookManager = new BookManager();
         
-        $books = $bookManager->getUserBooks($this->id);
+        $books = $bookManager->getUserBooks($this->id,$isOwner);
 
         $this->books = $books;
 
