@@ -97,7 +97,8 @@ class UserManager extends AbstractEntityManager{
 
 
 
-    public function getUserInfo(int $id){
+    public function getUserInfo(int $id):User|false
+    {
         $sql = "SELECT id, email, password, pseudo, profile_image, signup_date FROM users WHERE id = :id";
         $stmt = $this->db->query($sql,['id' => $id]);
 
