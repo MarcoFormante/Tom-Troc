@@ -3,7 +3,7 @@
 class Utils{
     
     public static function request(string $requestValue,string $defaultValue = ""){
-        return $_REQUEST[$requestValue] ?? $defaultValue;
+        return trim($_REQUEST[$requestValue] ?? $defaultValue) ;
     }
 
 
@@ -20,7 +20,7 @@ class Utils{
                 $homeController->index();
             break;
 
-/** BOOKS */
+        /** BOOKS */
             case "/nos-livre-a-lechange":
                 $searchValue = htmlspecialchars(self::request("searchValue"));
                 $booksController = new BookController();
@@ -46,7 +46,7 @@ class Utils{
             break;
 
             case "/editBook":
- //**CHECK CSRF */
+            //**CHECK CSRF */
                 $bookController = new BookController();
                 $bookController->editBook();
             break;
@@ -56,7 +56,7 @@ class Utils{
                 $bookController->updateBook();
             break;
 
-/** USER */
+            /** USER */
             case "/mon-compte":
                 $userController = new UserController();
                 $userController->userProfile(true);
@@ -71,10 +71,25 @@ class Utils{
 
             case "/updateUser":
                 self::checkPostMethod();
-                /**VERIFICARE POST REQUEST */
+            /**VERIFICARE POST REQUEST */
                 $userController = new UserController();
-                $userController->updateUser();
+                $userController->createOrUpdateUser();
             break;
+
+
+            case "/connection":
+            /**VERIFICARE CSRF */
+                $userController = new UserController();
+                $userController->login();
+            break;
+
+
+            case "/register":
+            /**VERIFICARE CSRF */
+                $userController = new UserController();
+                $userController->register();
+            break;
+
 
 
             default :
@@ -181,6 +196,97 @@ class Utils{
          if ($_SERVER['REQUEST_METHOD'] !== "POST") {
             throw new Exception("Cette page n'existe pas", 404);
         }
+    }
+
+
+
+    public static function getEnvValue(string $name)
+    {
+        $env = parse_ini_file("../.env");
+
+        if (!$env || !isset($env[$name])) {
+           throw new Exception("Error Processing Request during LOGIN", 500);
+        }
+
+        return $env[$name];
+    }
+
+
+
+    public static function createJWT(array $payload){
+        $secret = self::getEnvValue('APP_SECRET');
+
+        $encodedData = base64_encode(json_encode($payload));
+        $signature = hash_hmac('sha256',$encodedData,$secret);
+
+        return "$encodedData.$signature";
+      
+    }
+
+
+
+    public static function validateJWT()
+    {
+        if(!isset($_SESSION['auth_token'])){
+            return null;
+        }
+
+        $sessionToken = $_SESSION['auth_token'];
+
+        if (!count(explode(".",$sessionToken)) === 2) {
+            return null;
+        }
+
+        list($payload,$signature) = explode(".",$sessionToken);
+
+        $secret = self::getEnvValue('APP_SECRET');
+
+        $check = hash_hmac('sha256',$payload,$secret);
+        
+        if (!hash_equals($check,$signature)) {
+            return null;
+        }
+
+        return json_decode(base64_decode($payload),true);
+    }
+
+
+    public static function generateCSRF(string $nameOfCSRF){
+        $csrf = bin2hex(random_bytes(16));
+        $_SESSION[$nameOfCSRF] = $csrf;
+
+        return $csrf;
+    }
+
+
+
+    public static function checkCSRF(string $csrf_name,$csrf = null)
+    {
+        if (!isset($_SESSION[$csrf_name])){
+            return false;
+        }
+
+        if ($_SESSION[$csrf_name] !== $csrf) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+    public static function checkUser(int $userId)
+    {
+        $decodedUser = self::validateJWT();
+        if (!$decodedUser) {
+            return false;
+        }
+
+        if ($decodedUser['id'] !== $userId) {
+            return false;
+        }
+        
+        return $decodedUser['id'];
     }
 }   
 
