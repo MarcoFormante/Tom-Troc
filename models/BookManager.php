@@ -58,7 +58,7 @@ class BookManager extends AbstractEntityManager{
      * Create or modify a Book
      * @param Book $book
      * @param ?Author $author
-     * @return bool $stmt->rowCount()
+     * @return int
      */
      public function createOrUpdateBook(Book $book):bool
     {
@@ -179,14 +179,14 @@ class BookManager extends AbstractEntityManager{
     {
         $sql = "SELECT b.id, b.title, b.description, b.image, b.author, u.profile_image, u.pseudo, u.id  FROM books b
                 JOIN users u ON u.id = b.sold_by
-                WHERE b.id = :bookId
+                WHERE b.id = :bookId AND status = :status
                 ";
 
-        $stmt = $this->db->query($sql,["bookId" => $bookId]);
+        $stmt = $this->db->query($sql,["bookId" => $bookId,'status' => 1]);
         $data = $stmt->fetch();
 
         if (empty($data)) {
-            throw new Exception("Ce livre n'existe pas", 404);
+            throw new Exception("Ce livre n'existe pas ou n'est pas disponible", 404);
         }
 
         $book = new Book($data);
@@ -196,12 +196,20 @@ class BookManager extends AbstractEntityManager{
     }
 
 
-    public function getUserBooks(int $userId)
+    public function getUserBooks(int $userId, bool $isOwner)
     {
         $sql = "SELECT id, title, description, image, author, status, sold_by  
                 FROM books WHERE sold_by = :userId";
+        
+        $params = ['userId' => $userId];
 
-        $stmt = $this->db->query($sql,['userId' => $userId]);
+        if (!$isOwner) {
+            $sql .= " AND status = :status";
+            $params['status'] = 1;
+        }
+        
+
+        $stmt = $this->db->query($sql,$params);
 
         $books = [];
 
@@ -247,6 +255,22 @@ class BookManager extends AbstractEntityManager{
         ]);
 
         return $stmt->rowCount();
+    }
+
+
+
+    public function checkUserBookAction(int $userId, int $book_id){
+        $sql = "SELECT id FROM books WHERE id = :book_id AND sold_by = :sold_by ";
+
+        $stmt = $this->db->query($sql,['book_id' => $book_id,'sold_by' => $userId]);
+
+        $data = $stmt->fetch();
+
+        if (!$data) {
+            return false;
+        }
+
+        return true;
     }
     
 }
