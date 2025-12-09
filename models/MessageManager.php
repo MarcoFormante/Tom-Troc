@@ -7,13 +7,14 @@ class MessageManager extends AbstractEntityManager
      * @param int $chatroom_id
      * @return array Message[] 
      */
-    public function getChatroomMessages(int $chatroom_id):array
+    public function getChatroomMessages(string $chatroom_id):array
     {
-        $sql = "SELECT c.user_one_id, c.user_two_id, m.content, m.sent_by_user_id, m.sent_at FROM chatrooms
+        $sql = "SELECT c.id, c.user_one_id, c.user_two_id, m.content, m.sent_by_user_id, m.sent_at 
+                FROM chatrooms c
                 JOIN messages m ON m.chatroom_id = c.id
                 WHERE c.id = :id
         ";
-
+   
         $stmt = $this->db->query($sql,[
             "id" => $chatroom_id 
         ]);

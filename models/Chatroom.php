@@ -9,7 +9,7 @@ class Chatroom extends AbstractEntity
     /**
      * Get the value of user_one_id
      */ 
-    public function getUser_one_id()
+    public function getUserOneId()
     {
         return $this->user_one_id;
     }
@@ -19,7 +19,7 @@ class Chatroom extends AbstractEntity
      *
      * @return  self
      */ 
-    public function setUser_one_id($user_one_id)
+    public function setUserOneId($user_one_id)
     {
         $this->user_one_id = $user_one_id;
 
@@ -29,7 +29,7 @@ class Chatroom extends AbstractEntity
     /**
      * Get the value of user_two_id
      */ 
-    public function getUser_two_id()
+    public function getUserTwoId()
     {
         return $this->user_two_id;
     }
@@ -39,7 +39,7 @@ class Chatroom extends AbstractEntity
      *
      * @return  self
      */ 
-    public function setUser_two_id($user_two_id)
+    public function setUserTwoId($user_two_id)
     {
         $this->user_two_id = $user_two_id;
 
