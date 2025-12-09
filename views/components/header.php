@@ -20,7 +20,7 @@
         <ul class="nav-list__right">
             <li id="message-list-item">
                 <span id="message-logo" aria-hidden="true"></span>
-                <a class="<?= UTILS::checkActiveRoute("/messagerie") ?>" href="index.php?route=/messagerie">Messagerie</a>
+                <a class="<?= UTILS::checkActiveRoute("/messages") ?>" href="index.php?route=/messages">Messagerie</a>
                 <span id="notif-icon">1</span>
             </li>
             <li><a class="<?= UTILS::checkActiveRoute("/mon-compte") ?>" href="index.php?route=/mon-compte">Mon compte</a></li>
