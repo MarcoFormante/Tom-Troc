@@ -102,6 +102,13 @@ class Utils{
             break;
 
 
+            //**Messages */
+
+            case "/messages":
+                $chatController = new ChatroomController();
+                $chatController->showChatrooms();
+            break;
+                
 
             default :
                 throw new Exception("La page demandée d'existe pas", 404);
@@ -199,9 +206,6 @@ class Utils{
         " $checkMonthDay ". ($interval->d > 1 ? $interval->d . " jours " : "  ") . 
         ($interval->d === 1  ? " 1 jour " : " ") . 
         ($interval->d === 0 && $interval->s > 0  ? "aujourd'hui" : "" ) ;
-
-    
-        
     }
 
 
