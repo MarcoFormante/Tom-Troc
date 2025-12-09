@@ -73,7 +73,7 @@
   letter-spacing: 0;
 }
 
-.playfair-display-400, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
+.playfair-display-400, #messagerie .main-container .chats-box h1, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -91,7 +91,7 @@
   letter-spacing: 0;
 }
 
-.inter-600 {
+.inter-600, #messagerie .message-container .message-user-detail-container a .user-pseudo {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -100,7 +100,7 @@
   letter-spacing: 2%;
 }
 
-.inter-400, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-profile-account-info-createdAt, #book-detail-info-author-container, .book-card-soldby, .book-card-author, .book-card-title {
+.inter-400, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .main-container .chatrooms .message-info, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-profile-account-info-createdAt, #book-detail-info-author-container, .book-card-soldby, .book-card-author, .book-card-title {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -1193,4 +1193,154 @@ form.form-base button {
   letter-spacing: 0;
   font-size: 14px;
   color: red;
+}
+
+#messagerie {
+  height: 90vh;
+  background-color: rgb(245, 243, 239);
+  padding-left: 150px;
+}
+#messagerie .user-img {
+  width: 48px;
+  height: 48px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+#messagerie .main-container {
+  display: flex;
+  height: 100%;
+}
+#messagerie .main-container .chats-box {
+  max-width: 308px;
+  width: 308px;
+  background-color: rgb(250, 249, 247);
+}
+#messagerie .main-container .chats-box h1 {
+  padding-left: 34px;
+  padding-top: 55px;
+}
+#messagerie .main-container .chatrooms {
+  width: inherit;
+  margin-top: 27px;
+}
+#messagerie .main-container .chatrooms li.selected {
+  background-color: rgb(255, 255, 255);
+}
+#messagerie .main-container .chatrooms li a {
+  display: block;
+  padding: 14px 42px 21px 34px;
+}
+#messagerie .main-container .chatrooms li a:hover {
+  background-color: rgb(255, 255, 255);
+}
+#messagerie .main-container .chatrooms .message-info {
+  display: flex;
+}
+#messagerie .main-container .chatrooms .message-info .user-info {
+  margin-left: 12px;
+  width: 100%;
+}
+#messagerie .main-container .chatrooms .message-info .color-dark-grey {
+  color: rgb(41, 41, 41);
+}
+#messagerie .main-container .chatrooms .message-info .user-pseudo {
+  font-size: 14px;
+}
+#messagerie .main-container .chatrooms .message-info time {
+  font-size: 12px;
+  float: right;
+}
+#messagerie .main-container .chatrooms .message-info .last-message {
+  color: rgb(166, 166, 166);
+  font-size: 12px;
+  margin-top: 7px;
+}
+#messagerie .message-container {
+  padding-left: 44px;
+  padding-top: 38px;
+  width: 100%;
+}
+#messagerie .message-container .message-user-detail-container a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+#messagerie .message-container .message-user-detail-container a .user-pseudo {
+  font-size: 14px;
+  color: rgb(41, 41, 41);
+}
+#messagerie .message-container .message-input-container form {
+  display: flex;
+  gap: 21px;
+  padding-right: 150px;
+}
+#messagerie .message-container .message-input-container form .message-input {
+  width: 100%;
+}
+#messagerie .message-container .message-input-container form .message-input input {
+  width: 100%;
+  height: 49px;
+  padding-left: 42px;
+}
+#messagerie .message-container .message-input-container form button {
+  padding: 17px 37px;
+  width: 132px;
+}
+#messagerie .messages-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 50vh;
+  height: 50vh;
+  padding-right: 150px;
+  padding-bottom: 40px;
+}
+#messagerie .messages-container::-webkit-scrollbar {
+  display: none;
+}
+#messagerie .user-message {
+  font-size: 12px;
+  margin-bottom: 29px;
+  align-self: flex-end;
+}
+#messagerie .user-message .message-info-container {
+  display: flex;
+  align-items: center;
+}
+#messagerie .user-message img {
+  display: none;
+}
+#messagerie .user-message.second-user-message {
+  align-self: flex-start;
+}
+#messagerie .user-message.second-user-message .time {
+  text-align: left;
+  width: 100%;
+}
+#messagerie .user-message.second-user-message img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin-right: 6px;
+}
+#messagerie .user-message .time {
+  color: rgb(166, 166, 166);
+  text-align: right;
+  width: 100%;
+}
+#messagerie .user-message .message-content-container {
+  background-color: rgb(237, 242, 246);
+  padding: 15px;
+  max-width: 500px;
+  border-radius: 3px;
+}
+#messagerie .user-message .message-content-container p {
+  color: rgb(41, 41, 41);
+}
+#messagerie .user-message .message-content-container.second-user-message-content {
+  background-color: rgb(255, 255, 255);
 }/*# sourceMappingURL=main.css.map */
