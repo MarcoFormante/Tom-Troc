@@ -10,7 +10,7 @@ $user = $book->getUser();
 $userId = htmlspecialchars($user->getId());
 $profileImage = htmlspecialchars($user->getProfileImage());
 $pseudo = htmlspecialchars($user->getPseudo());
-
+$isUserBook = $authenticatedUserId == $userId;
 
 ?>
 
@@ -41,9 +41,11 @@ $pseudo = htmlspecialchars($user->getPseudo());
                     </div>
                 </a>
             </div>
-            <div id="book-detail-info-cta">
-                <a href="?route=/messagerie&userId=<?= $userId ?>" class="btn-primary text-center">Envoyer un message</a>
-            </div>
+            <?php if(!$isUserBook): ?>
+                <div id="book-detail-info-cta">
+                    <a href="?route=/messagerie&userId=<?= $userId ?>" class="btn-primary text-center">Envoyer un message</a>
+                </div>
+            <?php endif ?>
         </section>
     </div>
 </article>
