@@ -9,26 +9,26 @@ class UserController extends AbstractController
         $userId = Utils::request('userId', -1);
         $decodedUserData = Utils::validateJWT();
 
-            /**Verification de l'USER */
-            if ($isOwner === true) {
-                if (!$decodedUserData) {
-                    $this->redirect("index.php?route=/connection");
-                }
-                $userId = $decodedUserData['id'];
-            }
-
-            $user = $userManager->getUserInfo($userId);
-
-            if (!$user instanceof User) {
+        /**Verification de l'USER */
+        if ($isOwner === true) {
+            if (!$decodedUserData) {
                 $this->redirect("index.php?route=/connection");
             }
-            $books = $user->getBooks($isOwner);
+            $userId = $decodedUserData['id'];
+        }
 
-            $title = $isOwner ? "Mon Compte" : "Compte de " . $user->getPseudo();
+        $user = $userManager->getUserInfo($userId);
 
-            $isUserProfile = $decodedUserData['id'] === $user->getId();
+        if (!$user instanceof User) {
+            throw new Exception("Error Processing Request", 404);
+        }
+        $books = $user->getBooks($isOwner);
 
-            $this->render("profile", ['user' => $user, 'books' => $books, 'isOwner' => $isOwner,'errors' => $errors, 'csrf' => $csrf,'isUserProfile' => $isUserProfile], $title);
+        $title = $isOwner ? "Mon Compte" : "Compte de " . $user->getPseudo();
+
+        $isUserProfile = $decodedUserData && $decodedUserData['id'] === $user->getId();
+
+        $this->render("profile", ['user' => $user, 'books' => $books, 'isOwner' => $isOwner,'errors' => $errors, 'csrf' => $csrf,'isUserProfile' => $isUserProfile], $title);
     }
 
 
@@ -67,8 +67,6 @@ class UserController extends AbstractController
                 $errors['image'] = $imageErrors;
             }
         }
-
-        
 
         $form = [
             'id' => $userId,
@@ -111,15 +109,16 @@ class UserController extends AbstractController
                 
                 if(!empty($errors)){
                     $errors['lastInputs'] = [
-                    'pseudo' => $pseudo,
-                    'email' => $email,
-                    'password' => $password
+                        'pseudo' => $pseudo,
+                        'email' => $email,
+                        'password' => $password
                     ];
                     $_SESSION['form_errors'] = $errors;
                     $this->redirect("index.php?route=/register");
                 }
             }
 
+            
         /*Update User */
 
         }else{
@@ -259,6 +258,7 @@ class UserController extends AbstractController
         $title = "Inscription";
         $this->render("signup_signin", ['title' =>$title, 'csrf' => $csrf, 'isConnectionPage' => false],$title);
     }
+
 
 
 }
