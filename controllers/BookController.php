@@ -33,7 +33,9 @@ class BookController extends AbstractController
         $bookManager = new BookManager();
         $book = $bookManager->detail($bookId);
 
-        $this->render("detail", ['book' => $book], $book->getTitle());
+        $userId = Utils::checkUser();
+
+        $this->render("detail", ['book' => $book,'authenticatedUserId' => $userId], $book->getTitle());
     }
 
 
