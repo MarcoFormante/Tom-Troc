@@ -21,29 +21,57 @@ class ChatroomManager extends AbstractEntityManager
 
 
     public function getUserChatrooms(int $user_id):array
-    {
-        $sql = "SELECT c.id,  c.user_one_id, c.user_two_id, m.content, m.sent_at
+     {
+       
+        $sql = "SELECT c.id, 
+
+                CASE
+                    WHEN c.user_one_id = :user_id
+                        THEN u2.id
+                    ELSE u1.id
+                END AS other_user_id,
+
+                CASE
+                    WHEN c.user_one_id = :user_id
+                        THEN u2.profile_image
+                    ELSE u1.profile_image
+                END AS other_user_image,
+
+                 CASE
+                    WHEN c.user_one_id = :user_id
+                        THEN u2.pseudo
+                    ELSE u1.pseudo
+                END AS other_user_pseudo,
+
+                m.content AS last_message,
+                m.sent_at AS sent_at
+
                 FROM chatrooms c
-                JOIN messages m ON m.chatroom_id = id
-                WHERE (c.user_one_id = :user_id OR c.user_two_id = :user_id)
-                AND m.id IN (
-                    SELECT MAX(id)
-                    FROM messages
-                    WHERE c.id = m.chatroom_id
-                    GROUP BY c.id
+
+                JOIN users u1 ON u1.id = c.user_one_id
+                JOIN users u2 ON u2.id = c.user_two_id
+
+                LEFT JOIN messages m ON m.id = (
+                    SELECT id
+                    FROM messages 
+                    WHERE chatroom_id = c.id
+                    ORDER BY sent_at DESC LIMIT 1
                 )
-                ORDER BY m.sent_at DESC";
+
+                WHERE c.user_one_id = :user_id 
+                OR c.user_two_id = :user_id";
 
         $stmt = $this->db->query($sql,[
             'user_id' => $user_id
-        ]);
+        ]); 
         
-        $messages = [];
-        while($message = $stmt->fetch()){
-             $messages[] = new Message($message);
+        $rooms = [];
+
+        while($room = $stmt->fetch()){
+            $rooms[] = $room;
         }
-        
-        return $messages;
+
+        return $rooms;
 
     }
 }
