@@ -43,7 +43,7 @@ $isUserBook = $authenticatedUserId == $userId;
             </div>
             <?php if(!$isUserBook): ?>
                 <div id="book-detail-info-cta">
-                    <a href="?route=/messagerie&userId=<?= $userId ?>" class="btn-primary text-center">Envoyer un message</a>
+                    <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>" class="btn-primary text-center">Envoyer un message</a>
                 </div>
             <?php endif ?>
         </section>
