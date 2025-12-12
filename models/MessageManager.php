@@ -36,13 +36,14 @@ class MessageManager extends AbstractEntityManager
      */
     public function sentMessage(Message $message):bool
     {   
-        $sql = "INSERT INTO messages(chatroom_id,user_one_id,user_two_id,content)
-                VALUES(:chatroom_id,:user_one_id,:user_two_id,content)";
+        $sql = "INSERT INTO messages(chatroom_id, content, sent_by_user_id)
+                VALUES(:chatroom_id,:content,:sent_by_user_id)";
 
         
         $stmt = $this->db->query($sql,[
-            'chatroom_id' => $message->getChatroom_id(),
-            'content' => $message->getContent()
+            'chatroom_id' => $message->getChatroomId(),
+            'content' => $message->getContent(),
+            'sent_by_user_id' => $message->getSentByUserId()
         ]);
 
        return $stmt->rowCount();
