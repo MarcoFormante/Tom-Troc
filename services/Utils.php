@@ -46,7 +46,6 @@ class Utils{
             break;
 
             case "/editBook":
-            //**CHECK CSRF */
                 $bookController = new BookController();
                 $bookController->editBook();
             break;
@@ -82,14 +81,13 @@ class Utils{
 
             case "/updateUser":
                 self::checkPostMethod();
-            /**VERIFICARE POST REQUEST */
                 $userController = new UserController();
                 $userController->createOrUpdateUser();
             break;
 
 
             case "/connection":
-            /**VERIFICARE CSRF */
+                self::checkPostMethod();
                 $userController = new UserController();
                 $userController->login();
             break;
@@ -107,6 +105,18 @@ class Utils{
             case "/messages":
                 $chatController = new ChatroomController();
                 $chatController->showChatrooms();
+            break;
+
+            case "/openMessage":
+                $chatController = new ChatroomController();
+                $chatController->verifyChatroom(true);
+            break;
+
+
+            case "/sendMessage":
+                self::checkPostMethod();
+                $messageController = new MessageController();
+                $messageController->sendMessage();
             break;
                 
 
