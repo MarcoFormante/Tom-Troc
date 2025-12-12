@@ -1,4 +1,9 @@
 
+<?php 
+    $connectingUser = $_SESSION['connectingWithUser'] ?? null ;
+
+    $isValidConnectingUser = $connectingUser && Utils::request("connectingId") == $connectingUser['id'];
+?>
 
 <div id="messagerie"> 
     <div class="main-container">
@@ -23,9 +28,26 @@
                         </a>
                     </li>
                 <?php endforeach ?>
+
+                <?php if($connectingUser):?>
+                    <li class="selected">
+                        <a href="index.php?route=/messages&connectingId=<?=  htmlspecialchars($connectingUser['id']) ?>"  >
+                            <div class="message-info">
+                                <img class="user-img" src="<?= IMAGES_PATH . "users/" . htmlspecialchars($connectingUser['profile_image']) ?>" alt="<?= htmlspecialchars($connectingUser['pseudo']) ?>, utilisateur du site TomTroc">
+                                <div class="user-info">
+                                    <div class="color-dark-grey">
+                                        <span class="user-pseudo"><?= htmlspecialchars($connectingUser['pseudo'])   ?></span> 
+                                        <time></time>
+                                    </div>
+                                    <p class="last-message"></p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                <?php endif ?>
            </ul>
         </div>
-            <?php if(isset($otherUser) && $otherUser->getId()):?>
+            <?php if(isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser):?>
         <div class="message-container">
             <div class="message-user-detail-container">
                 <a href="index.php?route=/profile&userId=<?= htmlspecialchars($otherUser->getId()) ?>">
@@ -47,18 +69,46 @@
                 <?php endforeach ?>
             </div>
             <div class="message-input-container">
-                <form>
+                <form method="post">
                     <div class="message-input">
                         <label hidden for="message">Message</label>
-                        <input type="text" id="message" name="message" placeholder="Tapez votre message ici"/>
+                        <input required type="text" id="message" name="message" placeholder="Tapez votre message ici"/>
+                        <input hidden required name="route" value="/sendMessage"/>
                     </div>
                     <div>
-                        <button class="btn-primary" type="submit">Envoyer</button>
+                        <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
                     </div>
                 </form>
             </div>
         </div>
         <?php endif ?>
+        
+        <?php if($isValidConnectingUser):?>
+             <div class="message-container">
+            <div class="message-user-detail-container">
+                <a href="index.php?route=/profile&userId=<?= htmlspecialchars($connectingUser['id']) ?>">
+                    <img class="user-img" src="<?= IMAGES_PATH . "users/" .htmlspecialchars($connectingUser['profile_image']) ?>" alt="<?= htmlspecialchars($connectingUser['pseudo']) ?>, utilisateur du site TomTroc">
+                    <span class="user-pseudo"><?= htmlspecialchars($connectingUser['pseudo']) ?></span>
+                </a>
+            </div>
+            <div class="messages-container">
+              
+            </div>
+            <div class="message-input-container">
+                <form method="post">
+                    <div class="message-input">
+                        <label hidden for="message">Message</label>
+                        <input required type="text" id="message" name="message" placeholder="Tapez votre message ici"/>
+                        <input hidden required name="connecting" value="true"/>
+                        <input hidden required name="route" value="/sendMessage"/>
+                    </div>
+                    <div>
+                        <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+         <?php endif ?>
     </div>
 </div>
 
