@@ -175,57 +175,56 @@ class UserController extends AbstractController
 
 
     public function login(){
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            if ($_POST['submited'] === 'true') {
-                $errors = [];
-                $email = Utils::request("email","");
-                $password = Utils::request("password","");
-                $csrfToken = Utils::request("csrf","");
 
-                if (!$email || !filter_var($email,FILTER_VALIDATE_EMAIL)) {
-                    $errors['email'] = "Veuillez entrer une adresse email valide";
-                }
+        if ($_POST['submited'] === 'true') {
+            $errors = [];
+            $email = Utils::request("email", "");
+            $password = Utils::request("password", "");
+            $csrfToken = Utils::request("csrf", "");
 
-                if (!$password) {
-                    $errors['password'] = "Veuillez entrer un mot de passe";
-                }
+            if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = "Veuillez entrer une adresse email valide";
+            }
 
-                if (!Utils::checkCSRF("login_csrf",$csrfToken)) {
-                    throw new Exception("Error Processing Request", 500);
-                }
-            }else{
+            if (!$password) {
+                $errors['password'] = "Veuillez entrer un mot de passe";
+            }
+
+            if (!Utils::checkCSRF("login_csrf", $csrfToken)) {
                 throw new Exception("Error Processing Request", 500);
             }
+        } else {
+            throw new Exception("Error Processing Request", 500);
+        }
 
-            if (!empty($errors)) {
-                $errors['lastInputs'] = [
-                    'email' => $email,
-                    'password' => $password
-                ];
-               $_SESSION['form_errors'] = $errors;
-               return $this->redirect("?route=/connection");
-            }
-
-            $userManager = new UserManager();
-            $data = $userManager->login($email,$password);
-
-            if ($data['user-error']) {
-                 $errors['lastInputs'] = [
-                    'email' => $email,
-                    'password' => $password
-                ];
-                $errors['user-error'] = $data['user-error'];
-                $_SESSION['form_errors'] = $errors;
-                return $this->redirect("?route=/connection");
-            }
-
-            if ($data['token']) {
-                $_SESSION['auth_token'] = $data['token'];
-                return $this->redirect("?route=/");
-            }
-
+        if (!empty($errors)) {
+            $errors['lastInputs'] = [
+                'email' => $email,
+                'password' => $password
+            ];
+            $_SESSION['form_errors'] = $errors;
             return $this->redirect("?route=/connection");
         }
+
+        $userManager = new UserManager();
+        $data = $userManager->login($email, $password);
+
+        if ($data['user-error']) {
+            $errors['lastInputs'] = [
+                'email' => $email,
+                'password' => $password
+            ];
+            $errors['user-error'] = $data['user-error'];
+            $_SESSION['form_errors'] = $errors;
+            return $this->redirect("?route=/connection");
+        }
+
+        if ($data['token']) {
+            $_SESSION['auth_token'] = $data['token'];
+            return $this->redirect("?route=/");
+        }
+
+        return $this->redirect("?route=/connection");
 
         $title = "Connexion";
 
