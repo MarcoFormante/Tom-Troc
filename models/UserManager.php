@@ -144,4 +144,16 @@ class UserManager extends AbstractEntityManager{
 
     }
 
+    public function checkExistingUser(int $id, string $pseudo){
+        $sql = "SELECT id,pseudo,profile_image FROM users WHERE id = :id AND pseudo = :pseudo";
+        $stmt = $this->db->query($sql,['id' => $id, 'pseudo' => $pseudo]);
+
+        $user = $stmt->fetch();
+        if (!$user) {
+            return false;
+        }
+
+        return $user;
+    }
+
 }
