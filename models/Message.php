@@ -9,7 +9,7 @@ class Message extends AbstractEntity{
     /**
      * Get the value of chatroom_id
      */     
-    public function getChatroom_id()
+    public function getChatroomId()
     {
         return $this->chatroom_id;
     }
@@ -19,7 +19,7 @@ class Message extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setChatroom_id($chatroom_id)
+    public function setChatroomId($chatroom_id)
     {
         $this->chatroom_id = $chatroom_id;
 
@@ -60,7 +60,7 @@ class Message extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setSentAt($sent_at)
+    public function setSentAt($sent_at )
     {
         $this->sent_at = new DateTime($sent_at);
 
