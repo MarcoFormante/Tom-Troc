@@ -3,7 +3,7 @@
 class ChatroomManager extends AbstractEntityManager
 {
     
-    public function createChatroom(int $user_one_id,int $user_two_id):bool
+    public function createChatroom(int $user_one_id,int $user_two_id):string|bool
     {
         $now =  new DateTime();
         $chatroom_id = uniqid("ROOM-") . $now->getTimestamp();
@@ -16,7 +16,11 @@ class ChatroomManager extends AbstractEntityManager
             'user_two_id' => $user_two_id,
         ]);
 
-        return $stmt->rowCount();
+        if (!$stmt->rowCount()) {
+            return false;
+        }
+
+        return $chatroom_id;
     }
 
 
@@ -73,5 +77,38 @@ class ChatroomManager extends AbstractEntityManager
 
         return $rooms;
 
+    }
+
+
+    public function checkExistingChatroomByUsers(int $user_one, int $user_two)
+    {
+        $sql = "SELECT id FROM chatrooms WHERE (user_one_id = :user_one_id AND user_two_id = :user_two_id ) OR (user_one_id = :user_two_id AND user_one_id = :user_two_id)";
+
+        $stmt = $this->db->query($sql,['user_one_id' => $user_one, 'user_two_id' => $user_two]);
+
+        $chatroom = $stmt->fetch();
+       
+        if(!$chatroom){
+            return false;
+        }
+        return $chatroom['id']; 
+    }
+
+
+
+    public function checkExistingChatroomByIds(string $chatId, int $user_one, int $user_two)
+    {
+        $sql = "SELECT id FROM chatrooms
+                WHERE (user_one_id = :user_one_id AND user_two_id = :user_two_id )
+                OR (user_one_id = :user_two_id AND user_one_id = :user_two_id) AND id = :chatId";
+
+        $stmt = $this->db->query($sql,['user_one_id' => $user_one, 'user_two_id' => $user_two, 'chatId' => $chatId]);
+
+        $chatroom = $stmt->fetch();
+       
+        if(!$chatroom){
+            return false;
+        }
+        return $chatroom['id']; 
     }
 }
