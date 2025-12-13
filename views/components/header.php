@@ -9,7 +9,7 @@
             </a>
             <ul class="nav-list__left">
                 <li>
-                    <a class="<?= UTILS::checkActiveRoute("/") . UTILS::checkActiveRoute("")  ?>" href="index.php?route=/">Acceuil</a>
+                    <a class="<?= UTILS::checkActiveRoute("/") . UTILS::checkActiveRoute("")  ?>" href="index.php?route=/">Accueil</a>
                 </li>
                 <li>
                     <a class="<?= UTILS::checkActiveRoute("/nos-livre-a-lechange") ?>" href="index.php?route=/nos-livre-a-lechange">Nos livres à l’échange</a>
@@ -21,7 +21,12 @@
             <li id="message-list-item">
                 <span id="message-logo" aria-hidden="true"></span>
                 <a class="<?= UTILS::checkActiveRoute("/messages") ?>" href="index.php?route=/messages">Messagerie</a>
-                <span id="notif-icon">1</span>
+
+                <!-- NOTIFICATIONS -->
+                <?php if(isset($_SESSION['notifications']) && count($_SESSION['notifications']) > 0): ?>
+                    <span id="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
+                <?php endif ?>
+
             </li>
             <li><a class="<?= UTILS::checkActiveRoute("/mon-compte") ?>" href="index.php?route=/mon-compte">Mon compte</a></li>
             <li><a class="<?= UTILS::checkActiveRoute("/connection") ?>" href="index.php?route=/connection">Connexion</a></li>
