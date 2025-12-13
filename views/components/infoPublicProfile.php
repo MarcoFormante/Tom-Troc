@@ -20,7 +20,7 @@
                             <span aria-hidden="true" class="book-draw"></span> 
                             <span aria-hidden="true" class="book-draw book-draw-right"></span> 
                         </div>
-                        <p id="user-profile-account-info-bookCount"><?= count($books)?> livres</p>
+                        <p id="user-profile-account-info-bookCount"><?= count($books) == 1 ? "livre" : "livres"?></p>
                     </div>
                     <?php if(!$isUserProfile): ?>
                         <a class="btn-secondary pt-45" href="?route=/openMessage&other_user_id=<?= htmlspecialchars($user->getId())?>&pseudo=<?= htmlspecialchars($user->getPseudo())?>">Écrire un message</a>
