@@ -18,6 +18,7 @@
         </div>
     
         <ul class="nav-list__right">
+            <?php if(isset($_SESSION['auth_token'])): ?>
             <li id="message-list-item">
                 <span id="message-logo" aria-hidden="true"></span>
                 <a class="<?= UTILS::checkActiveRoute("/messages") ?>" href="index.php?route=/messages">Messagerie</a>
@@ -29,6 +30,7 @@
 
             </li>
             <li><a class="<?= UTILS::checkActiveRoute("/mon-compte") ?>" href="index.php?route=/mon-compte">Mon compte</a></li>
+            <?php endif ?>
             <li><a class="<?= UTILS::checkActiveRoute("/connection") ?>" href="index.php?route=/connection">Connexion</a></li>
         </ul>
     </nav>
