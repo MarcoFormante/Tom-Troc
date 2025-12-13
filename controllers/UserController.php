@@ -41,7 +41,12 @@ class UserController extends AbstractController
     }
 
 
-
+    /**
+     * Create or Update User.
+     * Check all inputs and csrf.
+     * Put Errors in session if needed .
+     * @return void
+     */
     public function createOrUpdateUser()
     {   
         $userId = Utils::request('userId',-1);
@@ -91,7 +96,8 @@ class UserController extends AbstractController
         /**Register New User */
 
         if ($isRegisterPage) {
-              if(!empty($errors)){
+
+            if(!empty($errors)){
                 $errors['lastInputs'] = [
                     'pseudo' => $pseudo,
                     'email' => $email,
@@ -106,6 +112,9 @@ class UserController extends AbstractController
 
             if($result['success'] === true) {
                 unset($_SESSION["auth_token"]);
+
+                Utils::sendAlert("Nouveau compte créé!");
+
                 $this->redirect("index.php?route=/connection");
             }else{
                 if ($result['email']) {
@@ -156,6 +165,7 @@ class UserController extends AbstractController
 
 
             if($result['success'] === true) {
+                Utils::sendAlert("Mise à jour effectuée avec succès");
                 $this->redirect("index.php?route=/mon-compte");
             }else{
                 if ($result['email']) {
@@ -182,11 +192,15 @@ class UserController extends AbstractController
     }
 
 
-
+    /**
+     * Handle Login.
+     * If post method and inputs are validates user will be authenticated with auth token in session.
+     * @return void
+     */
     public function login(){
     if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-        if ($_POST['submited'] === 'true') {
+        if ($_POST['submitted'] === 'true') {
             $errors = [];
             $email = Utils::request("email", "");
             $password = Utils::request("password", "");
@@ -203,6 +217,7 @@ class UserController extends AbstractController
             if (!Utils::checkCSRF("login_csrf", $csrfToken)) {
                 throw new Exception("Error Processing Request", 500);
             }
+
         } else {
             throw new Exception("Error Processing Request", 500);
         }
@@ -231,6 +246,7 @@ class UserController extends AbstractController
 
         if ($data['token']) {
             $_SESSION['auth_token'] = $data['token'];
+            Utils::sendAlert("Bienvenue ! Vous êtes maintenant connecté");
             return $this->redirect("?route=/");
         }
 
@@ -238,19 +254,22 @@ class UserController extends AbstractController
     }
         $title = "Connexion";
 
-        $csrf = bin2hex(random_bytes(16));
-
-        $_SESSION['login_csrf'] = $csrf;
+        $csrf = Utils::generateCSRF('login_csrf');
 
         $this->render("signup_signin",['title' =>$title, 'csrf' => $csrf, 'isConnectionPage' => true], $title);
     }
 
 
-    
+    /**
+     * Handle User Registration.
+     * if post method and check inputs and csrf if are validates.
+     * if get method generate csrf and render the page.
+     * @return void
+     */
     public function register(){
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
-            if ($_POST['submited'] === 'true') {
+            if ($_POST['submitted'] === 'true') {
                 $csrfToken = Utils::request("csrf","");
 
                 if (!Utils::checkCSRF("register_csrf",$csrfToken)) {
@@ -267,7 +286,4 @@ class UserController extends AbstractController
         $title = "Inscription";
         $this->render("signup_signin", ['title' =>$title, 'csrf' => $csrf, 'isConnectionPage' => false],$title);
     }
-
-
-
 }
