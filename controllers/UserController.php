@@ -2,6 +2,15 @@
 
 class UserController extends AbstractController
 {
+    /**
+     * Display a user's profile.
+     * Generate a CSRF token for the profile form.
+     * Decode the authenticated user from the JWT.
+     * Get User and their books
+     * @param bool $isOwner boolean to handle public or private profile.
+     * @param ?array errors if exists
+     * @return void
+     */
     public function userProfile(bool $isOwner,?array $errors = [])
     {
         $csrf = Utils::generateCSRF("csrf-profile"); 
@@ -175,6 +184,7 @@ class UserController extends AbstractController
 
 
     public function login(){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         if ($_POST['submited'] === 'true') {
             $errors = [];
@@ -196,7 +206,7 @@ class UserController extends AbstractController
         } else {
             throw new Exception("Error Processing Request", 500);
         }
-
+   
         if (!empty($errors)) {
             $errors['lastInputs'] = [
                 'email' => $email,
@@ -205,7 +215,7 @@ class UserController extends AbstractController
             $_SESSION['form_errors'] = $errors;
             return $this->redirect("?route=/connection");
         }
-
+ 
         $userManager = new UserManager();
         $data = $userManager->login($email, $password);
 
@@ -225,7 +235,7 @@ class UserController extends AbstractController
         }
 
         return $this->redirect("?route=/connection");
-
+    }
         $title = "Connexion";
 
         $csrf = bin2hex(random_bytes(16));
