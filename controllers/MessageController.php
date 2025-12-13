@@ -107,5 +107,11 @@ class MessageController extends AbstractController
         return $messages;
     }
 
+    public function deleteDraft()
+    {
+        unset($_SESSION['connectingWithUser']);
+        $this->redirect("index.php?route=/messages");
+    }
+
 }
 
