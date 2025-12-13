@@ -87,14 +87,13 @@ class Utils{
 
 
             case "/connection":
-                self::checkPostMethod();
+                
                 $userController = new UserController();
                 $userController->login();
             break;
 
 
             case "/register":
-            /**VERIFICARE CSRF */
                 $userController = new UserController();
                 $userController->register();
             break;
@@ -325,6 +324,14 @@ class Utils{
         }
         
         return $decodedUser['id'];
+    }
+
+
+
+    public static function formatDateTime($date){
+        $formattedDate = new DateTime($date);
+
+        return $formattedDate->format("H:i");
     }
 }   
 
