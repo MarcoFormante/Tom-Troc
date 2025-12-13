@@ -35,7 +35,7 @@ $lastInputs = $errors['lastInputs'] ?? [];
                 </div>
             <?php endif ?>       
 
-            <button class="btn-primary" name="submited" value="true" type="submit"> <?= $isConnectionPage ? "Entrer" : "S’inscrire" ?></button>
+            <button class="btn-primary" name="submitted" value="true" type="submit"> <?= $isConnectionPage ? "Entrer" : "S’inscrire" ?></button>
 
             <p class="switcher-link"><?= $isConnectionPage ? "Pas de compte ? " : "Déjà inscrit ? " ?><a href="index.php?route=/<?= $isConnectionPage ? "register" : "connection" ?>"><?= $isConnectionPage ? "Inscrivez-vous" : " Connectez-vous" ?></a></p>
         </form>
