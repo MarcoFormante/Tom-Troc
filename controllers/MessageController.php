@@ -9,6 +9,14 @@ class MessageController extends AbstractController
      */
     public function sendMessage()
     {
+        
+        $csrf = Utils::request("csrf-message","");
+
+        if (!Utils::checkCSRF("csrf-message",$csrf)) {
+            throw new Exception("No CSRF MESSAGE", 500);
+        }
+        unset($_SESSION['csrf-message']);
+
         $otherUserId = Utils::request("other_user_id",-1);
         $chatroomId = Utils::request("chatroom","");
         $userId = Utils::checkUser();
@@ -68,6 +76,7 @@ class MessageController extends AbstractController
         $userManager = new UserManager();
         $otherUser = $userManager->getUser($otherUserId);
         $messages = $this->getChatroomMessages($chatroomId,$otherUserId,$userId);
+        $csrf = Utils::generateCSRF("csrf-message");
 
         if ($notifications = $_SESSION['notifications']) {
             foreach ($notifications as $notif) {
@@ -79,7 +88,7 @@ class MessageController extends AbstractController
             }
         }
 
-        return $this->render("chatrooms", ['title' => "Messagerie", "chatrooms" => $chatrooms, 'messages' => $messages, "userId" => $userId, "otherUser" => $otherUser], "Messagerie");
+        return $this->render("chatrooms", ['title' => "Messagerie", "chatrooms" => $chatrooms, 'messages' => $messages, "userId" => $userId, "otherUser" => $otherUser,'csrf' => $csrf], "Messagerie");
     }
 
     /**
@@ -108,11 +117,18 @@ class MessageController extends AbstractController
     }
 
     /**
-     * Delete Draft Message
+     * Delete Draft Message;
+     * Check the csrf if is valid
      * @return void
      */
     public function deleteDraft()
     {
+        $csrf = Utils::request("csrf-message","");
+
+        if (!Utils::checkCSRF("csrf-message",$csrf)) {
+            throw new Exception("No CSRF MESSAGE", 500);
+        }
+
         unset($_SESSION['connectingWithUser']);
         $this->redirect("index.php?route=/messages");
     }
