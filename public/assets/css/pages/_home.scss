@@ -4,6 +4,7 @@
 
     #home-hero-container{
         gap: 108px;
+        justify-content: space-between;
     }
 
 
@@ -12,8 +13,13 @@
         max-width: 329px;
         flex-direction: column;
         gap: 40px;
+        margin-left: 292px;
     }
 
+
+    #hero-right-container{
+        margin-right: 310px;
+    }
 
     #hero-left-text-container{
         gap: 16px;
