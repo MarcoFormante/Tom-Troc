@@ -117,6 +117,12 @@ class Utils{
                 $messageController = new MessageController();
                 $messageController->sendMessage();
             break;
+
+             case "/deleteDraft":
+                self::checkPostMethod();
+                $messageController = new MessageController();
+                $messageController->deleteDraft();
+            break;
                 
 
             default :
@@ -332,6 +338,12 @@ class Utils{
         $formattedDate = new DateTime($date);
 
         return $formattedDate->format("H:i");
+    }
+
+
+    public static function sendAlert(string $message)
+    {
+        $_SESSION['alert'] = $message;
     }
 }   
 
