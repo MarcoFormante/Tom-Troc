@@ -9,15 +9,14 @@ class NotificationManager extends AbstractEntityManager
      */
     public function sentNotification(Notification $notification):bool
     {
-        $sql ="INSERT INTO notifications(id_message,from_user_id,to_user_id,last_message_id_viewed,chatroom_id) 
-               VALUES(:id_message,:from_user_id,:to_user_id,:last_message_id_viewed,:chatroom_id)";
+        $sql ="INSERT INTO notifications(id_message,from_user_id,to_user_id,chatroom_id) 
+               VALUES(:id_message,:from_user_id,:to_user_id,:chatroom_id)";
 
                $stmt = $this->db->query($sql,[
-                "id_message" => $notification->getId_message(),
-                 "from_user_id" => $notification->getFrom_user_id(),
-                 "to_user_id" => $notification->getTo_user_id(),
-                 "last_message_id_viewed" => $notification->getLast_message_id_viewed(),
-                 "chatroom_id" => $notification->getChatroom_id()
+                "id_message" => $notification->getIdMessage(),
+                 "from_user_id" => $notification->getFromUserId(),
+                 "to_user_id" => $notification->getToUserId(),
+                 "chatroom_id" => $notification->getChatroomId()
                ]);
 
                return $stmt->rowCount();
@@ -27,15 +26,15 @@ class NotificationManager extends AbstractEntityManager
 
     /**
      * Get all User Notifications
-     * @param int $id
+     * @param int $id ID of the authenticated user
      * @return array $notifications
      */
-    public function getNotifications(int $id):array
+    public function getNotifications(int $id): ?array
     {
-        $sql = "SELECT id_message, from_user_id, to_user_id, last_message_id_viewed, chatroom_id 
+        $sql = "SELECT id, id_message, from_user_id, to_user_id,chatroom_id 
                 FROM notifications
-                WHERE last_message_id_viewed <> id_message
-                AND to_user_id = :to_user_to
+                WHERE to_user_id = :to_user_to
+                GROUP BY chatroom_id
               ";
 
         $stmt = $this->db->query($sql,[
@@ -45,25 +44,24 @@ class NotificationManager extends AbstractEntityManager
         $notifications = [];
 
         while($notification = $stmt->fetch()){
-            $notifications[] = new Notification($notification);
+            $notifications[] = $notification;
         }
-
-        return $notification;
+        
+        return $notifications;
     }
 
 
     /**
-     * Update Notification
-     * @param int $id_message
-     * @param int $id_notification
-     * @return bool $stmt->rowCount()
+    * Delete notifications for a user in a specific chatroom after viewing messages
+     * @param string $chatroomId ID of the current Chatroom
+     * @param int $userId  ID of the authenticated User
+     * @return bool $rowCount
      */
-    public function updateNotification(int $id_message,int $id_notification):bool
+    public function deleteNotification(string $chatroomId,int $userId):bool
     {
-        $sql = "UPDATE notifications SET last_message_id_viewed = :id_message
-                WHERE id = :id";
+        $sql = "DELETE FROM notifications  WHERE chatroom_id = :id AND to_user_id = :userId";
 
-        $stmt = $this->db->query($sql,['id' => $id_notification, 'id_message'=> $id_message]);
+        $stmt = $this->db->query($sql,['id' => $chatroomId,'userId' => $userId]);
 
         return $stmt->rowCount();
     }
