@@ -4,13 +4,12 @@ class Notification extends AbstractEntity{
     private int $id_message;
     private int $from_user_id;
     private int $to_user_id;
-    private int $last_message_id_viewed;
-    private int $chatroom_id;
+    private string $chatroom_id;
 
     /**
      * Get the value of id_message
      */ 
-    public function getId_message()
+    public function getIdMessage()
     {
         return $this->id_message;
     }
@@ -20,7 +19,7 @@ class Notification extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setId_message($id_message)
+    public function setIdMessage($id_message)
     {
         $this->id_message = $id_message;
 
@@ -30,7 +29,7 @@ class Notification extends AbstractEntity{
     /**
      * Get the value of from_user_id
      */ 
-    public function getFrom_user_id()
+    public function getFromUserId()
     {
         return $this->from_user_id;
     }
@@ -40,7 +39,7 @@ class Notification extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setFrom_user_id($from_user_id)
+    public function setFromUserId($from_user_id)
     {
         $this->from_user_id = $from_user_id;
 
@@ -50,7 +49,7 @@ class Notification extends AbstractEntity{
     /**
      * Get the value of to_user_id
      */ 
-    public function getTo_user_id()
+    public function getToUserId()
     {
         return $this->to_user_id;
     }
@@ -60,37 +59,18 @@ class Notification extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setTo_user_id($to_user_id)
+    public function setToUserId($to_user_id)
     {
         $this->to_user_id = $to_user_id;
 
         return $this;
     }
 
-    /**
-     * Get the value of last_message_id_viewed
-     */ 
-    public function getLast_message_id_viewed()
-    {
-        return $this->last_message_id_viewed;
-    }
-
-    /**
-     * Set the value of last_message_id_viewed
-     *
-     * @return  self
-     */ 
-    public function setLast_message_id_viewed($last_message_id_viewed)
-    {
-        $this->last_message_id_viewed = $last_message_id_viewed;
-
-        return $this;
-    }
-
+ 
     /**
      * Get the value of chatroom_id
      */ 
-    public function getChatroom_id()
+    public function getChatroomId()
     {
         return $this->chatroom_id;
     }
@@ -100,7 +80,7 @@ class Notification extends AbstractEntity{
      *
      * @return  self
      */ 
-    public function setChatroom_id($chatroom_id)
+    public function setChatroomId($chatroom_id)
     {
         $this->chatroom_id = $chatroom_id;
 
