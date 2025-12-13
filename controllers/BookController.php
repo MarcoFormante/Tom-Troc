@@ -54,6 +54,7 @@ class BookController extends AbstractController
         $bookManager = new BookManager();
         $bookManager->deleteBook($book_id);
 
+        Utils::sendAlert("Le livre a été supprimé avec succès");
         $this->redirect("index.php?route=/mon-compte");
         
     }
@@ -72,7 +73,7 @@ class BookController extends AbstractController
 
         $book = new Book();
         $book->setSoldBy($userDataDecoded['id']);
-        
+
         $this->render("editBook",['book' => $book, 'errors' => $errors, 'csrf' => $csrf],"Modifier les informations");
     }
 
@@ -190,7 +191,9 @@ class BookController extends AbstractController
 
         $bookManager = new BookManager();
         $bookManager->updateBook($form);
-     
+
+        Utils::sendAlert("Mise à jour effectuée avec succès");
+
         $this->redirect("?route=/editBook&book_id=$book_id&sold_by=$sold_by");
 
     }
@@ -286,7 +289,8 @@ class BookController extends AbstractController
 
         $bookManager = new BookManager();
         $bookManager->createBook($form);
-     
+        
+        Utils::sendAlert("Le livre a été créé avec succès");
         $this->redirect("?route=/mon-compte");
 
 
