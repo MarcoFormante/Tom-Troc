@@ -31,23 +31,21 @@ class MessageManager extends AbstractEntityManager
 
     /**
      * Sent a message to user
-     * @param Message $message
-     * @return bool $stmt->rowCount()
+     * @param Message $message 
+     * @return int $lastInsertId from DB
      */
-    public function sentMessage(Message $message):bool
+    public function sentMessage(Message $message):int
     {   
         $sql = "INSERT INTO messages(chatroom_id, content, sent_by_user_id)
                 VALUES(:chatroom_id,:content,:sent_by_user_id)";
 
         
-        $stmt = $this->db->query($sql,[
+        $this->db->query($sql,[
             'chatroom_id' => $message->getChatroomId(),
             'content' => $message->getContent(),
             'sent_by_user_id' => $message->getSentByUserId()
         ]);
 
-       return $stmt->rowCount();
+       return $this->db->getPDO()->lastInsertId();
     }
-    
-
 }
