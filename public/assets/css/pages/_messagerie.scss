@@ -36,11 +36,14 @@
             li.selected{
                 background-color: $white;
 
-                &__grey{
-                    background-color: lighten($darken_gray,60);
-                }
+                &__draft{
+                    background-color: rgb(216, 223, 224);
 
-               
+                    .new-message{
+                        @extend .inter-400;
+                        font-size: 14px;
+                    }
+                }
             }
 
             li a{
@@ -61,7 +64,7 @@
 
                 & .new-message-container{
                     display: block;
-                    font-size: 16px;
+                    font-size: 14px;
                     color: $primary-color;
                 }
             }
