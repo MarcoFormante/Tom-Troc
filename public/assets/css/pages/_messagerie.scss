@@ -8,6 +8,7 @@
             height: 48px;
             object-fit: cover;
             border-radius: 50%;
+            aspect-ratio: 1 / 1;
     }
 
     .main-container{
@@ -29,9 +30,17 @@
         .chatrooms{
             width: inherit;
             margin-top: 27px;
+            overflow-x: hidden;
+            max-height: 86%;
 
             li.selected{
                 background-color: $white;
+
+                &__grey{
+                    background-color: lighten($darken_gray,60);
+                }
+
+               
             }
 
             li a{
@@ -40,6 +49,20 @@
 
                 &:hover{
                     background-color: $white;
+                }
+            }
+
+                .new-message-container{
+                    display: none;
+                }
+
+            .notificated{
+                background-color: rgb(229, 236, 229);
+
+                & .new-message-container{
+                    display: block;
+                    font-size: 16px;
+                    color: $primary-color;
                 }
             }
            
@@ -70,6 +93,10 @@
                     color: $gray_text;
                     font-size: 12px;
                     margin-top: 7px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 172px;
                 }
             }
         }
@@ -143,11 +170,12 @@
         @extend .inter-400;
         margin-bottom: 29px;
         align-self: flex-end;
-
+       
 
         .message-info-container{
             display: flex;
             align-items: center;
+            margin-bottom: 8px;
         }
         
         img{
@@ -156,6 +184,7 @@
 
         &.second-user-message{
             align-self: flex-start;
+            text-align: left;
 
             .time{
                 text-align: left;
@@ -167,7 +196,21 @@
                 height: 24px;
                 display: block;
                 margin-right: 6px;
+                border-radius: 50%;
+                aspect-ratio: 1/1;
             }
+
+            .message-content-container{
+            
+                p{
+                    color: $darken_gray;
+                    word-break: break-all;
+                    text-align: left;
+                    width: 100%;
+                }
+
+            }
+
         }
 
         .time{
@@ -181,9 +224,11 @@
             padding: 15px;
             max-width: 500px;
             border-radius: 3px;
-
+            
             p{
                 color: $darken_gray;
+                word-break: break-all;
+                text-align: right;
             }
 
 
