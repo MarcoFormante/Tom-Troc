@@ -2,11 +2,13 @@
 <div id="books">
      <div id="books-heading-container" class="flex-sb-c">
         <h1>Nos livres à l’échange</h1>
-        <form id="search-book" action="index.php?route=/nos-livre-a-lechange" method="POST">
-            <label for="search">Rechercher un livre</label>
-            <button type="submit"></button>
-            <input  type="search" maxlength="60" name="searchValue" id="search" placeholder="Rechercher un livre" value="<?= htmlspecialchars($value ?? "")  ?>"/>
-        </form>
+        <?php if(!empty($books)): ?>
+            <form id="search-book" action="index.php?route=/nos-livre-a-lechange" method="POST">
+                <label for="search">Rechercher un livre</label>
+                <button type="submit"></button>
+                <input  type="search" maxlength="60" name="searchValue" id="search" placeholder="Rechercher un livre" value="<?= htmlspecialchars($value ?? "")  ?>"/>
+            </form>
+        <?php endif ?>
      </div>
 
     <?php if(isset($error)): ?>
@@ -21,6 +23,9 @@
                 <?php include COMPONENTS_PATH . "book.php"?>
             <?php } ?>
         </ul>
+      
     <?php endif?>
-    
+        <?php if(empty($books) && !isset($error)): ?>
+            <div><p class="text-lg line-h-20">Il n’y a pas encore de livres. <br/> Inscrivez-vous et créez votre bibliothèque.</p></div>
+        <?php endif?>
 </div>
