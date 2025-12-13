@@ -31,7 +31,7 @@
                             <span aria-hidden="true" class="book-draw"></span> 
                             <span aria-hidden="true" class="book-draw book-draw-right"></span> 
                         </div>
-                        <p id="user-profile-account-info-bookCount"><?= count($books)?> livres</p>
+                        <p id="user-profile-account-info-bookCount"><?= count($books) == 1 ? "1 livre" : count($books) . " livres"?> </p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
             <h4>Vos informations personnelles</h4>
             <div class="form-input-container" data-error="<?= isset($errors['email']) ? htmlspecialchars($errors['email']) : "" ?>">
                 <label for="email">Adresse email</label>
-                <input maxlength="60"  required  autocomplete="email" class="form-input__gray  <?= isset($errors['email']) ? "error-input-focus" : "" ?>"  type="email" name="email" id="email" value="<?= htmlspecialchars( $lastInputs['email'] ?? $user->getEmail()) ?>"/>
+                <input maxlength="60"  required  autocomplete="email" class="form-input__gray  <?= isset($errors['email']) ? "error-input-focus" : "" ?>"  type="email" name="email" id="email" value="<?= htmlspecialchars($lastInputs['email'] ?? $user->getEmail()) ?>"/>
             </div>
             <div class="form-input-container"  data-error="<?= isset($errors['password']) ? htmlspecialchars($errors['password']) : "" ?>">
                 <label for="password">Mot de passe</label>
