@@ -19,20 +19,23 @@
         </div>
     </div>
 </section> 
+<?php if(count($books) > 0): ?>
 
-<section id="home-last-books">
-    <h2>Les derniers livres ajoutés</h2>
+    <section id="home-last-books">
+        <h2>Les derniers livres ajoutés</h2>
 
-    <ul class="book-list-container">
-        <?php foreach ($books as $book){ ?>
-            <?php include COMPONENTS_PATH . "book.php"?>
-        <?php }  ?>
-    </ul>
+        <ul class="book-list-container">
+            <?php foreach ($books as $book){ ?>
+                <?php include COMPONENTS_PATH . "book.php"?>
+            <?php }  ?>
+        </ul>
 
-    <div class="btn-container">
-        <a role="button" href="?route=/nos-livre-a-lechange" class="btn-primary">Voir tous les livres</a>
-    </div>
-</section>
+        <div class="btn-container">
+            <a role="button" href="?route=/nos-livre-a-lechange" class="btn-primary">Voir tous les livres</a>
+        </div>
+    </section>
+
+<?php endif ?>
 
 <section id="home-how-it-works" class="bg__light-gray">
     <h2>Comment ça marche ?</h2>
