@@ -2,8 +2,10 @@
 /** Get Notifications */
 $notificationController = new NotificationController();
 $notifications = $notificationController->getNotifications();
-?>
 
+/**Local Alert Message */
+$alert = $_SESSION['alert'] ?? null;
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -17,11 +19,15 @@ $notifications = $notificationController->getNotifications();
     <title><?=$title?></title>
 </head>
 <body>
-    <?php include COMPONENTS_PATH . "header.php"?>
+    <?php include_once COMPONENTS_PATH . "header.php"?>
+    <?php if($alert) include_once COMPONENTS_PATH . "alert.php"?>
     <main class="playfair-display-600">
         <?=$content?>
     </main>
-    <?php include COMPONENTS_PATH . "footer.php"?>
+    <?php include_once COMPONENTS_PATH . "footer.php"?>
     <script src="../public/assets/js/index.js"></script>
 </body>
 </html>
+
+
+<?php unset($_SESSION['alert']) ?>
