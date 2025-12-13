@@ -47,7 +47,11 @@
 
 
 .self-baseline{
-    align-items: baseline;
+    align-self: baseline;
+}
+
+.self-center{
+    align-self:center;
 }
 
 

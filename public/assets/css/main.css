@@ -49,7 +49,11 @@
 }
 
 .self-baseline {
-  align-items: baseline;
+  align-self: baseline;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .text-right {
@@ -1206,6 +1210,7 @@ form.form-base button {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  aspect-ratio: 1/1;
 }
 #messagerie .main-container {
   display: flex;
@@ -1223,9 +1228,14 @@ form.form-base button {
 #messagerie .main-container .chatrooms {
   width: inherit;
   margin-top: 27px;
+  overflow-x: hidden;
+  max-height: 86%;
 }
 #messagerie .main-container .chatrooms li.selected {
   background-color: rgb(255, 255, 255);
+}
+#messagerie .main-container .chatrooms li.selected__grey {
+  background-color: #c2c2c2;
 }
 #messagerie .main-container .chatrooms li a {
   display: block;
@@ -1233,6 +1243,17 @@ form.form-base button {
 }
 #messagerie .main-container .chatrooms li a:hover {
   background-color: rgb(255, 255, 255);
+}
+#messagerie .main-container .chatrooms .new-message-container {
+  display: none;
+}
+#messagerie .main-container .chatrooms .notificated {
+  background-color: rgb(229, 236, 229);
+}
+#messagerie .main-container .chatrooms .notificated .new-message-container {
+  display: block;
+  font-size: 16px;
+  color: rgb(0, 172, 102);
 }
 #messagerie .main-container .chatrooms .message-info {
   display: flex;
@@ -1255,6 +1276,10 @@ form.form-base button {
   color: rgb(166, 166, 166);
   font-size: 12px;
   margin-top: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 172px;
 }
 #messagerie .message-container {
   padding-left: 44px;
@@ -1310,12 +1335,14 @@ form.form-base button {
 #messagerie .user-message .message-info-container {
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
 }
 #messagerie .user-message img {
   display: none;
 }
 #messagerie .user-message.second-user-message {
   align-self: flex-start;
+  text-align: left;
 }
 #messagerie .user-message.second-user-message .time {
   text-align: left;
@@ -1326,6 +1353,14 @@ form.form-base button {
   height: 24px;
   display: block;
   margin-right: 6px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+#messagerie .user-message.second-user-message .message-content-container p {
+  color: rgb(41, 41, 41);
+  word-break: break-all;
+  text-align: left;
+  width: 100%;
 }
 #messagerie .user-message .time {
   color: rgb(166, 166, 166);
@@ -1340,6 +1375,8 @@ form.form-base button {
 }
 #messagerie .user-message .message-content-container p {
   color: rgb(41, 41, 41);
+  word-break: break-all;
+  text-align: right;
 }
 #messagerie .user-message .message-content-container.second-user-message-content {
   background-color: rgb(255, 255, 255);
