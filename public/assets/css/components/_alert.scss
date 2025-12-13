@@ -1,0 +1,28 @@
+.alert-container{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(239, 243, 238);
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+    position: fixed;
+    transform: translateY(-150px);
+    border-radius: 8px;
+    max-width: 500px;
+    left: 50%;
+    transform: translate(-50%,-300px);
+    border: 2px solid $primary_color;
+    animation: showAlert 6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+}
+
+.alert-message{
+    @extend .inter-400;
+}
+
+@keyframes showAlert {
+    10%,50%{
+        transform: translate(-50%,0px);
+    }
+}
