@@ -107,6 +107,10 @@ class MessageController extends AbstractController
         return $messages;
     }
 
+    /**
+     * Delete Draft Message
+     * @return void
+     */
     public function deleteDraft()
     {
         unset($_SESSION['connectingWithUser']);
