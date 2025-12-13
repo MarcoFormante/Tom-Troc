@@ -68,3 +68,17 @@ form.form-base{
     }
    
 }
+
+
+form.draft-form{
+    text-align: right;
+
+    button{
+        appearance: none;
+        border:none;
+        padding: 5px;
+        text-decoration: underline;
+        color: rgb(178, 47, 47);
+        cursor: pointer;
+    }
+}
