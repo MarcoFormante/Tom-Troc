@@ -61,7 +61,11 @@
         <a role="button" href="?route=/nos-livre-a-lechange" class="btn-secondary">Voir tous les livres</a>
     </div>
 </section>
-<img src="<?= IMAGES_PATH . "statics/home_biblio_img.webp" ?>" width="100%" alt="">
+
+<picture>
+    <source srcset="<?= IMAGES_PATH . "statics/home_biblio_img_mobile.webp" ?>" media="(width < 500px)" />
+    <img src="<?= IMAGES_PATH . "statics/home_biblio_img.webp" ?>" width="100%" alt="">
+</picture>
 
 <section id="home-values" class="bg__light-gray">
     <div id="home-values-container">
