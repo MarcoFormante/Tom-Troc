@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     const messagesContainer = document.querySelector('.messages-container')
     const input = document.querySelector("input[type=file]")
     const image =  document.querySelector("img")
+    const menu = document.querySelector(".menu-hamburger-container");
+
+
     if (input && image) {
             input.onchange = ()=>{
             image.src = URL.createObjectURL(input.files[0])
@@ -24,7 +27,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         }
     })    
 
-
     if (messagesContainer) {
         messagesContainer.scrollTo({
             "top":1000,
@@ -32,6 +34,24 @@ document.addEventListener("DOMContentLoaded",()=>{
         });
     }
 
+    if (menu) {
+        const navMobileContainer = document.querySelector(".header-mobile-navigation")
+        const closeNavMobileBtn =  document.querySelector(".close-menu-btn")
+        menu.onclick = () => {
+          navMobileContainer.classList.toggle("header-mobile-navigation-active")
+        }
+
+        closeNavMobileBtn.onclick = () => {
+            navMobileContainer.classList.toggle("header-mobile-navigation-active")
+             
+        }
+
+         window.addEventListener("resize",()=>{
+            if (window.innerWidth > 1024) {
+                navMobileContainer.classList.remove("header-mobile-navigation-active")
+            }
+        })
+    }
 })
 
 
