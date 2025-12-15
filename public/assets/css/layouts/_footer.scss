@@ -19,3 +19,18 @@ footer{
         }
     }
 }
+
+
+
+
+
+@media screen and (max-width: map.get($screen,max-tablet)){
+    footer{
+        height: fit-content;
+        padding: 31px 0;
+        ul{
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}
