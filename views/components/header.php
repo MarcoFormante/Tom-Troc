@@ -40,5 +40,49 @@
             <?php endif ?>
             <li><a class="<?= UTILS::checkActiveRoute("/connection") ?>" href="index.php?route=/connection">Connexion</a></li>
         </ul>
+
+        <div class="menu-hamburger">
+            <div class="menu-hamburger-container">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="header-mobile-navigation ">
+            <div area-label="Fermer le menu" class="close-menu-btn">
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier"> <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#0F0F0F"/> </g>
+                </svg>
+            </div>
+            <ul class="nav-list__mobile">
+                <li>
+                    <a class="<?= UTILS::checkActiveRoute("/") . UTILS::checkActiveRoute("")  ?>" href="index.php?route=/">Accueil</a>
+                </li>
+                <li>
+                    <a class="<?= UTILS::checkActiveRoute("/nos-livre-a-lechange") ?>" href="index.php?route=/nos-livre-a-lechange">Nos livres à l’échange</a>
+                </li>
+
+                <?php if(isset($_SESSION['auth_token'])): ?>
+                    <li id="message-list-item">
+                        <span id="message-logo" aria-hidden="true"></span>
+                        <a class="<?= UTILS::checkActiveRoute("/messages") ?>" href="index.php?route=/messages">Messagerie</a>
+
+                        <!-- NOTIFICATIONS -->
+                        <?php if(isset($_SESSION['notifications']) && count($_SESSION['notifications']) > 0): ?>
+                            <span id="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
+                        <?php endif ?>
+                    </li>
+                    
+                    <li>
+                        <a class="<?= UTILS::checkActiveRoute("/mon-compte") ?>" href="index.php?route=/mon-compte">Mon compte</a>
+                    </li>
+                <?php endif ?>
+
+                <li><a class="<?= UTILS::checkActiveRoute("/connection") ?>" href="index.php?route=/connection">Connexion</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
