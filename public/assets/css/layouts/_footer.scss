@@ -1,6 +1,8 @@
 footer{
     height: 61px;
     background-color: $white;
+    max-width: 1440px;
+    margin: auto;
 
     ul{
         @include flex(flex-end,center);
@@ -28,6 +30,7 @@ footer{
     footer{
         height: fit-content;
         padding: 31px 0;
+        
         ul{
             flex-direction: column;
             gap: 20px;

@@ -167,6 +167,8 @@ body {
 }
 
 main {
+  max-width: 1440px;
+  margin: auto;
   min-height: calc(100vh - 144.5px);
 }
 
@@ -180,6 +182,8 @@ header {
   display: flex;
   align-items: center;
   padding-inline: 150px;
+  max-width: 1440px;
+  margin: auto;
 }
 header .menu-hamburger {
   display: none;
@@ -359,6 +363,8 @@ header #main-nav ul.nav-list__right li#message-list-item #notif-icon {
 footer {
   height: 61px;
   background-color: rgb(255, 255, 255);
+  max-width: 1440px;
+  margin: auto;
 }
 footer ul {
   display: flex;
@@ -875,18 +881,6 @@ form.draft-form button {
     max-width: none;
     display: none;
   }
-  .book-list-container {
-    display: grid;
-    grid-template-columns: 160px 160px;
-    justify-content: space-between;
-    padding-inline: 20px;
-  }
-  .book-list-container .book-card li {
-    max-height: 259px;
-  }
-  .book-list-container .book-card img {
-    width: 100%;
-  }
   #home-how-it-works {
     padding-top: 48px;
     padding-inline: 20px;
@@ -980,12 +974,57 @@ form.draft-form button {
   position: absolute;
   top: -10000px;
 }
-#books .book-list-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 48px;
-}
 
+@media screen and (max-width: 1250px) {
+  #books {
+    padding-inline: 100px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #books {
+    padding-inline: 20px;
+  }
+  #books #books-heading-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  #books h1 {
+    font-size: 30px;
+    text-align: left;
+  }
+  .book-list-container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    padding-inline: 20px;
+  }
+  .book-list-container .book-card li {
+    max-height: 259px;
+  }
+  .book-list-container .book-card img {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .book-list-container {
+    gap: 50px;
+    display: grid;
+    grid-template-columns: 160px 160px;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 420px) {
+  #books #books-heading-container {
+    align-items: flex-start;
+  }
+  #books #search-book {
+    width: 100%;
+  }
+  .book-list-container {
+    gap: 15px;
+  }
+}
 #book-detail {
   height: 863px;
   width: 100%;

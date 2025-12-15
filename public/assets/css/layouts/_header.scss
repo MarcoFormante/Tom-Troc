@@ -4,6 +4,8 @@ header{
     align-items: center;
     padding-inline: 150px;
     @extend .bg__light-gray;
+    max-width: 1440px;
+    margin: auto;
 
     .menu-hamburger{
         display: none;

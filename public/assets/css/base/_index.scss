@@ -23,12 +23,15 @@ html{
 
 
 body{
+ 
     min-height: inherit;
     margin: auto;
     background-color: $background_light;
 }
 
 main{
+       max-width: 1440px;
+         margin: auto;
     min-height: calc(100vh - 144.5px);
 }
 

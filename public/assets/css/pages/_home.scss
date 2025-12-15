@@ -207,7 +207,7 @@
         }
     }
 
-      #home-last-books{
+    #home-last-books{
         ul{
             gap: 50px;
             display: grid;
@@ -284,23 +284,8 @@
         }
     }
 
-    .book-list-container{
-        display: grid;
-        grid-template-columns: 160px 160px;
-        justify-content: space-between;
-        padding-inline:20px;
-      
-
-        .book-card{
-            li{
-                max-height: 259px;
-            }
-            img{
-                width: 100%;
-            }
-        }
-    }
-
+    
+    
     #home-how-it-works{
         padding-top: 48px;
         padding-inline: 20px;
