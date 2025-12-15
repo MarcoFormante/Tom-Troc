@@ -1,4 +1,4 @@
-@use "sass:map";
+
 
 #home-hero{
     padding-top: 80px;
@@ -322,7 +322,7 @@
     }
 
      #home-values-container{
-        width: calc(392px - 0.5vw);
+        width: 100%;
         padding-inline: 20px;
     }
 
