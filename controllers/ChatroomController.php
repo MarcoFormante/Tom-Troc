@@ -47,6 +47,7 @@ class ChatroomController extends AbstractController
                 $this->redirect("index.php?route=/messages&chatroom=" . $chatId . "&other_user_id=" . $otherUserId);
             }else{
                 $_SESSION['connectingWithUser'] = $user;
+                Utils::generateCSRF("csrf-message");
                 $this->redirect("index.php?route=/messages&connectingId=" . $user['id']);
             }
         }else{
