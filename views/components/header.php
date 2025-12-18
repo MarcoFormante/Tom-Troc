@@ -25,7 +25,7 @@
 
                 <!-- NOTIFICATIONS -->
                 <?php if(isset($_SESSION['notifications']) && count($_SESSION['notifications']) > 0): ?>
-                    <span id="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
+                    <span class="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
                 <?php endif ?>
 
             </li>
@@ -72,7 +72,7 @@
 
                         <!-- NOTIFICATIONS -->
                         <?php if(isset($_SESSION['notifications']) && count($_SESSION['notifications']) > 0): ?>
-                            <span id="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
+                            <span class="notif-icon"><?= count($_SESSION['notifications']) ?></span> 
                         <?php endif ?>
                     </li>
                     
