@@ -39,6 +39,10 @@
             }
         }
 
+        &-right-container{
+            width: 100%;
+        }
+
         #book-image{
             margin-top: 10px;
             margin-bottom: 23px;
@@ -52,6 +56,10 @@
             padding-left: 14px;
             border: 1px solid rgba(240, 240, 240, 1);
             background-color: rgba(237, 242, 246, 1);
+
+            @media screen and (max-width:1200px) {
+                width: 100%;
+            }
         }
 
         textarea{
@@ -81,4 +89,81 @@
         }
     }
 }
+
+@media screen and (max-width: 1420px){
+    #editBook{
+        padding: 40px 20px;
+        
+        .form-input-container{
+            width: 100%;
+        }
+    }
+
+    #form-editBook {
+        padding: 56px 0px 92px 0px;
+        justify-content: space-around;
+    }
+
+}
+
+
+
+@media screen and (max-width: 1300px){
+    #editBook{
+        padding: 40px 20px;
+
+        input{
+            width: 100%;
+        }
+    }
+
+    #editBook #form-editBook {
+        padding: 56px 0px 92px 0px;
+        gap: 0;
+    }
+
+    #editBook #form-editBook #book-image{
+        width: 40vw;
+    }
+
+}
+
+
+@media screen and (max-width: map.get($screen,max-tablet)){
+    #editBook{
+        max-width: 80vw;
+        margin: auto;
+        padding-bottom: 80px;
+    }
+
+    #editBook #form-editBook {
+        flex-direction: column;
+        padding: 56px 20px 47px 20px
+    }
+
+    #editBook #form-editBook .btn-primary {
+        width: 100%;
+    }
+
+    #editBook #form-editBook #book-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
+   
+}
+
+
+@media screen and (max-width: 420px){
+  #editBook{
+        max-width: unset;
+        #book-image-container{
+            height: unset;
+            width: 100%;
+        }
+  }
+
+ 
+}
+
 

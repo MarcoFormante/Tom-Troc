@@ -57,3 +57,119 @@
    
 }
 
+
+
+@media screen and (max-width:1450px){
+    #userForm{
+
+        &-container{
+            padding-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10%;
+        }
+
+        form{
+            align-items: center;
+            
+            button{
+                width: 322px;
+            }
+            
+            padding-bottom: 100px;
+        }
+
+        &-img-container{
+        width: 50vw;
+        height: unset;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+   
+}
+
+
+@media screen and (max-width: map.get($screen,max-tablet)){
+
+     #userForm{
+
+        h1{
+            text-align: center;
+        }
+
+        &-container{
+            padding-inline: 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10%;
+        }
+
+        &-img-container{
+        width: 50vw;
+        height: unset;
+        min-width: 377px;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 480px){
+
+     #userForm{
+        padding-inline: 20px;
+
+        h1{
+            text-align: left;
+        }
+
+        &-container{
+            padding-left: unset;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding-inline: 0px;
+            gap: 10%;
+
+            input{
+                max-width: 322px;
+                width: 322px;
+            }
+        }
+
+        &-img-container{
+            width: 100vw;
+            height: unset;
+            min-width: 100%;
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        form{
+            padding-inline: 0;
+            width: unset;
+            align-items: baseline;
+        }
+
+        form button{
+            width: 100%;
+            max-width: 322px;
+        }
+    }
+
+}

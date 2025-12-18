@@ -73,6 +73,10 @@ form.form-base{
 form.draft-form{
     text-align: right;
 
+    @media screen and (max-width:map.get($screen,max-tablet)) {
+        text-align: left;
+    }
+
     button{
         appearance: none;
         border:none;

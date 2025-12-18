@@ -327,12 +327,43 @@
 
 @media screen and (max-width: map.get($screen,min-mobile)){
     #home-hero{
-        #hero-right-container{
-            img{
-                width: 100%;
+            #hero-right-container{
+                img{
+                    width: 100%;
+                }
+            }
+
+            figcaption{
+                padding-right: 20px;
             }
         }
     }
-}
+
+    @media screen and (max-width: map.get($screen,max-tablet)){
+        #home-how-it-works-list li p{
+            width: 100%; 
+            height: unset;
+            padding-inline: 26px;
+        }
+    }
+
+
+    @media screen and (max-width: 355px) {
+        #hero-left-container{
+            padding-inline: 10px;
+        }
+
+        h2{
+            padding-inline: 10px;
+        }
+
+        #home-last-books ul {
+            grid-template-columns: 1fr;
+
+            .book-card{
+                margin: auto;
+            }
+        }
+    }
    
    

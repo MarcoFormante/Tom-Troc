@@ -110,6 +110,107 @@
 
         &-cta{
             margin-top: 80px;
+            max-width: 485px;
+            min-width: 300px;
+
+            @media screen and (max-width: map.get($screen,min-mobile)){
+                min-width: 100px;
+            }
         }
     }
+}
+
+
+
+
+@media screen and (max-width: 1450px){
+
+    #book-detail{
+        height: 100%;
+
+        &-container{
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        figure,#book-detail-container-image{
+            height: unset;
+            width: 50vw;
+        }
+
+        &-info{
+            width: unset;
+            margin-right: 10vw;
+        }
+    }
+
+}
+
+
+@media screen and (max-width: map.get($screen,max-tablet)){
+
+    .breadcrumbs{
+        padding-left: 20px;
+    }
+
+    #book-detail-info{
+        padding: 59px 20px 80px 20px;
+
+        &-cta{
+            margin-top: 40px;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: map.get($screen,max-mobile)){
+   
+    #book-detail{
+        height: unset;
+        padding-bottom: 80px;
+
+        &-container{
+            width: fit-content;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+        }
+
+        figure,#book-detail-container-image{
+            height: unset;
+            width: 375px;
+        }
+
+        &-info{
+            width: 100%;
+            padding: 0;
+            margin-right: 0;
+
+            h1{
+                font-size: 30px;
+                margin-top: 40.52px;
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+}
+
+
+
+@media screen and (max-width: 420px){
+  #book-detail{
+
+        figure,#book-detail-container-image{
+            height: unset;
+            width: 100%;
+        }
+
+        &-info{
+            padding-inline: 20px;
+        }
+  }
+
 }

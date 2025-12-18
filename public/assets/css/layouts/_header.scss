@@ -132,20 +132,22 @@ header{
                     margin-right: 4px;
                 }
 
-                #notif-icon{
-                    width: 10.5px;
-                    height: 15px;
-                    background-color: $darken_gray;
-                    border-radius: 16px;
-                    margin-left: 2.25px;
-                    color: $light_gray;
-                    @include inter(700,0%);
-                    font-size: 8.25px;
-                    display: grid;
-                    place-content: center;
-                }
+                
             }
         }
+    }
+
+    .notif-icon {
+        width: 10.5px;
+        height: 15px;
+        background-color: $darken_gray;
+        border-radius: 16px;
+        margin-left: 2.25px;
+        color: $light_gray;
+        @include inter(700, 0%);
+        font-size: 8.25px;
+        display: grid;
+        place-content: center;
     }
 }
 
@@ -188,7 +190,15 @@ header{
             display: block;
         }
 
-       
+        #notif-icon{
+            display: none;
+        }
+
+        #message-list-item{
+            display: flex;
+            gap: 2px;
+        }
+          
     }
 }
 

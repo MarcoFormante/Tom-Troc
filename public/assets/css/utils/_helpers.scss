@@ -75,3 +75,11 @@
 .line-h-20{
     line-height: 20px;
 }
+
+
+.hide-tablet{
+    @media screen and (min-width: map.get($screen,min-tablet)){
+        display: none;
+    }
+}
+

@@ -143,7 +143,7 @@
             
 
             thead{
-                 border-top: 20px solid transparent;
+                border-top: 20px solid transparent;
 
                 th:not(.th-spacing, .edit-spacing){
                     width: 2%;
@@ -186,22 +186,7 @@
        
         
 
-        .book-status{
-            color: $white;
-            @include inter(500,0);
-            font-size: 8.88px;
-            border-radius: 29.58px;
-            padding: 3.7px 13.31px;
-            max-width: 71.63px;
-
-            &__green{
-                background-color: rgba(109, 197, 161, 1);
-            }
-
-            &__red{
-                background-color: rgba(197, 109, 109, 1);
-            }
-        }
+        
 
         a{
             color: $darken_gray;
@@ -287,3 +272,182 @@
     
 }
 
+.book-status{
+            color: $white;
+            @include inter(500,0);
+            font-size: 8.88px;
+            border-radius: 29.58px;
+            padding: 3.7px 13.31px;
+            max-width: 71.63px;
+
+            &__green{
+                background-color: rgba(109, 197, 161, 1);
+            }
+
+            &__red{
+                background-color: rgba(197, 109, 109, 1);
+            }
+        }
+
+
+#user-books-mobile-container{
+        ul{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+
+            li{
+                background-color: $white;
+                padding: 52px 57px 37px 56px;
+                border-radius: 20px;
+                width: clamp(300px, 1vw, 341px);
+                margin: auto;
+                @extend .inter-400;
+                font-size: 14px;
+                height: 251px;
+
+                &.book-card-user{
+                    padding-bottom: 51px;
+                    height: 100%;
+                }
+
+                .book-card-user-btns{
+                    margin-top: 43px;
+                    display: flex;
+                    gap: 43px;
+                }
+
+                a{
+                    color: rgb(41, 41, 41);
+                    font-size: 12px;
+                    font-family: "Inter", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 400;
+                    font-style: normal;
+                    line-height: 100%;
+                    letter-spacing: 0;
+                    text-decoration: underline;
+                }
+
+                button{
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    border: none;
+                    background: transparent;
+                    color: rgb(203, 45, 45);
+                    text-decoration: underline;
+                    font-family: "Inter", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: 400;
+                    font-style: normal;
+                    line-height: 100%;
+                    letter-spacing: 0;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+            }
+
+            .book-info-top{
+                &-container{
+                    display: flex;
+                    align-items: center;
+                    gap: 18px;
+                }
+
+                .book-status{
+                    margin-top: 16px;
+                    font-size: 8.88px;
+                }
+            }
+
+            .book-info-top-text{
+                display: flex;
+                flex-direction: column;
+            }
+
+            .book-info-bottom{
+                margin-top: 21px;
+                p{
+                    font-style: italic;
+                }
+            }
+        }
+    }
+
+
+
+
+@media screen and (max-width: 1445px){
+    #user-profile{
+        padding: 73px 20px 0px 20px;
+    }
+
+    #user-profile.user-profile-public thead th:not(.th-spacing) {
+        width: 100px;
+    }
+
+    #user-profile .th-spacing {
+        padding-left: 0px;
+    }
+  
+}
+
+
+            
+@media screen and (max-width: map.get($screen,min-tablet)){
+
+   
+    #user-profile-flex-container.flex-row {
+        flex-direction: column;
+    }
+
+    #user-profile-info-section {
+        justify-content: center;
+        
+    }
+
+    #user-books-table{
+        display: none;
+    }
+
+    #user-profile .form-base {
+        flex-direction: column;
+        margin: auto;
+        min-width: 300px;
+        max-width: 350px;
+        gap: 32px;
+
+        .user-box-container{
+            width: 100%;
+            height: 100%;
+
+            &-left{
+                padding-bottom: 36px;
+            }
+
+            &-right{
+                padding: 36px 32px;
+            }
+
+            .form-input-container{
+                width: 100%;
+            }
+            .form-input-container input{
+                width: 100%;
+            }
+        }
+    }
+
+    #user-books-mobile-container ul li.book-card-user {
+        width: 100%;
+        max-width: 350px;
+        min-width: 300px;
+    }
+
+    #user-profile-info-section .user-box-container-left-public {
+        height: unset;
+        padding-bottom: 36px;
+    }
+}
