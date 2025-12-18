@@ -77,7 +77,7 @@ class MessageController extends AbstractController
         $otherUser = $userManager->getUser($otherUserId);
         $messages = $this->getChatroomMessages($chatroomId,$otherUserId,$userId);
         $csrf = Utils::generateCSRF("csrf-message");
-
+        
         if ($notifications = $_SESSION['notifications']) {
             foreach ($notifications as $notif) {
                 if ($notif['chatroom_id'] == $chatroomId) {
@@ -101,7 +101,6 @@ class MessageController extends AbstractController
     */
     private function getChatroomMessages(string $chatroomId, int $otherUserId, int $userId)
     {
-
         if (!$chatroomId || !$otherUserId) {
             throw new Exception("Error Processing Request", 404);
         }
