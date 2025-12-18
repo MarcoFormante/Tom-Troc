@@ -15,13 +15,13 @@
     }
 ?>
 
-<div id="messagerie"> 
+<div id="messagerie" class="<?= !$chatrooms && !$connectingUser ? "messagerie-no-messages " : "" ?>"> 
     <div class="main-container">
-        <div class="chats-box">
+        <div class="chats-box <?= (isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser) ? "chats-box-closed" : "chats-box-open" ?> ">
             <div>
                 <h1><?= htmlspecialchars($title) ?></h1>
             </div>
-           <ul class="chatrooms" aria-label="Liste de messages">
+            <ul class="chatrooms" aria-label="Liste de messages">
                 <?php foreach($chatrooms as $key => $chatroom): ?>
                       <!-- Add class 'notificated' if user has some notication from this chatroom-->     
                     <li <?= in_array($chatroom['id'],$chatIdsNotifications) ? "aria-label= Nouveau message" : "" ?> class="<?= Utils::request("chatroom",-1) == htmlspecialchars($chatroom['id'])? "selected " : "" ?> <?= in_array($chatroom['id'],$chatIdsNotifications)   ? "notificated" : "" ?>">
@@ -44,8 +44,7 @@
                         </a>
                     </li>
                 <?php endforeach ?>
-  <!--Show message if user has no messages -->
-          
+
                 <?php if($connectingUser):?>
                     <li class="selected selected__draft">
                         <a href="index.php?route=/messages&connectingId=<?=  htmlspecialchars($connectingUser['id']) ?>"  >
@@ -63,12 +62,13 @@
                         </a>
                     </li>
                 <?php endif ?>
-           </ul>
+            </ul>
         </div>
           
 
           
-        <div class="message-container">
+        <div class="message-container  <?= (isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser) ? "message-container-open" : "message-container-closed" ?> ">
+            <a class="retour" href="?route=/messages"><- retour</a>
             <?php if(!$chatrooms && !$connectingUser ): ?>
                 <p>Vous n’avez aucun message pour le moment</p>
              <?php endif ?>
@@ -108,8 +108,8 @@
         </div>
         <?php endif ?>
         
-        <?php if($isValidConnectingUser):?>
-            <div class="message-container">
+    <?php if($isValidConnectingUser):?>
+    <div class="message-container <?= (isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser) ? "message-container-open" : "message-container-closed" ?> "> 
                 <div class="message-user-detail-container">
                     <a href="index.php?route=/profile&userId=<?= htmlspecialchars($connectingUser['id']) ?>">
                         <img class="user-img" src="<?= IMAGES_PATH . "users/" .htmlspecialchars($connectingUser['profile_image']) ?>" alt="<?= htmlspecialchars($connectingUser['pseudo']) ?>, utilisateur du site TomTroc">
@@ -130,7 +130,8 @@
                             <input maxlength="255" required type="text" id="message" name="message" placeholder="Tapez votre message ici" />
                             <input hidden required name="connecting" value="true"/>
                             <input hidden required name="route" value="/sendMessage"/>
-                            <input hidden required name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
+                            <input hidden name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
+                            <?php htmlspecialchars($_SESSION['csrf-message'] )?>asd
                         </div>
                         <div>
                             <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
@@ -138,7 +139,9 @@
                     </form>
                 </div>
         </div>
-         <?php endif ?>
+    <?php endif ?>
     </div>
 </div>
+
+<?php 
 
