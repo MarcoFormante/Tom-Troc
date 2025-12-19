@@ -131,7 +131,6 @@
                             <input hidden required name="connecting" value="true"/>
                             <input hidden required name="route" value="/sendMessage"/>
                             <input hidden name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
-                            <?php htmlspecialchars($_SESSION['csrf-message'] )?>asd
                         </div>
                         <div>
                             <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
