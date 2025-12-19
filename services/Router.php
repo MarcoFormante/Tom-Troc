@@ -8,8 +8,11 @@ class Router
      * @return void
      */
      public static function handleRoute(string $route):void{
+
+        try {
+            //code...
+        
         switch($route){
-            
             case "/":
                 $homeController = new HomeController();
                 $homeController->index();
@@ -118,11 +121,21 @@ class Router
                 $messageController = new MessageController();
                 $messageController->deleteDraft();
             break;
+
+            /*ERROR */
                 
+            case "/error":
+                $errorController = new ErrorController();
+                $errorController->handleError($_SESSION["catched"] ?? null);
+            break;
 
             default :
                 throw new Exception("La page demandée d'existe pas", 404);
             break;
+        }
+
+        } catch (\Throwable $th) {
+            throw new Exception($th->getMessage(),$th->getCode());
         }
     }
 }
