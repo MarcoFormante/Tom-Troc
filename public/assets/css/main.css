@@ -1282,6 +1282,14 @@ form.draft-form button {
   padding: 90px 150px 0px 155px;
   /**FORM USER INFO*/
 }
+#user-profile h1 {
+  text-align: left;
+}
+@media screen and (min-width: 480px) and (max-width: 1024px) {
+  #user-profile h1 {
+    text-align: center;
+  }
+}
 #user-profile-flex-container {
   display: flex;
   flex-direction: column;
@@ -1527,7 +1535,7 @@ form.draft-form button {
 #user-profile .form-base {
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .book-status {
@@ -1555,6 +1563,7 @@ form.draft-form button {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  padding-bottom: 30px;
 }
 #user-books-mobile-container ul li {
   background-color: rgb(255, 255, 255);
@@ -1676,6 +1685,18 @@ form.draft-form button {
     padding-bottom: 36px;
   }
 }
+.addBook a {
+  color: rgb(41, 41, 41);
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-decoration: underline;
+}
+
 #editBook {
   padding: 40px 150px;
 }

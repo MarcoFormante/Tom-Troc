@@ -2,6 +2,13 @@
     background-color: $background_light;
     padding: 90px 150px 0px 155px;
 
+    h1{
+        text-align: left;
+        @media screen and (min-width:480px) and (max-width:map.get($screen,max-tablet)) {
+            text-align: center;
+        }
+    }
+
     &-flex-container{
         display: flex;
         flex-direction: column;
@@ -182,11 +189,7 @@
                     }
                 }
             }
-        }
-       
-        
-
-        
+        }    
 
         a{
             color: $darken_gray;
@@ -266,7 +269,7 @@
     .form-base{
         width: 100%;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     
@@ -296,6 +299,7 @@
             flex-direction: column;
             align-items: center;
             gap: 16px;
+            padding-bottom: 30px;
 
             li{
                 background-color: $white;
@@ -450,4 +454,12 @@
         height: unset;
         padding-bottom: 36px;
     }
+}
+
+
+.addBook a{
+    color: $darken_gray;
+    font-size: 12px;
+    @include inter(400, 0);
+    text-decoration: underline;
 }
