@@ -2,6 +2,10 @@
 
 class ChatroomController extends AbstractController
 {
+    /**
+     * Show chatrooms of the authenticated user
+     * @return void
+     */
     public function showChatrooms(){
         $userId = Utils::checkUser();
 
@@ -25,20 +29,25 @@ class ChatroomController extends AbstractController
 
 
 
-
+    /**
+     * Check if the chatroom is valid
+     * If is new connection, verify if user has messages with this other user
+     * @param bool $isConnecting
+     * @return bool|void
+     */
     public function verifyChatroom(bool $isConnecting)
     {
         $otherUserId = Utils::request("other_user_id",-1);
         $otherUserPseudo = Utils::request("pseudo","");
 
         if (!$otherUserId || !is_numeric($otherUserId) || !$otherUserPseudo) {
-            throw new Exception("Error Processing Request", 404);
+            throw new Exception("Utilisateur non trouvé", 404);
         }
         $userManager = new UserManager();
         $user = $userManager->checkExistingUser($otherUserId,$otherUserPseudo);
 
         if (!$user) {
-            throw new Exception("Error Processing Request", 404);
+            throw new Exception( "Accès non autorisé. Veuillez vous connecter.", 403);
         }
         if ($isConnecting) {
             if($chatId = $this->checkExistingChatroomByUsers($otherUserId)){
@@ -57,10 +66,13 @@ class ChatroomController extends AbstractController
 
 
 
-
+    /**
+     * Check valid chatrooms by users id
+     * @param int $otherUserId
+     * @return int $chatroomId or @return false
+     */
     private function checkExistingChatroomByUsers(int $otherUserId){
         $userId = Utils::checkUser();
-
         $chatroomManager = new ChatroomManager();
         return $chatroomManager->checkExistingChatroomByUsers($userId,$otherUserId);
     }

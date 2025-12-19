@@ -13,7 +13,7 @@ class MessageController extends AbstractController
         $csrf = Utils::request("csrf-message","");
 
         if (!Utils::checkCSRF("csrf-message",$csrf)) {
-            throw new Exception("No CSRF MESSAGE", 500);
+            throw new Exception("Action non autorisée, token manquant", 403);
         }
         unset($_SESSION['csrf-message']);
 
@@ -102,12 +102,12 @@ class MessageController extends AbstractController
     private function getChatroomMessages(string $chatroomId, int $otherUserId, int $userId)
     {
         if (!$chatroomId || !$otherUserId) {
-            throw new Exception("Error Processing Request", 404);
+            throw new Exception("Impossible de récupérer les conversations", 404);
         }
                 
         $chatroomManager = new ChatroomManager();
         if (!$chatroomManager->checkExistingChatroomByIds($chatroomId,$otherUserId,$userId)) {
-            throw new Exception("Error Processing Request", 404);
+            throw new Exception("Cette conversation n'existe pas ou n'est plus disponible", 404);
         }
 
         $messageManager = new MessageManager();
@@ -125,7 +125,7 @@ class MessageController extends AbstractController
         $csrf = Utils::request("csrf-message","");
 
         if (!Utils::checkCSRF("csrf-message",$csrf)) {
-            throw new Exception("No CSRF MESSAGE", 500);
+            throw new Exception("Action non autorisée, token manquant", 403);
         }
 
         unset($_SESSION['connectingWithUser']);

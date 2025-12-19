@@ -215,11 +215,11 @@ class UserController extends AbstractController
             }
 
             if (!Utils::checkCSRF("login_csrf", $csrfToken)) {
-                throw new Exception("Error Processing Request", 500);
+                throw new Exception("Action non autorisée", 403);
             }
 
         } else {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
    
         if (!empty($errors)) {
@@ -273,12 +273,12 @@ class UserController extends AbstractController
                 $csrfToken = Utils::request("csrf","");
 
                 if (!Utils::checkCSRF("register_csrf",$csrfToken)) {
-                    throw new Exception("Error Processing Request", 500);
+                    throw new Exception("Action non autorisée", 403);
                 }
                 
                 $this->createOrUpdateUser();
             }else{
-                throw new Exception("Error Processing Request", 500);
+                 throw new Exception("Action non autorisée", 403);
             }
         }
 

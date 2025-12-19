@@ -48,7 +48,7 @@ class BookController extends AbstractController
         /**Verification de l'USER */
         $isValidUser = $this->checkUserBookValidAction($sold_by,$book_id);
         if (!$isValidUser) {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
        
         $bookManager = new BookManager();
@@ -68,7 +68,7 @@ class BookController extends AbstractController
         $userDataDecoded = Utils::validateJWT();
 
         if (!$userDataDecoded['id']) {
-            throw new Exception("Error Processing Requesadt", 500);
+            throw new Exception("Action non autorisée", 403);
         }
 
         $book = new Book();
@@ -94,7 +94,7 @@ class BookController extends AbstractController
 
         if ($id = $userDataDecoded['id']) {
             if ($id != $sold_by || !$this->checkUserBookValidAction($id,$book_id)) {
-                throw new Exception("Error Processing Requesadt", 500);
+                throw new Exception("Action non autorisée", 403);
             }
         }
 
@@ -112,7 +112,7 @@ class BookController extends AbstractController
         
         /**CHECK if submitted */
         if ((bool)$formIsvalid !== true) {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
 
         $form = [];
@@ -137,7 +137,7 @@ class BookController extends AbstractController
         /**---- CHECK USER ---- */
         $isValidUser = $this->checkUserBookValidAction($sold_by,$book_id);
         if (!$isValidUser) {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
         /**------------------ */
 
@@ -208,7 +208,7 @@ class BookController extends AbstractController
         
         /**CHECK if submitted */
         if ((bool)$formIsvalid !== true) {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
 
         $form = [];
@@ -224,7 +224,7 @@ class BookController extends AbstractController
 
          /**---- CHECK CSRF ---- */
         if(!Utils::checkCSRF("edit-book",$csrf)){
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
         /**-------------------- */
 
@@ -232,7 +232,7 @@ class BookController extends AbstractController
          /**---- CHECK USER ---- */
         $userId = Utils::checkUser($sold_by);
         if (!$userId) {
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception( "Accès non autorisé. Veuillez vous connecter.", 403);
         }
         $form['sold_by'] = $userId;
         /**------------------ */
@@ -292,7 +292,6 @@ class BookController extends AbstractController
         
         Utils::sendAlert("Le livre a été créé avec succès");
         $this->redirect("?route=/mon-compte");
-
 
     }
 
