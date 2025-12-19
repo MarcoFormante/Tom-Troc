@@ -67,7 +67,7 @@
                 </tbody>
             </table>
             <?php if($isOwner): ?>
-                <p class="text-center mt-10 pb-10"> 
+                <p class="text-center mt-10 pb-10 add-book"> 
                     <a href="?route=/newBook">Ajouter un livre</a>
                 </p>
             <?php endif ?>
@@ -108,6 +108,11 @@
                         </li>  
                     <?php endforeach ?>
                 </ul>
+                  <?php if($isOwner): ?>
+                <p class="text-center mt-10 pb-10 addBook"> 
+                    <a href="?route=/newBook">Ajouter un livre</a>
+                </p>
+            <?php endif ?>
         </section>
         
     </div>
