@@ -220,6 +220,14 @@ class Utils{
     {
         $_SESSION['alert'] = $message;
     }
+
+
+
+    public static function redirect(string $page)
+    {
+      header("Location: $page");    
+      exit();
+    }
 }   
 
 
