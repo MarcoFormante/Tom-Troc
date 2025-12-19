@@ -10,8 +10,6 @@ class Router
      public static function handleRoute(string $route):void{
 
         try {
-            //code...
-        
         switch($route){
             case "/":
                 $homeController = new HomeController();
