@@ -91,7 +91,7 @@
   letter-spacing: 0;
 }
 
-.playfair-display-400, #messagerie .main-container .chats-box h1, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
+.playfair-display-400, #error-page h1, #messagerie .main-container .chats-box h1, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -118,7 +118,7 @@
   letter-spacing: 2%;
 }
 
-.inter-400, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title {
+.inter-400, #error-page p, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -2071,6 +2071,11 @@ form.draft-form button {
   font-size: 14px;
   color: rgb(166, 166, 166);
 }
+@media screen and (min-width: 1024px) {
+  #messagerie .message-container .retour {
+    display: none;
+  }
+}
 @media screen and (max-width: 1450px) {
   #messagerie .message-container {
     padding-inline: 20px;
@@ -2196,4 +2201,16 @@ form.draft-form button {
 }
 #messagerie .user-message .message-content-container.second-user-message-content {
   background-color: rgb(255, 255, 255);
+}
+
+#error-page {
+  margin: 50px;
+}
+#error-page h1 {
+  text-align: center;
+  font-size: 42px;
+}
+#error-page p {
+  text-align: center;
+  margin: 32px;
 }/*# sourceMappingURL=main.css.map */

@@ -155,6 +155,10 @@
             font-size: 14px;
             @extend .inter-400;
             color: $gray_text;
+
+            @media screen and (min-width:map.get($screen,max-tablet)) {
+                display: none;
+            }
         }
 
         @media screen and (max-width:1450px) {
