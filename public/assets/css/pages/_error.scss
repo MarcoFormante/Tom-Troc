@@ -1,0 +1,15 @@
+#error-page{
+    margin: 50px;
+
+    h1{
+        text-align: center;
+        @extend .playfair-display-400;
+        font-size: 42px;
+    }
+
+    p{
+        text-align: center;
+        margin: 32px;
+        @extend .inter-400;
+    }
+}
