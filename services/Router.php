@@ -58,6 +58,7 @@ class Router
             break;
 
             case "/createBook":
+                Utils::checkPostMethod();
                 $bookController = new BookController();
                 $bookController->createBook();
             break;
