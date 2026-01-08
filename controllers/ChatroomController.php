@@ -23,7 +23,6 @@ class ChatroomController extends AbstractController
             $messageController = new MessageController();
             return $messageController->showMessages($chatrooms,$chatroomId,$otherUserId,$userId);
         }
-        
         $this->render("chatrooms",['title' => "Messagerie","chatrooms" => $chatrooms,"userId" => $userId],"Messagerie");
     }
 
@@ -47,17 +46,20 @@ class ChatroomController extends AbstractController
         $user = $userManager->checkExistingUser($otherUserId,$otherUserPseudo);
 
         if (!$user) {
-            throw new Exception( "Accès non autorisé. Veuillez vous connecter.", 403);
+            throw new Exception( "L'utilisateur n'existe pas", 404);
         }
+
+        $requestRedirect = Utils::request("redirect","");
+        $requestBookId = Utils::request("bookId","");
         if ($isConnecting) {
             if($chatId = $this->checkExistingChatroomByUsers($otherUserId)){
                 unset($_SESSION['connectingWithUser']);
                 Utils::generateCSRF("csrf-message");
-                $this->redirect("index.php?route=/messages&chatroom=" . $chatId . "&other_user_id=" . $otherUserId);
+                $this->redirect("index.php?route=/messages&chatroom=" . $chatId . "&other_user_id=" . $otherUserId . ($requestRedirect ? "&redirect=". $requestRedirect . "&bookId=" . $requestBookId : ""));
             }else{
                 $_SESSION['connectingWithUser'] = $user;
                 Utils::generateCSRF("csrf-message");
-                $this->redirect("index.php?route=/messages&connectingId=" . $user['id']);
+                $this->redirect("index.php?route=/messages&connectingId=" . $user['id'] .( $requestRedirect ? "&redirect=". $requestRedirect . "&bookId=" . $requestBookId : ""));
             }
         }else{
             return true;
