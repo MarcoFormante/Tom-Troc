@@ -2,7 +2,12 @@
 
 class BookController extends AbstractController
 {
-    public function index()
+    /**
+     * index: Page -> "Nos livres à l’échange"
+     * Get all available books and show them on page
+     * @return void
+     */
+    public function index():void
     {   
         $bookManager = new BookManager();
         $books = $bookManager->getBooks();
@@ -10,8 +15,13 @@ class BookController extends AbstractController
         $this->render("books",['books' => $books],"Nos livres à l’échange");
     }
 
-
-    public function searchBooks($searchValue){
+    /**
+     * Search books by string and show on page or show message if no books are availables
+     * @param string $searchValue  -> Value of user input
+     * @return void
+     */
+    public function searchBooks(string $searchValue = ""):void
+    {
         
         $bookManager = new BookManager();
         $data = $bookManager->searchBooks($searchValue);
@@ -26,6 +36,11 @@ class BookController extends AbstractController
     }
 
 
+    /**
+     * Book detail page
+     * Check if is a authenticated user's book
+     * @return void
+     */
     public function detail()
     {
         $bookId = Utils::request('id',-1); 
@@ -39,7 +54,11 @@ class BookController extends AbstractController
     }
 
 
-    public function deleteBook()
+    /**
+     * Delete a book after user and book verification
+     * @return void
+     */
+    public function deleteBook():void
     {
 
         $book_id = Utils::request('bookId',-1);
@@ -60,7 +79,11 @@ class BookController extends AbstractController
     }
 
 
-    public function newBook(?array $errors = [])
+    /**
+     * Show the page to create new Book, user verification with JWT token
+     * @return void
+     */
+    public function newBook(?array $errors = []):void
     {
 
         $csrf = Utils::generateCSRF("edit-book");
@@ -78,7 +101,14 @@ class BookController extends AbstractController
     }
 
 
-    public function editBook(?array $errors = [])
+
+    /**
+     * Show the page to update a book
+     * User verification with JWT token and check if a user's book
+     * @param ?array $errors = []
+     * @return void
+     */
+    public function editBook(?array $errors = []):void
     {
 
         $sold_by = Utils::request("sold_by","");
@@ -105,7 +135,13 @@ class BookController extends AbstractController
     }
 
 
-    public function updateBook()
+    /**
+     * Update Book Action
+     * verification of all user inputs and user's book
+     * Handle errors to show into the template
+     * @return void
+     */
+    public function updateBook():void
     {
         
         $formIsvalid = Utils::request("isSubmitted","");
@@ -129,7 +165,7 @@ class BookController extends AbstractController
 
          /**---- CHECK CSRF ---- */
         if(!Utils::checkCSRF("edit-book",$csrf)){
-            throw new Exception("Error Processing Request", 500);
+            throw new Exception("Action non autorisée", 403);
         }
         /**-------------------- */
 
@@ -199,11 +235,13 @@ class BookController extends AbstractController
     }
 
 
-
-    public function createBook()
+    /**
+     * Create Book Action
+     * User, inputs and csrf verification
+     * @return void
+     */
+    public function createBook():void
     {
-        Utils::checkPostMethod();
-
         $formIsvalid = Utils::request("isSubmitted","");
         
         /**CHECK if submitted */
@@ -297,7 +335,13 @@ class BookController extends AbstractController
 
 
 
-    private function checkUserBookValidAction($sold_by, $book_id)
+    /**
+     * Check if is a valid user action with a specific book 
+     * @param int $sold_by The id of the seller
+     * @param int $book_id The id of the book
+     * @return bool 
+     */
+    private function checkUserBookValidAction(int $sold_by, int $book_id):bool
     {
         if (!is_numeric($sold_by) || !is_numeric($book_id)) {
             return false;
