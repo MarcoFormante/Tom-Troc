@@ -54,7 +54,7 @@ class Utils{
      * @param Datetime|string $date
      * @return string
      */
-    public static function calculateSignupDate(DateTime|string $date):String
+    public static function calculateSignupDate(DateTime|string $date):string
     {
         $now = new DateTime();
 
