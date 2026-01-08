@@ -277,6 +277,7 @@ class UserController extends AbstractController
                 }
                 
                 $this->createOrUpdateUser();
+                unset($_SESSION['auth_token']);
             }else{
                  throw new Exception("Action non autorisée", 403);
             }
