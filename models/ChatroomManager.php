@@ -2,7 +2,12 @@
 
 class ChatroomManager extends AbstractEntityManager
 {
-    
+    /**
+     * Create Chatroom Action: room name creation and execute pdo statement with user ids parameters 
+     * @param int $user_one_id
+     * @param int $user_two_id
+     * @return string|bool  $chatroom_id | false
+     */ 
     public function createChatroom(int $user_one_id,int $user_two_id):string|bool
     {
         $now =  new DateTime();
@@ -24,6 +29,11 @@ class ChatroomManager extends AbstractEntityManager
     }
 
 
+    /**
+     * Get user Chatrooms: verify the right authenticated user with $user_id variable
+     * @param int $user_id  ID of the authenticated user
+     * @return array $rooms
+     */
     public function getUserChatrooms(int $user_id):array
      {
        
@@ -79,7 +89,12 @@ class ChatroomManager extends AbstractEntityManager
 
     }
 
-
+    /**
+     * Check if the chatroom exists by users
+     * @param int $user_one
+     * @param int $user_two
+     * @return string|false $chatroom_id | false; 
+     */
     public function checkExistingChatroomByUsers(int $user_one, int $user_two)
     {
         $sql = "SELECT id FROM chatrooms WHERE (user_one_id = :user_one_id AND user_two_id = :user_two_id ) OR (user_one_id = :user_two_id AND user_one_id = :user_two_id)";
@@ -95,7 +110,13 @@ class ChatroomManager extends AbstractEntityManager
     }
 
 
-
+    /**
+     * Check if the chatroom exists by ids (chatId, user_one_id, user_two_id )
+     * @param string $chatId
+     * @param int $user_one
+     * @param int $user_two
+     * @return string|false $chatroom_id | false; 
+     */
     public function checkExistingChatroomByIds(string $chatId, int $user_one, int $user_two)
     {
         $sql = "SELECT id FROM chatrooms
