@@ -16,7 +16,7 @@ $alert = $_SESSION['alert'] ?? null;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href=<?=PUBLIC_PATH ."assets/css/main.css"?>>
-    <title><?=$title?></title>
+    <title><?=$title?> - Tom Troc</title>
 </head>
 <body>
     <?php include_once COMPONENTS_PATH . "header.php"?>
