@@ -10,8 +10,8 @@
             <div id="user-profile-img-container">
                 <img  id="userImg" src="<?= IMAGES_PATH . "users/" . htmlspecialchars($user->getProfileImage()) ?>" alt="Photo utilisateur">
                 <label for="profileImage">modifier</label>
-                <input hidden name="profileImage" id="profileImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
-                <input hidden name="lastProfileImage" id="lastProfileImage" value="<?= htmlspecialchars($user->getProfileImage()) ?>"/>
+                <input aria-label="hidden" hidden name="profileImage" id="profileImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
+                <input type="hidden" aria-label="hidden" hidden name="lastProfileImage" id="lastProfileImage" value="<?= htmlspecialchars($user->getProfileImage()) ?>"/>
             </div>
             <?php if (isset($errors['image']) && !empty($errors['image'])):?>
                 <ul class="error-list-container">
@@ -54,9 +54,9 @@
                 <label for="pseudo">Pseudo</label>
                 <input maxlength="60" required class="form-input__gray  <?= isset($errors['pseudo']) ? "error-input-focus" : "" ?>"  type="text" name="pseudo" id="pseudo" value="<?= htmlspecialchars($lastInputs['pseudo'] ?? $user->getPseudo()) ?>"/>
             </div>
-            <input hidden name="userId" value="<?= htmlspecialchars($user->getId()) ?>">
-            <input hidden name="route" value="/updateUser">
-            <input hidden name="csrf" value="<?= htmlspecialchars($csrf) ?>">
+            <input type="hidden" aria-label="hidden" hidden name="userId" value="<?= htmlspecialchars($user->getId()) ?>">
+            <input type="hidden" aria-label="hidden" hidden name="route" value="/updateUser">
+            <input type="hidden" aria-label="hidden" hidden name="csrf" value="<?= htmlspecialchars($csrf) ?>">
             
             <?php if ($isOwner): ?>
                    <button class="btn-secondary" type="submit" value="submit">Enregistrer</button>
