@@ -26,8 +26,8 @@ $lastInputs = $errors['lastInputs'] ?? [];
                 <input required autocomplete="new-password" type="password" name="password" id="password" class="<?= isset($errors['password']) ? "error-input-focus" : "" ?>" value="<?= htmlspecialchars($lastInputs['password'] ?? "")  ?>"/>
             </div>
             
-            <input hidden required name="route" value="<?= $isConnectionPage ? "/connection" : "/register" ?>">
-            <input hidden  name="csrf" value="<?= $csrf ?>">
+            <input type="hidden" aria-hidden="true" hidden required name="route" value="<?= $isConnectionPage ? "/connection" : "/register" ?>">
+            <input type="hidden" aria-hidden="true"  hidden  name="csrf" value="<?= $csrf ?>">
             
             <?php if(isset($errors['user-error'])): ?>
                 <div class="user-error">
@@ -40,7 +40,7 @@ $lastInputs = $errors['lastInputs'] ?? [];
             <p class="switcher-link"><?= $isConnectionPage ? "Pas de compte ? " : "Déjà inscrit ? " ?><a href="index.php?route=/<?= $isConnectionPage ? "register" : "connection" ?>"><?= $isConnectionPage ? "Inscrivez-vous" : " Connectez-vous" ?></a></p>
         </form>
         <div id="userForm-img-container">
-            <img src="<?= IMAGES_PATH . "statics/registration_img.webp" ?>" alt="">
+            <img src="<?= IMAGES_PATH . "statics/registration_img.webp" ?>" alt="Bibliotheque">
         </div>
         
     </div>
