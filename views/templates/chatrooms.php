@@ -1,4 +1,6 @@
 
+
+
 <?php 
     /** check if main user wants text to other user */
     $connectingUser = $_SESSION['connectingWithUser'] ?? null ;
@@ -13,9 +15,16 @@
            $chatIdsNotifications[] =  $notif['chatroom_id'];
         }
     }
-?>
+
+    $redirect = Utils::request("redirect","");
+    $redirectBookId = Utils::request("bookId","");
+    $retourHref = $redirect && $redirectBookId ? ("index.php?route=" . $redirect . "&id=" .$redirectBookId) : "?route=/messages";
+?>  
 
 <div id="messagerie" class="<?= !$chatrooms && !$connectingUser ? "messagerie-no-messages " : "" ?>"> 
+    <?php if($redirect && $redirectBookId): ?>
+        <a class="retour p-block-10 desktop-only" href="<?= htmlspecialchars($retourHref) ?>"><- retour</a>
+    <?php endif ?>
     <div class="main-container">
         <div class="chats-box <?= (isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser) ? "chats-box-closed" : "chats-box-open" ?> ">
             <div>
@@ -24,7 +33,7 @@
             <ul class="chatrooms" aria-label="Liste de messages">
                 <?php foreach($chatrooms as $key => $chatroom): ?>
                       <!-- Add class 'notificated' if user has some notication from this chatroom-->     
-                    <li <?= in_array($chatroom['id'],$chatIdsNotifications) ? "aria-label= Nouveau message" : "" ?> class="<?= Utils::request("chatroom",-1) == htmlspecialchars($chatroom['id'])? "selected " : "" ?> <?= in_array($chatroom['id'],$chatIdsNotifications)   ? "notificated" : "" ?>">
+                    <li <?= in_array($chatroom['id'],$chatIdsNotifications) ? 'aria-label= "Nouveau message" ' : "" ?> class="<?= Utils::request("chatroom",-1) == htmlspecialchars($chatroom['id'])? "selected " : "" ?> <?= in_array($chatroom['id'],$chatIdsNotifications)   ? "notificated" : "" ?>">
                         <a href="index.php?route=/messages&chatroom=<?= htmlspecialchars($chatroom['id']) ?>&other_user_id=<?=  htmlspecialchars($chatroom['other_user_id']) ?>" >
                             <div class="message-info">
                                 <img class="user-img" src="<?= IMAGES_PATH . "users/" . htmlspecialchars($chatroom['other_user_image']) ?>" alt="<?= htmlspecialchars($chatroom['other_user_pseudo']) ?>, utilisateur du site TomTroc">
@@ -68,7 +77,7 @@
 
           
         <div class="message-container  <?= (isset($otherUser) && $otherUser->getId() && !$isValidConnectingUser) ? "message-container-open" : "message-container-closed" ?> ">
-            <a class="retour" href="?route=/messages"><- retour</a>
+            <a class="retour" href="<?= $retourHref ?>"><- retour</a>
             <?php if(!$chatrooms && !$connectingUser ): ?>
                 <p>Vous n’avez aucun message pour le moment</p>
              <?php endif ?>
@@ -95,10 +104,10 @@
             <div class="message-input-container">
                 <form method="post">
                     <div class="message-input">
-                        <label hidden for="message">Message</label>
+                        <label class="out-screen" for="message">Message</label>
                         <input maxlength="255" required type="text" id="message" name="message" placeholder="Tapez votre message ici"/>
-                        <input hidden required name="route" value="/sendMessage"/>
-                        <input hidden required name="csrf-message" value="<?= htmlspecialchars($csrf)?>"/>
+                        <input aria-hidden="true" type="hidden" hidden required name="route" value="/sendMessage"/>
+                        <input aria-hidden="true" type="hidden" hidden required name="csrf-message" value="<?= htmlspecialchars($csrf)?>"/>
                     </div>
                     <div>
                         <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
@@ -118,19 +127,19 @@
                 </div>
                 <div class="messages-container">
                 <form class="draft-form" method="post">
-                    <input hidden name="route" value="/deleteDraft"/>
-                    <input hidden required name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
+                    <input aria-hidden="true" type="hidden" hidden name="route" value="/deleteDraft"/>
+                    <input aria-hidden="true" type="hidden" hidden required name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
                     <button type="submit">Supprimer ce Brouillon</button>
                 </form>
                 </div>
                 <div class="message-input-container">
                     <form method="post">
                         <div class="message-input">
-                            <label hidden for="message">Message</label>
+                            <label class="out-screen" for="message">Message</label>
                             <input maxlength="255" required type="text" id="message" name="message" placeholder="Tapez votre message ici" />
-                            <input hidden required name="connecting" value="true"/>
-                            <input hidden required name="route" value="/sendMessage"/>
-                            <input hidden name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
+                            <input aria-hidden="true" type="hidden" hidden required name="connecting" value="true"/>
+                            <input aria-hidden="true" type="hidden" hidden required name="route" value="/sendMessage"/>
+                            <input aria-hidden="true" type="hidden" hidden name="csrf-message" value="<?= htmlspecialchars($_SESSION['csrf-message'] ?? "")?>"/>
                         </div>
                         <div>
                             <button class="btn-primary" name="submit" value="true" type="submit">Envoyer</button>
