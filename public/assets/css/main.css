@@ -64,6 +64,10 @@
   margin-top: 10px;
 }
 
+.m-20 {
+  margin: 20px;
+}
+
 .pb-10 {
   padding-bottom: 10px;
 }
@@ -76,10 +80,56 @@
   line-height: 20px;
 }
 
+.pl-150 {
+  padding-left: 150px;
+}
+@media screen and (max-width: 1445px) {
+  .pl-150 {
+    padding-left: 20px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .hide-tablet {
     display: none;
   }
+}
+
+@media screen and (max-width: 1024px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+.p-block-10 {
+  padding-block: 10px;
+}
+
+.out-screen {
+  opacity: 0;
+  position: fixed;
+  top: -10000px;
+}
+
+.retour {
+  font-size: 14px;
+  color: rgb(166, 166, 166);
+}
+
+.block {
+  display: block;
+}
+
+.p-inline-10 {
+  padding-inline: 10px;
+}
+
+.p-inline-50 {
+  padding-inline: 50px;
+}
+
+.pl-28 {
+  padding-left: 28px;
 }
 
 .playfair-display-600 {
@@ -91,7 +141,7 @@
   letter-spacing: 0;
 }
 
-.playfair-display-400, #error-page h1, #messagerie .main-container .chats-box h1, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info h1, #home-values h2, #home-last-books h2, #home-how-it-works h2 {
+.playfair-display-400, #error-page h1, #messagerie .main-container .chats-box h1, #editBook h1, #user-profile-account-info #user-profile-pseudo, #book-detail-info .book-title, #home-values h2, #home-last-books h2:not(.book-card-title), #home-how-it-works h2:not(.book-card-title) {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -118,7 +168,7 @@
   letter-spacing: 2%;
 }
 
-.inter-400, #error-page p, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title {
+.inter-400, #error-page p, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title, .retour {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -181,6 +231,8 @@ main {
 img {
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 header {
@@ -225,6 +277,11 @@ header .header-mobile-navigation .close-menu-btn {
   padding: 10px;
   position: absolute;
   right: 5px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  background: none;
 }
 header .header-mobile-navigation .nav-list__mobile {
   flex-direction: column;
@@ -259,7 +316,7 @@ header #header-logo-img {
   height: 25.5px;
 }
 header #header-logo span {
-  margin-left: 15px;
+  margin-left: clamp(7.55px, 2.5vw, 15px);
   font-size: 20px;
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
@@ -302,12 +359,12 @@ header #main-nav ul.nav-list__left {
 header #main-nav ul.nav-list__right {
   gap: 58px;
 }
-header #main-nav ul.nav-list__right li#message-list-item {
+header #main-nav ul.nav-list__right li.message-list-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-header #main-nav ul.nav-list__right li#message-list-item #message-logo {
+header #main-nav ul.nav-list__right li.message-list-item .message-logo {
   background-image: url("../../../public/assets/images/statics/svg/Icon_messagerie.svg");
   background-repeat: no-repeat;
   display: block;
@@ -352,7 +409,7 @@ header .notif-icon {
     height: 12.83px;
   }
   header #header-logo span {
-    font-size: 20px;
+    font-size: clamp(10.06px, 3vw, 20px);
   }
   header #main-nav ul:not(.nav-list__mobile) {
     display: none;
@@ -363,7 +420,7 @@ header .notif-icon {
   header #notif-icon {
     display: none;
   }
-  header #message-list-item {
+  header .message-list-item {
     display: flex;
     gap: 2px;
   }
@@ -469,14 +526,15 @@ footer ul li a {
   color: rgb(0, 0, 0);
   margin-top: 12px;
   margin-left: 14px;
+  font-size: clamp(13px, 1vw, 16px);
 }
 .book-card-author {
-  font-size: 14px;
+  font-size: clamp(11px, 1vw, 14px);
   color: rgb(166, 166, 166);
   margin-left: 14px;
 }
 .book-card-soldby {
-  font-size: 10px;
+  font-size: clamp(8px, 1vw, 10px);
   color: rgb(166, 166, 166);
   font-style: italic;
   margin-top: 22px;
@@ -698,9 +756,9 @@ form.draft-form button {
   padding-top: 80px;
 }
 
-#home-last-books h2, #home-how-it-works h2 {
+#home-last-books h2:not(.book-card-title), #home-how-it-works h2:not(.book-card-title) {
   text-align: center;
-  font-size: 32px;
+  font-size: clamp(28px, 3vw, 32px);
 }
 #home-last-books .btn-container, #home-how-it-works .btn-container {
   margin-top: 48px;
@@ -714,7 +772,7 @@ form.draft-form button {
 #home-last-books {
   padding-bottom: 64px;
 }
-#home-last-books h2 {
+#home-last-books h2:not(.book-card-title) {
   margin-bottom: 80px;
 }
 
@@ -771,7 +829,7 @@ form.draft-form button {
 }
 #home-values h2 {
   text-align: left;
-  font-size: 32px;
+  font-size: clamp(28px, 3vw, 32px);
   margin-bottom: 29px;
 }
 #home-values .paragraphe {
@@ -783,6 +841,7 @@ form.draft-form button {
   letter-spacing: 0;
   color: rgb(41, 41, 41);
   line-height: 120%;
+  font-size: clamp(14px, 2.5vw, 16px);
 }
 #home-values-salutations-container {
   display: flex;
@@ -855,7 +914,14 @@ form.draft-form button {
   #home-how-it-works {
     padding-inline: 20px;
   }
+  #home-values {
+    padding-top: 33px;
+  }
 }
+.home-hor-img img {
+  width: 100%;
+}
+
 @media screen and (max-width: 767px) {
   #home-hero {
     padding-top: 0;
@@ -912,6 +978,7 @@ form.draft-form button {
   }
   #home-how-it-works .paragraphe {
     margin: 16px auto 32px auto;
+    font-size: clamp(14px, 3vw, 16px);
   }
   #home-how-it-works-list {
     flex-direction: column;
@@ -1120,8 +1187,8 @@ form.draft-form button {
   height: 100%;
   padding: 59px 150px 80px 85px;
 }
-#book-detail-info h1 {
-  font-size: 36px;
+#book-detail-info .book-title {
+  font-size: clamp(30px, 3vw, 36px);
   text-transform: capitalize;
   margin-bottom: 16px;
   color: rgb(0, 0, 0);
@@ -1221,7 +1288,7 @@ form.draft-form button {
     align-items: flex-start;
   }
   #book-detail figure, #book-detail #book-detail-container-image {
-    height: unset;
+    height: 488px;
     width: 50vw;
   }
   #book-detail-info {
@@ -1239,6 +1306,9 @@ form.draft-form button {
   #book-detail-info-cta {
     margin-top: 40px;
   }
+  .book-title {
+    margin-top: 40.52px;
+  }
 }
 @media screen and (max-width: 767px) {
   #book-detail {
@@ -1254,7 +1324,7 @@ form.draft-form button {
     margin: auto;
   }
   #book-detail figure, #book-detail #book-detail-container-image {
-    height: unset;
+    height: 449px;
     width: 375px;
   }
   #book-detail-info {
@@ -1426,13 +1496,7 @@ form.draft-form button {
 #user-profile #user-books-table table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 0px;
-}
-#user-profile #user-books-table table thead {
-  border-top: 20px solid transparent;
-}
-#user-profile #user-books-table table thead th:not(.th-spacing, .edit-spacing) {
-  width: 2%;
+  border-spacing: 0 20px;
 }
 #user-profile #user-books-table table thead th {
   font-family: "Inter", sans-serif;
@@ -1442,6 +1506,8 @@ form.draft-form button {
   line-height: 100%;
   letter-spacing: 8%;
   font-size: 8px;
+  width: 25%;
+  padding-left: 66px;
   text-align: left;
 }
 #user-profile #user-books-table table tbody {
@@ -1466,9 +1532,14 @@ form.draft-form button {
   line-height: 100%;
   letter-spacing: 0;
   line-height: 120%;
+  width: 25%;
+  text-align: left;
+  padding-left: 66px;
+}
+#user-profile #user-books-table table tbody td.pl-28 {
+  padding-left: 28px;
 }
 #user-profile #user-books-table table tbody td p {
-  max-width: 128px;
   font-style: italic;
 }
 #user-profile #user-books-table a {
@@ -1498,6 +1569,7 @@ form.draft-form button {
   letter-spacing: 0;
   font-size: 12px;
   cursor: pointer;
+  padding-right: 66px;
 }
 #user-profile tbody .body-spacing td {
   padding: 8px;
@@ -1521,9 +1593,6 @@ form.draft-form button {
 }
 #user-profile.user-profile-public .p-left {
   padding-left: 0px;
-}
-#user-profile.user-profile-public thead th:not(.th-spacing) {
-  width: 1.3%;
 }
 #user-profile.user-profile-public h1 {
   position: relative;
@@ -1550,6 +1619,7 @@ form.draft-form button {
   border-radius: 29.58px;
   padding: 3.7px 13.31px;
   max-width: 71.63px;
+  width: 71.63px;
 }
 .book-status__green {
   background-color: rgb(109, 197, 161);
@@ -1585,7 +1655,7 @@ form.draft-form button {
 }
 #user-books-mobile-container ul li a {
   color: rgb(41, 41, 41);
-  font-size: 12px;
+  font-size: 16px;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -1608,7 +1678,7 @@ form.draft-form button {
   font-style: normal;
   line-height: 100%;
   letter-spacing: 0;
-  font-size: 12px;
+  font-size: 16px;
   cursor: pointer;
 }
 #user-books-mobile-container ul .book-info-top-container {
@@ -1633,7 +1703,7 @@ form.draft-form button {
 
 @media screen and (max-width: 1445px) {
   #user-profile {
-    padding: 73px 20px 0px 20px;
+    padding: 58px 20px 0px 20px;
   }
   #user-profile.user-profile-public thead th:not(.th-spacing) {
     width: 100px;
@@ -1687,7 +1757,7 @@ form.draft-form button {
 }
 .addBook a {
   color: rgb(41, 41, 41);
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -1806,7 +1876,7 @@ form.draft-form button {
   }
   #editBook #form-editBook {
     flex-direction: column;
-    padding: 56px 20px 47px 20px;
+    padding: 32px 20px 47px 20px;
   }
   #editBook #form-editBook .btn-primary {
     width: 100%;
@@ -1821,13 +1891,28 @@ form.draft-form button {
   #editBook {
     max-width: unset;
   }
+  #editBook h1 {
+    font-size: 30px;
+    max-width: 60%;
+    margin-top: 7px;
+  }
   #editBook #book-image-container {
     height: unset;
     width: 100%;
   }
+  #editBook #form-editBook {
+    margin-top: 35px;
+  }
+  #editBook #form-editBook-left-container {
+    margin-bottom: 32.25px;
+  }
+  #editBook #form-editBook-left-container .text-right {
+    font-size: 16px;
+  }
 }
 #userForm h1 {
   margin-bottom: 56px;
+  font-size: clamp(30px, 3vw, 36px);
 }
 #userForm-container {
   padding-left: 150px;
@@ -1888,7 +1973,6 @@ form.draft-form button {
     gap: 10%;
   }
   #userForm form {
-    align-items: center;
     padding-bottom: 100px;
   }
   #userForm form button {
@@ -1906,6 +1990,7 @@ form.draft-form button {
 @media screen and (max-width: 1024px) {
   #userForm h1 {
     text-align: center;
+    margin-bottom: 32px;
   }
   #userForm-container {
     padding-inline: 20px;
@@ -2002,6 +2087,7 @@ form.draft-form button {
 #messagerie .main-container .chats-box h1 {
   padding-left: 34px;
   padding-top: 55px;
+  font-size: 26px;
 }
 @media screen and (max-width: 767px) {
   #messagerie .main-container .chats-box {
@@ -2018,6 +2104,11 @@ form.draft-form button {
   overflow-x: hidden;
   max-height: 86%;
 }
+@media screen and (max-width: 767px) {
+  #messagerie .main-container .chatrooms {
+    margin-top: 45px;
+  }
+}
 #messagerie .main-container .chatrooms li.selected {
   background-color: rgb(255, 255, 255);
 }
@@ -2033,7 +2124,6 @@ form.draft-form button {
 #messagerie .main-container .chatrooms li a {
   display: block;
   padding: 14px 42px 21px 34px;
-  background-color: rgb(255, 255, 255);
 }
 @media screen and (max-width: 450px) {
   #messagerie .main-container .chatrooms li a {
@@ -2092,7 +2182,7 @@ form.draft-form button {
   font-size: 14px;
   color: rgb(166, 166, 166);
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   #messagerie .message-container .retour {
     display: none;
   }

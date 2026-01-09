@@ -42,6 +42,8 @@
         text-align: right;
         margin-top: 12px;
     }
+
+    
 }
 
 #home-last-books, #home-how-it-works, #home-values{
@@ -51,10 +53,10 @@
 
 
 #home-last-books, #home-how-it-works{
-    h2{
+    h2:not(.book-card-title){
         text-align: center;
         @extend .playfair-display-400;
-        font-size: 32px;
+        font-size: clamp(28px,3vw,32px);
     }
 
     .btn-container{
@@ -71,7 +73,7 @@
 #home-last-books{
     padding-bottom: 64px;
 
-    h2{
+    h2:not(.book-card-title){
         margin-bottom: 80px;
     }
 }
@@ -122,7 +124,7 @@
     h2{
         text-align: left;
         @extend .playfair-display-400;
-        font-size: 32px;
+        font-size: clamp(28px,3vw,32px);
         margin-bottom: 29px;
     }
 
@@ -130,6 +132,7 @@
         @include inter(300,0);
         color: $darken_gray;
         line-height: 120%;
+        font-size: clamp(14px,2.5vw,16px);
     }
 
     &-salutations-container{
@@ -219,6 +222,14 @@
        #home-how-it-works{
             padding-inline: 20px;
         }
+
+        #home-values {
+            padding-top: 33px;
+        }
+}
+
+.home-hor-img img{
+    width: 100%;
 }
 
 
@@ -292,6 +303,7 @@
 
         .paragraphe{
             margin: 16px auto 32px auto;
+            font-size: clamp(14px,3vw,16px);
         }
     }
 

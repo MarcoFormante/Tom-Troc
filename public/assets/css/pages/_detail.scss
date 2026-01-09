@@ -20,9 +20,9 @@
         height: 100%;
         padding: 59px 150px 80px 85px;
 
-        h1{
+        .book-title{
             @extend .playfair-display-400;
-            font-size: 36px;
+            font-size: clamp(30px,3vw,36px);
             text-transform: capitalize;
             margin-bottom: 16px;
             color: $primary_heading;
@@ -134,7 +134,7 @@
         }
 
         figure,#book-detail-container-image{
-            height: unset;
+            height: 488px;
             width: 50vw;
         }
 
@@ -160,6 +160,10 @@
             margin-top: 40px;
         }
     }
+
+     .book-title{
+            margin-top: 40.52px;
+        }
 }
 
 
@@ -179,7 +183,7 @@
         }
 
         figure,#book-detail-container-image{
-            height: unset;
+            height: 449px;
             width: 375px;
         }
 

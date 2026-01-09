@@ -27,17 +27,18 @@
         color: $primary_heading;
         margin-top: 12px;
         margin-left: 14px;
+        font-size: clamp(13px, 1vw,16px);
     }
 
     &-author{
-        font-size: 14px;
+        font-size: clamp(11px, 1vw,14px);
         @extend .inter-400;
         color: $gray_text;
         margin-left: 14px;
     }
 
     &-soldby{
-        font-size: 10px;
+        font-size: clamp(8px, 1vw,10px);
         color: $gray_text;
         @extend .inter-400;
         font-style: italic;

@@ -44,6 +44,9 @@ header{
             padding: 10px;
             position: absolute;
             right: 5px;
+            appearance: none;
+            border: none;
+            background: none;
         }
 
         .nav-list__mobile{
@@ -82,7 +85,7 @@ header{
 
 
         span{
-            margin-left: 15px;
+            margin-left: clamp(7.55px,2.5vw,15px);
             font-size: 20px;
             @include playfair-heading(600);
             color: $primary_color;
@@ -120,10 +123,10 @@ header{
         ul.nav-list__right{
             gap: 58px;
 
-            li#message-list-item{
+            li.message-list-item{
                 @include flex(center,center);
 
-                #message-logo{
+                .message-logo{
                     background-image: url($staticImagesPath + "/svg/Icon_messagerie.svg");
                     background-repeat: no-repeat;
                     display: block;
@@ -178,7 +181,7 @@ header{
             }
 
             span{
-                font-size: 20px;
+                font-size: clamp(10.06px,3vw,20px);
             }
         }
 
@@ -194,7 +197,7 @@ header{
             display: none;
         }
 
-        #message-list-item{
+        .message-list-item{
             display: flex;
             gap: 2px;
         }

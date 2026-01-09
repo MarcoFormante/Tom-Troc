@@ -64,6 +64,11 @@
     margin-top: 10px;
 }
 
+
+.m-20{
+    margin: 20px;
+}
+
 .pb-10{
     padding-bottom: 10px;
 }
@@ -76,6 +81,14 @@
     line-height: 20px;
 }
 
+.pl-150{
+    padding-left: 150px;
+
+    @media screen and (max-width: 1445px){
+        padding-left: 20px;
+    }
+}
+
 
 .hide-tablet{
     @media screen and (min-width: map.get($screen,min-tablet)){
@@ -83,3 +96,44 @@
     }
 }
 
+.desktop-only{
+    @media screen and (max-width: map.get($screen,max-tablet)){
+        display: none;
+    }
+}
+
+.p-block-10{
+    padding-block: 10px;
+}
+
+
+
+.out-screen{
+    opacity: 0;
+    position: fixed;
+    top: -10000px;
+}
+
+
+.retour {
+    font-size: 14px;
+    @extend .inter-400;
+    color: $gray_text;
+}
+
+.block{
+    display: block;
+}
+
+
+.p-inline-10{
+    padding-inline: 10px;
+}
+
+.p-inline-50{
+    padding-inline: 50px;
+}
+
+.pl-28{
+    padding-left: 28px;
+}

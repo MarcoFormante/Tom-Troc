@@ -41,6 +41,7 @@
                 @extend .playfair-display-400;
                 padding-left: 34px;
                 padding-top: 55px;
+                font-size: 26px;
             }
 
             
@@ -59,6 +60,10 @@
             margin-top: 27px;
             overflow-x: hidden;
             max-height: 86%;
+
+            @media screen and (max-width:map.get($screen,max-mobile)) {
+                 margin-top: 45px;
+            }
 
             li.selected{
                 background-color: $white;
@@ -83,7 +88,6 @@
             li a{
                 display: block;
                 padding: 14px 42px 21px 34px;
-                background-color: $white;
 
                 @media screen and (max-width:450px) {
                     padding: 14px 20px 20px 34px;
@@ -156,9 +160,9 @@
             @extend .inter-400;
             color: $gray_text;
 
-            @media screen and (min-width:map.get($screen,max-tablet)) {
+            @media screen and (min-width:map.get($screen,min-tablet)) {
                 display: none;
-            }
+            }   
         }
 
         @media screen and (max-width:1450px) {

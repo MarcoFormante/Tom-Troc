@@ -2,6 +2,7 @@
 
     h1{
         margin-bottom: 56px;
+        font-size: clamp(30px,3vw,36px);
     }
 
     &-container{
@@ -70,9 +71,7 @@
             gap: 10%;
         }
 
-        form{
-            align-items: center;
-            
+        form{            
             button{
                 width: 322px;
             }
@@ -101,6 +100,7 @@
 
         h1{
             text-align: center;
+            margin-bottom: 32px;
         }
 
         &-container{
