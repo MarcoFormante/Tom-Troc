@@ -12,11 +12,14 @@ $profileImage = htmlspecialchars($user->getProfileImage());
 $pseudo = htmlspecialchars($user->getPseudo());
 $isUserBook = $authenticatedUserId == $userId;
 
+$requestId = Utils::request('id',"")
 ?>
 
 <div class="breadcrumbs" >
     <a href="?/nos-livre-a-lechange">Nos livres</a> > <?= $title ?>
 </div>
+
+<h1 id="book-info-title" class="out-screen">Informations sur le livre</h1>
 
 <article id="book-detail">
     <div id="book-detail-container">
@@ -25,14 +28,14 @@ $isUserBook = $authenticatedUserId == $userId;
         </figure>
 
         <section id="book-detail-info">
-            <h1><?=$title?></h1>
+            <h2 class="book-title"><?=$title?></h2>
             <p id="book-detail-info-author-container">par <span id="book-detail-info-author"><?=$author?></span></p>
             <hr>
             <h2>DESCRIPTION</h2>
             <p id="book-detail-info-description"><?= nl2br($description) ?></p>
             <div>
                 <h3>PROPRIÉTAIRE</h3>
-                <a href="?route=/profile&userId=<?= $userId ?>" id="book-detail-info-sold_by">
+                <a href="?route=/profile&userId=<?= $userId ?>&redirect=/detail&bookId=<?= htmlspecialchars($requestId) ?>" id="book-detail-info-sold_by">
                     <div id="book-detail-info-sold_by-container">
                         <div class="user-img-container">
                             <img src="<?= IMAGES_PATH . 'users/' . $profileImage ?>" alt="Photo profile de <?= $pseudo ?>">
@@ -43,7 +46,7 @@ $isUserBook = $authenticatedUserId == $userId;
             </div>
             <?php if(!$isUserBook): ?>
                 <div id="book-detail-info-cta">
-                    <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>" class="btn-primary text-center">Envoyer un message</a>
+                    <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>&redirect=/detail&bookId=<?= htmlspecialchars($requestId) ?>" class="btn-primary text-center">Envoyer un message</a>
                 </div>
             <?php endif ?>
         </section>
