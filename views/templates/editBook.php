@@ -20,8 +20,8 @@
                 <div id="book-image-container">
                     <img  id="book-image" src="<?= IMAGES_PATH . "books/" . htmlspecialchars($book->getImage()) ?>" alt="Photo livre '<?= htmlspecialchars($book->getTitle()) ?>'">
                     <label for="bookImage" class="text-right">Modifier la photo</label>
-                    <input  hidden name="bookImage" id="bookImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
-                    <input required hidden name="lastBookImage" id="lastBookImage" value="<?= htmlspecialchars($book->getImage()) ?>"/>
+                    <input aria-hidden="true" hidden name="bookImage" id="bookImage" type="file"  accept="image/jpeg, image/png, image/webp"/>
+                    <input aria-hidden="true" type="hidden" required hidden name="lastBookImage" id="lastBookImage" value="<?= htmlspecialchars($book->getImage()) ?>"/>
                 </div>
                 <?php if (isset($errors['image']) && !empty($errors['image'])):?>
                     <ul class="error-list-container">
@@ -53,10 +53,10 @@
                     <option <?=$book->getStatus() == 0 ? "selected" : null ?> value="unavailable">non disponible</option>
                 </select>           
             </div>   
-             <input required hidden name="route" value="<?= $isNewBook ? "/createBook" : "/updateBook" ?>">
-             <input required hidden name="sold_by" value="<?= htmlspecialchars($book->getSoldBy()) ?>">
-             <input required hidden name="book_id" value="<?= htmlspecialchars($book->getId()) ?>">
-             <input required hidden name="csrfToken" value="<?= htmlspecialchars($csrf) ?>">
+             <input type="hidden" aria-hidden="true"  required hidden name="route" value="<?= $isNewBook ? "/createBook" : "/updateBook" ?>">
+             <input type="hidden" aria-hidden="true"  required hidden name="sold_by" value="<?= htmlspecialchars($book->getSoldBy()) ?>">
+             <input type="hidden" aria-hidden="true"  required hidden name="book_id" value="<?= htmlspecialchars($book->getId()) ?>">
+             <input type="hidden" aria-hidden="true"  required hidden name="csrfToken" value="<?= htmlspecialchars($csrf) ?>">
              <button class="btn-primary" type="submit" name="isSubmitted" value="true">Valider</button>          
         </div>
            
