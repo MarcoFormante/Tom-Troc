@@ -7,7 +7,7 @@
                 <p class="t-black inter-300">Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres. </p>
             </div>
             <div class="btn-container align-self-start" >
-                <a role="button" href="?route=/nos-livre-a-lechange" class="btn-primary">Découvrir</a>
+                <a href="?route=/nos-livre-a-lechange" class="btn-primary">Découvrir</a>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
         </ul>
 
         <div class="btn-container">
-            <a role="button" href="?route=/nos-livre-a-lechange" class="btn-primary">Voir tous les livres</a>
+            <a href="?route=/nos-livre-a-lechange" class="btn-primary">Voir tous les livres</a>
         </div>
     </section>
 
@@ -58,13 +58,13 @@
     </ul>
 
     <div class="btn-container">
-        <a role="button" href="?route=/nos-livre-a-lechange" class="btn-secondary">Voir tous les livres</a>
+        <a href="?route=/nos-livre-a-lechange" class="btn-secondary">Voir tous les livres</a>
     </div>
 </section>
 
-<picture>
+<picture class="home-hor-img">
     <source srcset="<?= IMAGES_PATH . "statics/home_biblio_img_mobile.webp" ?>" media="(width < 500px)" />
-    <img src="<?= IMAGES_PATH . "statics/home_biblio_img.webp" ?>" width="100%" alt="">
+    <img src="<?= IMAGES_PATH . "statics/home_biblio_img.webp" ?>"  alt="">
 </picture>
 
 <section id="home-values" class="bg__light-gray">
@@ -93,7 +93,7 @@
 
         <div id="home-values-salutations-container">
             <p id="home-values-salutations-text">L’équipe Tom Troc</p>
-            <svg id="heart-img" role="img" aria-hidden="true" width="122" height="104" viewBox="0 0 122 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="heart-img" aria-hidden="true" width="122" height="104" viewBox="0 0 122 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 96.2239C2.29696 95.8231 6.2879 96.4857 7.64535 96.4799C34.2391 96.3671 77.2911 74.6938 96.4064 56.0077C109.127 40.7678 119.928 7.80676 85.8057 2.24498C65.0283 -1.14163 50.1873 26.798 62.0601 33.1479C66.0177 35.2646 78.258 25.6127 65.0283 12.4049C51.7986 -0.802991 39.7279 0.128338 35.3463 2.24498C15.417 7.74826 2.27208 42.7152 71.8127 87.7573C96.4064 103.687 121 102.997 121 102.997" stroke="#00AC66" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </div>
