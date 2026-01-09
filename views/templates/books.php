@@ -5,7 +5,7 @@
         <?php if(!empty($books)): ?>
             <form id="search-book" action="index.php?route=/nos-livre-a-lechange" method="POST">
                 <label for="search">Rechercher un livre</label>
-                <button type="submit"></button>
+                <button type="submit" aria-label="Rechercher"></button>
                 <input  type="search" maxlength="60" name="searchValue" id="search" placeholder="Rechercher un livre" value="<?= htmlspecialchars($value ?? "")  ?>"/>
             </form>
         <?php endif ?>
