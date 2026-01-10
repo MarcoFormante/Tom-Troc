@@ -95,6 +95,12 @@ class Router
                 $userController->register();
             break;
 
+            case "/logout":
+                Utils::checkPostMethod();
+                $userController = new UserController();
+                $userController->logout();
+            break;
+
 
             //**Messages */
 
