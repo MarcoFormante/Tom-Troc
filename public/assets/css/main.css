@@ -168,7 +168,7 @@
   letter-spacing: 2%;
 }
 
-.inter-400, #error-page p, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title, .retour {
+.inter-400, #error-page p, #messagerie .user-message, #messagerie .message-container .message-input-container form .message-input input, #messagerie .message-container .retour, #messagerie .main-container .chatrooms .message-info, #messagerie .main-container .chatrooms li.selected__draft .new-message, #editBook #form-editBook textarea, #editBook .retour, #editBook label, #user-books-mobile-container ul li, #user-profile-account-info-createdAt, #book-detail-info-author-container, .alert-message, .book-card-soldby, .book-card-author, .book-card-title, header .logout-btn, .retour {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -388,6 +388,16 @@ header .notif-icon {
   font-size: 8.25px;
   display: grid;
   place-content: center;
+}
+header .logout-btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  color: rgb(41, 41, 41);
 }
 
 @media screen and (max-width: 1445px) {

@@ -152,6 +152,16 @@ header{
         display: grid;
         place-content: center;
     }
+
+    .logout-btn{
+        appearance: none;
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        cursor: pointer;
+        color: $darken_gray;
+        @extend .inter-400;
+    }
 }
 
 @media screen and (max-width: 1445px){
