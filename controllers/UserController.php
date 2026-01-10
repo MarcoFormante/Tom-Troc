@@ -275,9 +275,10 @@ class UserController extends AbstractController
                 if (!Utils::checkCSRF("register_csrf",$csrfToken)) {
                     throw new Exception("Action non autorisée", 403);
                 }
-                
-                $this->createOrUpdateUser();
+
                 unset($_SESSION['auth_token']);
+                $this->createOrUpdateUser();
+
             }else{
                  throw new Exception("Action non autorisée", 403);
             }
@@ -286,5 +287,12 @@ class UserController extends AbstractController
         $csrf = Utils::generateCSRF("register_csrf");
         $title = "Inscription";
         $this->render("signup_signin", ['title' =>$title, 'csrf' => $csrf, 'isConnectionPage' => false],$title);
+    }
+
+
+    public function logout(){
+        unset($_SESSION['auth_token']);
+        $_SESSION['alert'] = "Déconnexion réussie.";
+        $this->redirect("index.php?route=/");
     }
 }
