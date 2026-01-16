@@ -2,13 +2,11 @@
 <div id="books">
      <div id="books-heading-container" class="flex-sb-c">
         <h1>Nos livres à l’échange</h1>
-        <?php if(!empty($books)): ?>
             <form id="search-book" action="index.php?route=/nos-livre-a-lechange" method="POST">
                 <label for="search">Rechercher un livre</label>
                 <button type="submit" aria-label="Rechercher"></button>
-                <input  type="search" maxlength="60" name="searchValue" id="search" placeholder="Rechercher un livre" value="<?= htmlspecialchars($value ?? "")  ?>"/>
+                <input  type="search" maxlength="60" name="searchValue" id="search" placeholder="Rechercher un livre" value="<?= html_entity_decode(htmlspecialchars($value ?? ""), ENT_QUOTES | ENT_HTML5, 'UTF-8')  ?>"/>
             </form>
-        <?php endif ?>
      </div>
 
     <?php if(isset($error)): ?>
