@@ -2,12 +2,13 @@
 
 class Router
 {
-        /**
-     * Handle Routes
+    /**
+     * Handle routes or throw error if route not found
      * @param string $route 
      * @return void
-     */
-     public static function handleRoute(string $route):void{
+    */
+     public static function handleRoute($route):void
+     {
 
         try {
         switch($route){
