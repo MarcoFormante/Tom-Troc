@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 16, 2026 alle 12:30
+-- Creato il: Gen 16, 2026 alle 23:26
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -43,10 +43,11 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `image`, `description`, `status`, `created_at`, `author`, `sold_by`) VALUES
-(224, 'L’Ombre de la Ville Silencieuse', 'bookDefault.webp', 'Dans une ville où les rues semblent écouter chaque pas, un homme découvre que le silence cache des vérités oubliées. Entre souvenirs effacés et mystères urbains, ce roman explore la solitude moderne et le poids du passé.', 1, '2026-01-16 10:38:12', 'Alain Mercier', 271),
-(225, 'Au-delà du Dernier Horizon', 'bookDefault.webp', 'Lorsqu’un voyage ordinaire se transforme en quête intérieure, une jeune femme affronte ses peurs et ses désirs les plus profonds. Un récit poétique sur le changement, la liberté et le courage de recommencer.', 1, '2026-01-16 10:39:32', 'Claire Beaumont', 267),
-(226, 'Les Mécanismes du Cœur', 'bookDefault.webp', 'À mi-chemin entre science et émotion, ce livre raconte l’histoire d’un ingénieur incapable de comprendre ses propres sentiments. Une réflexion sensible sur l’amour, la rationalité et ce qui échappe à toute logique.', 1, '2026-01-16 10:44:24', 'Julien Lefort', 270),
-(227, 'La Lumière Sous la Cendre', 'bookDefault.webp', 'Après une catastrophe qui a bouleversé une région entière, des vies brisées tentent de se reconstruire. Ce roman intimiste parle de résilience, d’espoir et de la force discrète qui renaît après la chute.', 1, '2026-01-16 10:47:30', 'Nathalie Courtois', 269);
+(224, 'L\'Ombre de la Ville Silencieuse', 'book-696a97a0902eb.jpg', 'Dans une ville où les rues semblent écouter chaque pas, un homme découvre que le silence cache des vérités oubliées. Entre souvenirs effacés et mystères urbains, ce roman explore la solitude moderne et le poids du passé.', 1, '2026-01-16 10:38:12', 'Alain Mercier', 271),
+(225, 'Au-delà du Dernier Horizon', 'book-696a996cc5b73.jpg', 'Lorsqu’un voyage ordinaire se transforme en quête intérieure, une jeune femme affronte ses peurs et ses désirs les plus profonds. Un récit poétique sur le changement, la liberté et le courage de recommencer.', 1, '2026-01-16 10:39:32', 'Claire Beaumont', 267),
+(226, 'Les Mécanismes du Cœur', 'book-696a99c46f11e.jpg', 'À mi-chemin entre science et émotion, ce livre raconte l’histoire d’un ingénieur incapable de comprendre ses propres sentiments. Une réflexion sensible sur l’amour, la rationalité et ce qui échappe à toute logique.', 1, '2026-01-16 10:44:24', 'Julien Lefort', 270),
+(227, 'La Lumière Sous la Cendre', 'book-696a9a1044817.jpg', 'Après une catastrophe qui a bouleversé une région entière, des vies brisées tentent de se reconstruire. Ce roman intimiste parle de résilience, d’espoir et de la force discrète qui renaît après la chute.', 1, '2026-01-16 10:47:30', 'Nathalie Courtois', 269),
+(228, 'Le Jardin des Étoiles', 'book-696aa5921ad3b.jpg', 'Dans un village où les nuits sont éternellement étoilées, une jeune fille découvre un ancien journal qui révèle des secrets oubliés de sa famille. Entre mystères et découvertes personnelles, ce roman explore le lien entre le passé et les rêves qui façonnent notre avenir.', 1, '2026-01-16 12:52:13', 'Claire Fontaine', 268);
 
 -- --------------------------------------------------------
 
@@ -130,10 +131,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`email`, `pseudo`, `password`, `signup_date`, `id`, `profile_image`) VALUES
 ('jean.dupont@gmail.com', 'Jean Dupont', '$2y$13$jJOcs87IvHSV3iHjEcbhz.GdPrVIKJTfAJVKPv9c/SAVKssUrKtWu', '2026-01-16 10:32:42', 266, 'userDefault.webp'),
 ('marie.martin@gmail.com', 'Marie Martin', '$2y$13$rLiEcFkeRBMzpBfdE3xaguFdvvCpcQ01r40MCvo9Fawin.GwwrB56', '2026-01-16 10:33:08', 267, 'userDefault.webp'),
-('pierre.durand@gmail.com', 'Pierre Durand', '$2y$13$j4X8OK1Y2v.kS5rkhrTmB.oZ3xPJ6UNyy93h4S4UwpEWlvbIr0eyW', '2026-01-16 10:33:35', 268, 'userDefault.webp'),
+('pierre.durand@gmail.com', 'Pierre Durand', '$2y$13$j4X8OK1Y2v.kS5rkhrTmB.oZ3xPJ6UNyy93h4S4UwpEWlvbIr0eyW', '2026-01-16 10:33:35', 268, 'user-696aa5a2456bc.jpg'),
 ('sophie.bernard@gmail.com', 'Sophie Bernard', '$2y$13$wXxQ4eg8XUraUJuYixQcZODiWfOOJOxCsfM32GnPA.75yH1oNJd5i', '2026-01-16 10:34:06', 269, 'userDefault.webp'),
 ('luc.moreau@gmail.com', 'Luc Moreau', '$2y$13$zoZAVBtRgF/xlGLRAcB3GeqW80oLVfwg8scZV6nunUXLbfIDD8lf2', '2026-01-16 10:34:36', 270, 'userDefault.webp'),
-('user2026@gmail.com', 'user2026', '$2y$13$Hc7gtX5wrEjItZajvddleeh5Z2mxYERwkv42cMCr88McqxdS.622e', '2026-01-16 10:34:58', 271, 'userDefault.webp');
+('user2026@gmail.com', 'user2026', '$2y$13$Hc7gtX5wrEjItZajvddleeh5Z2mxYERwkv42cMCr88McqxdS.622e', '2026-01-16 10:34:58', 271, 'userDefault.webp'),
+('user@gmail.com', 'Ciaone', '$2y$13$xIIJQXCtIKckNTnuM6ULfO1MblN9GLrCrpF5/edGUqkspmy6AHXyK', '2026-01-16 16:45:25', 272, 'userDefault.webp');
 
 --
 -- Indici per le tabelle scaricate
@@ -188,25 +190,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT per la tabella `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
 -- AUTO_INCREMENT per la tabella `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- Limiti per le tabelle scaricate
@@ -245,3 +247,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+.
