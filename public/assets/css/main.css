@@ -229,10 +229,8 @@ main {
 }
 
 img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 header {
@@ -1838,8 +1836,6 @@ form.draft-form button {
   margin-bottom: 23px;
   width: 488px;
   height: 488px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 #editBook #form-editBook input, #editBook #form-editBook textarea, #editBook #form-editBook select {
   width: 435px;
