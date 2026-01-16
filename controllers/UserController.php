@@ -247,7 +247,8 @@ class UserController extends AbstractController
         if ($data['token']) {
             $_SESSION['auth_token'] = $data['token'];
             Utils::sendAlert("Bienvenue ! Vous êtes maintenant connecté");
-            return $this->redirect("?route=/");
+            $redirect = str_replace("||","&",Utils::request("redirect","/"));
+            return $this->redirect("?route=$redirect");
         }
 
         return $this->redirect("?route=/connection");
@@ -262,7 +263,7 @@ class UserController extends AbstractController
 
     /**
      * Handle User Registration.
-     * if post method and check inputs and csrf if are validates.
+     * check if post method and if user inputs and csrf are validates.
      * if get method generate csrf and render the page.
      * @return void
      */
@@ -292,6 +293,7 @@ class UserController extends AbstractController
 
     public function logout(){
         unset($_SESSION['auth_token']);
+        unset($_SESSION['connectingWithUser']);
         $_SESSION['alert'] = "Déconnexion réussie.";
         $this->redirect("index.php?route=/");
     }
