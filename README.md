@@ -1,6 +1,6 @@
 # Guide d’installation du projet TOMTROC
 
-Ce document explique étape par étape comment installer et exécuter le projet **TOMTROC** en local pour l’évaluation.
+Ce document explique étape par étape comment installer et exécuter le projet **TOMTROC** en local.
 
 ---
 
@@ -83,6 +83,17 @@ Assurez-vous que :
 - MySQL est démarré
 
 - Aucun message d’erreur n’apparaît dans XAMPP
+
+### 7. Accéder au projet dans le navigateur
+
+Ouvrez votre navigateur et entrez l’URL suivante :
+
+http://localhost/NOM_DU_DOSSIER_DU_PROJET/public/index.php
+
+
+Exemple :
+
+http://localhost/TOM-TROC/public/index.php
 
 ## Configuration du fichier `.env`
 
