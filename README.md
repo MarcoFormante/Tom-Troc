@@ -66,7 +66,7 @@ tomtroc
 
  3. Importez le fichier suivant :
 ```
- tomtroc_DB&fixtures.sql
+ tomtroc_DB_fixtures.sql
 ```
 
 📁 Ce fichier se trouve à la racine du projet.
