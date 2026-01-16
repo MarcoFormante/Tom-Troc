@@ -23,7 +23,11 @@
                         <p id="user-profile-account-info-bookCount"><?= count($books) == 1 ? "livre" : "livres"?></p>
                     </div>
                     <?php if(!$isUserProfile): ?>
-                        <a class="btn-secondary pt-45" href="index.php?route=/openMessage&other_user_id=<?= htmlspecialchars($user->getId())?>&pseudo=<?= htmlspecialchars($user->getPseudo())?>">Écrire un message</a>
+                        <?php if($_SESSION['auth_token']): ?>
+                            <a class="btn-secondary pt-45" href="index.php?route=/openMessage&other_user_id=<?= htmlspecialchars($user->getId())?>&pseudo=<?= htmlspecialchars($user->getPseudo())?>">Écrire un message</a>
+                        <?php else: ?>
+                            <a class="btn-secondary pt-45" href="index.php?route=/openMessage&other_user_id=<?= htmlspecialchars($user->getId())?>&pseudo=<?= htmlspecialchars($user->getPseudo())?>&redirect=/profile||userId=<?= htmlspecialchars($user->getId())?>">Écrire un message</a>
+                        <?php endif ?>
                     <?php endif ?>
                 </div>  
             </div>
