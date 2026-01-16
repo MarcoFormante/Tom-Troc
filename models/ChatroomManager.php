@@ -73,7 +73,8 @@ class ChatroomManager extends AbstractEntityManager
                 )
 
                 WHERE c.user_one_id = :user_id 
-                OR c.user_two_id = :user_id";
+                OR c.user_two_id = :user_id
+                ORDER BY created_at DESC";
 
         $stmt = $this->db->query($sql,[
             'user_id' => $user_id
