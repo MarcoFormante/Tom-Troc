@@ -158,7 +158,7 @@ class BookManager extends AbstractEntityManager{
 
         $stmt = $this->db->query($sql,[
             'status' => 1,
-            'value' => $value
+            'value' => "%" . $value . "%"
         ]);
         $error  = "";
         $books = [];
