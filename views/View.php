@@ -27,7 +27,7 @@ class View{
             require($viewPath);
             return ob_get_clean();
         }else{
-            throw new Exception("error");
+            throw new Exception("Cette page n'existe pas");
         }
         
     }
