@@ -8,9 +8,10 @@ class ChatroomController extends AbstractController
      */
     public function showChatrooms(){
         $userId = Utils::checkUser();
+        $redirect = Utils::request("redirect");
 
         if (!$userId) {
-            $this->redirect("index.php?route=/connection");
+            $this->redirect("index.php?route=/connection&redirect=$redirect");
         }
 
         $chatroomManager = new ChatroomManager();
@@ -18,7 +19,6 @@ class ChatroomController extends AbstractController
 
         $otherUserId = Utils::request("other_user_id",-1);
         $chatroomId = Utils::request("chatroom","");
-
         if (($otherUserId && is_numeric($otherUserId)) && $chatroomId) {
             $messageController = new MessageController();
             return $messageController->showMessages($chatrooms,$chatroomId,$otherUserId,$userId);
@@ -50,16 +50,16 @@ class ChatroomController extends AbstractController
         }
 
         $requestRedirect = Utils::request("redirect","");
-        $requestBookId = Utils::request("bookId","");
+        $requestBookId = Utils::request("id","");
         if ($isConnecting) {
             if($chatId = $this->checkExistingChatroomByUsers($otherUserId)){
                 unset($_SESSION['connectingWithUser']);
                 Utils::generateCSRF("csrf-message");
-                $this->redirect("index.php?route=/messages&chatroom=" . $chatId . "&other_user_id=" . $otherUserId . ($requestRedirect ? "&redirect=". $requestRedirect . "&bookId=" . $requestBookId : ""));
+                $this->redirect("index.php?route=/messages&chatroom=" . $chatId . "&other_user_id=" . $otherUserId . ($requestRedirect ? "&redirect=". $requestRedirect . "||id=" . $requestBookId : ""));
             }else{
                 $_SESSION['connectingWithUser'] = $user;
                 Utils::generateCSRF("csrf-message");
-                $this->redirect("index.php?route=/messages&connectingId=" . $user['id'] .( $requestRedirect ? "&redirect=". $requestRedirect . "&bookId=" . $requestBookId : ""));
+                $this->redirect("index.php?route=/messages&connectingId=" . $user['id'] .( $requestRedirect ? "&redirect=". $requestRedirect . "||id=" . $requestBookId : ""));
             }
         }else{
             return true;
