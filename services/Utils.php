@@ -140,12 +140,13 @@ class Utils{
         }
 
         $sessionToken = $_SESSION['auth_token'];
+        $explodedToken = explode(".",$sessionToken);
 
-        if (!count(explode(".",$sessionToken)) === 2) {
+        if (!count($explodedToken) === 2) {
             return null;
         }
 
-        list($payload,$signature) = explode(".",$sessionToken);
+        list($payload,$signature) = $explodedToken;
 
         $secret = self::getEnvValue('APP_SECRET');
 
