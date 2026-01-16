@@ -156,9 +156,10 @@ class BookManager extends AbstractEntityManager{
                 ORDER BY b.created_at DESC
                 ";
 
+        $decodedEntityString = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $stmt = $this->db->query($sql,[
             'status' => 1,
-            'value' => "%" . $value . "%"
+            'value' => "%" . $decodedEntityString . "%"
         ]);
         $error  = "";
         $books = [];
@@ -171,7 +172,7 @@ class BookManager extends AbstractEntityManager{
             }
 
         }else{
-            $error = "Aucun livre trouvé avec le mot ' $value '";
+            $error = "Aucun livre trouvé";
         }
         
         return ["books" => $books, "error" => $error];
