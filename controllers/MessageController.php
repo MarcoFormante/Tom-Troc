@@ -75,6 +75,7 @@ class MessageController extends AbstractController
     {
         $userManager = new UserManager();
         $otherUser = $userManager->getUser($otherUserId);
+        // $messages = $this->getChatroomMessages($chatroomId,$otherUserId,$userId);
         $messages = $this->getChatroomMessages($chatroomId,$otherUserId,$userId);
         $csrf = Utils::generateCSRF("csrf-message");
         
@@ -107,7 +108,7 @@ class MessageController extends AbstractController
                 
         $chatroomManager = new ChatroomManager();
         if (!$chatroomManager->checkExistingChatroomByIds($chatroomId,$otherUserId,$userId)) {
-            throw new Exception("Cette conversation n'existe pas ou n'est plus disponible", 404);
+           return false;
         }
 
         $messageManager = new MessageManager();
@@ -125,7 +126,7 @@ class MessageController extends AbstractController
         $csrf = Utils::request("csrf-message","");
 
         if (!Utils::checkCSRF("csrf-message",$csrf)) {
-            throw new Exception("Action non autorisée, token manquant", 403);
+            $this->redirect("index.php?route=/messages");
         }
 
         unset($_SESSION['connectingWithUser']);
