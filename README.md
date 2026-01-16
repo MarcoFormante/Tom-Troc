@@ -84,6 +84,59 @@ Assurez-vous que :
 
 - Aucun message d’erreur n’apparaît dans XAMPP
 
+## Configuration du fichier `.env`
+
+Pour que l’application fonctionne correctement, il est nécessaire de créer un fichier de configuration **`.env`** à la racine du projet.
+
+1. À la racine du projet, créez un fichier nommé :
+
+```
+.env
+```
+
+
+2. Ajoutez la variable suivante dans ce fichier :
+
+```
+APP_SECRET=your_app_secret_here
+```
+
+## Remarques importantes
+
+Le fichier .env est requis pour le bon fonctionnement de l’application.
+
+Cette variable est utilisée pour des raisons de sécurité (sessions, tokens, etc.).
+
+Dans un contexte de test ou d’évaluation, une valeur simple est suffisante.
+
+### Configuration de la connexion à la base de données
+
+La connexion à MySQL est configurée dans le fichier :
+
+```
+config/config.php
+```
+
+### Contenu typique
+
+```php
+define("DB_NAME", "tomtroc");
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASS", "");
+```
+#### Explications
+
+- DB_NAME : nom de la base de données
+
+- DB_HOST : serveur MySQL (localhost en local)
+
+- DB_USER : utilisateur MySQL
+
+- DB_PASS : mot de passe de l’utilisateur MySQL
+
+Adapter ces paramètres selon la configuration locale MySQL.
+
 ## Connexion à l’application (comptes de test)
 
 Pour tester le fonctionnement de l’application, plusieurs **comptes utilisateurs de démonstration** sont déjà disponibles dans la base de données importée.
@@ -110,4 +163,4 @@ Vous pouvez utiliser l’un des comptes suivants :
 
 ---
 
-Bonne utilisation du projet.
+Bonne utilisation du projet :)
