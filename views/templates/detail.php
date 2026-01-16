@@ -46,8 +46,12 @@ $requestId = Utils::request('id',"")
             </div>
             <?php if(!$isUserBook): ?>
                 <div id="book-detail-info-cta">
-                    <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>&redirect=/detail&bookId=<?= htmlspecialchars($requestId) ?>" class="btn-primary text-center">Envoyer un message</a>
-                </div>
+                    <?php if($_SESSION['auth_token']):?>
+                        <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>" class="btn-primary text-center">Envoyer un message</a>
+                    <?php else: ?>
+                        <a href="?route=/openMessage&other_user_id=<?= $userId ?>&pseudo=<?= $pseudo ?>&redirect=/detail&id=<?= htmlspecialchars($requestId) ?>" class="btn-primary text-center">Envoyer un message</a>
+                    <?php endif ?>
+                    </div>
             <?php endif ?>
         </section>
     </div>
