@@ -112,6 +112,7 @@
             margin-top: 80px;
             max-width: 485px;
             min-width: 300px;
+            margin-inline: auto;
 
             @media screen and (max-width: map.get($screen,min-mobile)){
                 min-width: 100px;
@@ -134,13 +135,12 @@
         }
 
         figure,#book-detail-container-image{
-            height: 488px;
+            height: 100%;
             width: 50vw;
         }
 
         &-info{
             width: unset;
-            margin-right: 10vw;
         }
     }
 
@@ -189,7 +189,7 @@
 
         &-info{
             width: 100%;
-            padding: 0;
+            padding-inline: 20px;
             margin-right: 0;
 
             h1{

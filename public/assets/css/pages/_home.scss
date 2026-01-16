@@ -76,6 +76,10 @@
     h2:not(.book-card-title){
         margin-bottom: 80px;
     }
+
+    & .book-card-title{
+        font-size: clamp(13px,2vw,16px);
+    }
 }
 
 #home-how-it-works{
@@ -278,7 +282,7 @@
             grid-template-columns: 160px 160px;
         }
 
-        h2{
+        h2:not(.book-card-title){
             margin-bottom: 34px;
             font-size: 28px;
         }
@@ -357,6 +361,7 @@
             height: unset;
             padding-inline: 26px;
         }
+
     }
 
 

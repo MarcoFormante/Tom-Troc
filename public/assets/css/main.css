@@ -532,9 +532,14 @@ footer ul li a {
   flex-direction: column;
   gap: 16px;
 }
+@media screen and (max-width: 767px) {
+  .book-card {
+    max-height: 260px;
+  }
+}
 .book-card-title {
   color: rgb(0, 0, 0);
-  margin-top: 12px;
+  margin-top: clamp(13px, 2vw, 20px);
   margin-left: 14px;
   font-size: clamp(13px, 1vw, 16px);
 }
@@ -555,9 +560,24 @@ footer ul li a {
   flex-direction: column;
   gap: 8px;
 }
+@media screen and (max-width: 1024px) {
+  .book-card img {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .book-card img {
+    height: 160px;
+  }
+}
 .book-card-white-container {
   background-color: rgb(255, 255, 255);
   height: 100%;
+}
+@media screen and (max-width: 767px) {
+  .book-card-white-container {
+    height: 260px;
+  }
 }
 
 .error-text {
@@ -719,6 +739,7 @@ form.draft-form button {
   transform: translate(-50%, -300px);
   border: 2px solid rgb(0, 172, 102);
   animation: showAlert 6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 10;
 }
 
 @keyframes showAlert {
@@ -784,6 +805,9 @@ form.draft-form button {
 }
 #home-last-books h2:not(.book-card-title) {
   margin-bottom: 80px;
+}
+#home-last-books .book-card-title {
+  font-size: clamp(13px, 2vw, 16px);
 }
 
 #home-how-it-works {
@@ -969,7 +993,7 @@ form.draft-form button {
     gap: 15.8px;
     grid-template-columns: 160px 160px;
   }
-  #home-last-books h2 {
+  #home-last-books h2:not(.book-card-title) {
     margin-bottom: 34px;
     font-size: 28px;
   }
@@ -1132,9 +1156,6 @@ form.draft-form button {
   .book-list-container .book-card li {
     max-height: 259px;
   }
-  .book-list-container .book-card img {
-    width: 100%;
-  }
   #books-heading-container {
     padding-top: 55px;
     padding-bottom: 40px;
@@ -1282,6 +1303,7 @@ form.draft-form button {
   margin-top: 80px;
   max-width: 485px;
   min-width: 300px;
+  margin-inline: auto;
 }
 @media screen and (max-width: 375px) {
   #book-detail-info-cta {
@@ -1298,12 +1320,11 @@ form.draft-form button {
     align-items: flex-start;
   }
   #book-detail figure, #book-detail #book-detail-container-image {
-    height: 488px;
+    height: 100%;
     width: 50vw;
   }
   #book-detail-info {
     width: unset;
-    margin-right: 10vw;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -1339,7 +1360,7 @@ form.draft-form button {
   }
   #book-detail-info {
     width: 100%;
-    padding: 0;
+    padding-inline: 20px;
     margin-right: 0;
   }
   #book-detail-info h1 {
@@ -2300,7 +2321,7 @@ form.draft-form button {
 }
 #messagerie .user-message.second-user-message .message-content-container p {
   color: rgb(41, 41, 41);
-  word-break: break-all;
+  word-break: break-word;
   text-align: left;
   width: 100%;
 }
@@ -2317,8 +2338,6 @@ form.draft-form button {
 }
 #messagerie .user-message .message-content-container p {
   color: rgb(41, 41, 41);
-  word-break: break-all;
-  text-align: right;
 }
 #messagerie .user-message .message-content-container.second-user-message-content {
   background-color: rgb(255, 255, 255);

@@ -21,11 +21,15 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media screen and (max-width: map.get($screen,max-mobile)){
+        max-height: 260px;
+    }
     
     &-title{
         @extend .inter-400;
         color: $primary_heading;
-        margin-top: 12px;
+        margin-top: clamp(13px, 2vw,20px);;
         margin-left: 14px;
         font-size: clamp(13px, 1vw,16px);
     }
@@ -52,9 +56,22 @@
         gap: 8px;
     }
 
+    img{
+        @media screen and (max-width:map.get($screen,max-tablet)) {
+            width: 100%;
+        }
+        @media screen and (max-width:map.get($screen,max-mobile)) {
+            height: 160px;
+        }
+    }
+
     &-white-container{
         background-color: $white;
         height: 100%;
+
+        @media screen and (max-width:map.get($screen,max-mobile)) {
+            height: 260px;
+        }
     }
 
 }

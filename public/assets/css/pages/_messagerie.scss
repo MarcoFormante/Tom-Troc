@@ -289,7 +289,7 @@
             
                 p{
                     color: $darken_gray;
-                    word-break: break-all;
+                    word-break: break-word;
                     text-align: left;
                     width: 100%;
                 }
@@ -312,8 +312,6 @@
             
             p{
                 color: $darken_gray;
-                word-break: break-all;
-                text-align: right;
             }
 
 
