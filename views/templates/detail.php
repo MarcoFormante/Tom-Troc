@@ -16,7 +16,7 @@ $requestId = Utils::request('id',"")
 ?>
 
 <div class="breadcrumbs" >
-    <a href="?/nos-livre-a-lechange">Nos livres</a> > <?= $title ?>
+    <a href="?route=/nos-livre-a-lechange">Nos livres</a> > <?= $title ?>
 </div>
 
 <h1 id="book-info-title" class="out-screen">Informations sur le livre</h1>
