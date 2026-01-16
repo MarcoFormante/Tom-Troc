@@ -1,11 +1,11 @@
 <?php
 
-class AbstractController{
+abstract class AbstractController{
 
    /**
    *@param string $template
    *@param ?array $params default []
-   *@param string $layout default "main"
+   *@param string $pageName
    *
    *@return void
    */
